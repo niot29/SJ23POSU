@@ -29,6 +29,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+
 public class fubar {
 
 	static ArrayList<String> cutomerInfo;
@@ -38,7 +39,7 @@ public class fubar {
 	static HashMap<Integer, ArrayList<String>> cuntomerDb = new HashMap<Integer, ArrayList<String>>();
 	static HashMap<Integer, ArrayList<String>> roomDb = new HashMap<Integer, ArrayList<String>>();
 	static HashMap<Integer, ArrayList<String>> bookingDb = new HashMap<Integer, ArrayList<String>>();
-	
+
 	static HashMap<Integer, HashMap<String, ArrayList<String>>> bookingData = new HashMap<Integer, HashMap<String, ArrayList<String>>>();
 
 	private static void clearScreen() {
@@ -154,7 +155,7 @@ public class fubar {
 
 	}
 
-	private static void bookingScreen(int listType,int bkey) {
+	private static void bookingScreen(int listType, int bkey) {
 		String leftAlignFormat = "| %-5s | %-25s |%n";
 		System.out.println("");
 		System.out.println("");
@@ -456,6 +457,7 @@ public class fubar {
 		} else {
 			System.out.println("This ID dosn't exist try again.");
 		}
+		setDbColumn();
 	}
 
 	public static void customerManager() {
@@ -531,8 +533,7 @@ public class fubar {
 		ArrayList<String> inputList = new ArrayList<String>();
 		for (String room_str : roomInfo) {
 			String inputValue = "";
-			
-			
+
 			if (room_str.equals("Status: ")) {
 				System.out.print("Room is bookable (y/n): ");
 				inputValue = input.nextLine();
@@ -541,7 +542,8 @@ public class fubar {
 				} else {
 					inputValue = "0";
 				}
-			} else if (room_str.equals("Booking no: ") || (room_str.equals("Customer no: ")) || (room_str.equals("Booking start date: "))){
+			} else if (room_str.equals("Booking no: ") || (room_str.equals("Customer no: "))
+					|| (room_str.equals("Booking start date: "))) {
 				inputValue = "0";
 			} else {
 				System.out.print(room_str);
@@ -585,12 +587,19 @@ public class fubar {
 				System.out.println("Cant update this value");
 
 			}
+
+			String statusString = "ENABLE";
+			if (values.get(updateIndex - 1).equals("0")) {
+				statusString = "BOOKED";
+
+			}
 			System.out.println("Update customer " + rInfo[updateIndex - 1] + ": " + values.get(updateIndex - 1));
 			System.out.print("Input new information: ");
 			String newValuse = scanValue.nextLine();
 
 			values.set(updateIndex - 1, newValuse);
 			roomDb.put(roomId, values);
+
 		}
 	}
 
@@ -659,11 +668,12 @@ public class fubar {
 
 		roomScreen(2);
 		int bId;
-		int eKey = 0;
+		int roomKey = 0;
+		int rvalue = 0;
 		LocalDate firstDate = null;
 		LocalDate secondDate = null;
 		String stayDay = null;
-		ArrayList<String> rooValue = new ArrayList<String>();
+		ArrayList<String> roomValue = new ArrayList<String>();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		try {
 			bId = bookingDb.entrySet().stream().reduce((one, two) -> two).get().getKey();
@@ -678,15 +688,14 @@ public class fubar {
 			String inputValue = "";
 			String choisetValue = "";
 			int cuID;
+
 			switch (str) {
 			case "Room no: ":
 				System.out.print(str);
 				inputValue = input.nextLine();
-				eKey = Integer.parseInt(inputValue);
-				rooValue = roomDb.get(eKey);
+				roomKey = Integer.parseInt(inputValue);
+				roomValue = roomDb.get(roomKey);
 
-				rooValue.set(3 - 1, "0");
-				roomDb.put(eKey, rooValue);
 				break;
 			case "Cutomer: ":
 				System.out.print("List Cutomer in sytem (y/n): ");
@@ -699,6 +708,9 @@ public class fubar {
 						cuID = customerManagerAddNewCutomer();
 						System.out.println(cuID);
 						inputValue = String.valueOf(cuID);
+
+						// roomValue = roomDb.get(roomKey);
+						roomValue.set(3, inputValue);
 					} else {
 						System.out.print("Add cutomer no: ");
 					}
@@ -707,13 +719,11 @@ public class fubar {
 					System.out.print("Add cutomer no: ");
 				}
 				inputValue = input.nextLine();
-				rooValue = roomDb.get(eKey);
-				//rooValue.set(5 - 1, inputValue);
-				//roomDb.put(eKey, rooValue);
-				
+				roomValue.set(3, inputValue);
 				break;
 			case "Status: ":
 				inputValue = "1";
+				roomValue.set(5, "0");
 				break;
 			case "Booking start date (YYYY-MM-DD): ":
 				System.out.print(str);
@@ -735,9 +745,6 @@ public class fubar {
 					}
 
 				}
-				System.out.println(inputValue);
-				rooValue.set(5, inputValue);
-				roomDb.put(eKey, rooValue);
 				
 				break;
 			case "Stay days: ":
@@ -750,22 +757,22 @@ public class fubar {
 				secondDate = firstDate.plusDays(Integer.parseInt(stayDay));
 				System.out.println("Booking end date (YYYY-MM-DD): " + secondDate);
 				inputValue = String.valueOf(secondDate);
+				roomValue.set(4, inputValue);
 				break;
 			default:
-				System.out.print(str);
 				inputValue = input.nextLine();
 
 				break;
 			}
+
 			inputList.add(inputValue);
+
 		}
 
 		bookingDb.put(bId + 1, inputList);
+		roomValue.set(2, String.valueOf(bId + 1));
 
 		// update Room database
-
-		rooValue = roomDb.get(eKey);
-		System.out.println(rooValue);
 
 		saveToFile("booking");
 		saveToFile("room");
@@ -774,33 +781,48 @@ public class fubar {
 	}
 
 	private static void bookingHandlerCancelBooking() {
-		bookingScreen(2,0);
+		bookingScreen(2, 0);
+		setDbColumn();
 		Scanner input = new Scanner(System.in);
 		Scanner custValue = new Scanner(System.in);
 		System.out.print("Cancel booking on booking no: ");
 		int boid = input.nextInt();
+		
 		if (bookingDb.containsKey(boid)) {
 			ArrayList<String> values = bookingDb.get(boid);
 			int index = bookingInfo.indexOf("Status: ");
+			int roomKey = Integer.parseInt(values.get(0)); // get room NO 
 			System.out.print("Verified remove booning y/n:");
 			String confirme = custValue.nextLine();
-			clearScreen();
-			int eKey = boid;
-			ArrayList<String> roomList = roomDb.get(eKey);
-			roomList.set(3 - 1, "1");
+			//clearScreen();
+			
+			
+			ArrayList<String> roomList = roomDb.get(roomKey);
 
 			switch (confirme) {
 			case "y":
-				roomList.set(3 - 1, "1");
-				roomDb.put(eKey, values);
+				roomList.set(2, "0");
+				roomDb.put(roomKey, roomList);
+				roomList.set(3, "0");
+				roomDb.put(roomKey, roomList);
+				roomList.set(4, "0");
+				roomDb.put(roomKey, roomList);
+				roomList.set(5, "1");
+				roomDb.put(roomKey, roomList);
 
 				values.set(index, "0");
 				bookingDb.put(boid, values);
 
 				break;
 			case "Y":
-				roomList.set(3 - 1, "1");
-				roomDb.put(eKey, values);
+				roomList.set(2, "0");
+				roomDb.put(roomKey, roomList);
+				roomList.set(3, "0");
+				roomDb.put(roomKey, roomList);
+				roomList.set(4, "0");
+				roomDb.put(roomKey, roomList);
+				roomList.set(5, "1");
+				roomDb.put(roomKey, roomList);
 
 				values.set(index, "0");
 				bookingDb.put(boid, values);
@@ -812,21 +834,80 @@ public class fubar {
 		}
 		saveToFile("booking");
 		saveToFile("room");
+		
 	}
 
 	private static void bookingHandlerSearchByBookingNo() {
 		System.out.print("Add booking no: ");
 		Scanner input = new Scanner(System.in);
 		String bId = input.nextLine();
-		bookingScreen(3,Integer.parseInt(bId));
-		
-	
+		bookingScreen(3, Integer.parseInt(bId));
 
+	}
+
+	private static void bookingHandlerSearchByDate() {
+		System.out.println("");
+		System.out.print("search for date: ");
+		Scanner input = new Scanner(System.in);
+		LocalDate searchDate = null;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		/*
+		String bookDate = input.nextLine();
+		while (!bookDate.isEmpty()) {
+			try {
+
+				searchDate = LocalDate.parse(bookDate, formatter);
+				// System.out.println(firstDate);
+				bookDate = searchDate.toString();
+
+			} catch (Exception e) {
+				System.out.print("Wrong format on date. Need to bee number format: ");
+				bookDate = "";
+			}
+
+		}
+		*/
+		
+		/*
+		String sdate = "2023-10-26";
+		LocalDate x = LocalDate.parse(sdate, formatter);
+		
+		String sdate2 = "2023-10-25";
+		LocalDate y = LocalDate.parse(sdate2, formatter);
+		int compareValue = x.compareTo(y);
+		System.out.println(compareValue);
+		
+		if (compareValue > 0) {
+			  System.out.println("x is latter than" + y);
+			} else if (compareValue < 0) {
+			  System.out.println("x is earlier than" + y);
+			} else {
+			  System.out.println("both dates are equal");
+			}
+		
+		
+		boolean isBefore = y.isBefore(x); //false
+		boolean isAfter  = y.isBefore(x); //true
+		
+		System.out.println(isBefore);
+		System.out.println(isAfter);
+		*/
+		
+		ArrayList<LocalDate> searchList = new ArrayList<LocalDate>();
+		for(int roomKey : roomDb .keySet()) {
+			ArrayList<String> roomList = roomDb.get(roomKey);
+			if(roomList.get(5).equals("0") && !roomList.get(4).isEmpty()) {
+				System.out.println(roomList);
+				
+			}
+		}
+			
+		
 	}
 
 	private static void bookingHandler() {
 		String[] bookingMenu = { "Book", "List All Booking", "List Free Room", "Cancel reservation",
-				"Search Booking no", "Exit" };
+				"Search Booking no", "Search Booking no", "Exit" };
 		mainScreen(bookingMenu);
 		String mSelection = "";
 		Scanner mainInput = new Scanner(System.in);
@@ -845,7 +926,7 @@ public class fubar {
 				break;
 			case "2":
 				clearScreen();
-				bookingScreen(2,0);
+				bookingScreen(2, 0);
 				mainScreen(bookingMenu);
 				skipp = 1;
 				break;
@@ -865,11 +946,13 @@ public class fubar {
 				break;
 			case "5":
 				clearScreen();
-				bookingScreen(2,0);
+				bookingScreen(2, 0);
 				bookingHandlerSearchByBookingNo();
 				skipp = 1;
 				break;
 			case "6":
+				bookingHandlerSearchByDate();
+				skipp = 1;
 				break;
 			default:
 				clearScreen();
