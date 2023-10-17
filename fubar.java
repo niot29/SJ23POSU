@@ -19,13 +19,13 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.Set;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -113,6 +113,9 @@ public class fubar {
 
 	private static void roomScreen(int listType) {
 
+		String screenHead = "+----------+-------------+--------------+--------------+---------------+--------+-------------------+%n";
+		String screenMenu = "|  ROOM NO |  ROOM TYPE  |  BOOKING NO  |  CUTOMER NO  |  BOOKING DATE | STATUS |  DESCRIPTION %n";
+
 		String leftAlignFormat = "|   %-3d | %-25s |%n";
 		System.out.println("");
 		System.out.println("");
@@ -146,9 +149,10 @@ public class fubar {
 		System.out.format("+-------+---------------------------+%n");
 		System.out.format("*************************************%n");
 		System.out.format("*************************************%n");
+
 	}
 
-	private static void bookingScreen(int listType) {
+	private static void bookingScreen(int listType,int bkey) {
 		String leftAlignFormat = "| %-5s | %-25s |%n";
 		System.out.println("");
 		System.out.println("");
@@ -175,6 +179,9 @@ public class fubar {
 			}
 
 			break;
+		case 3:
+			ArrayList<String> rList = bookingDb.get(bkey);
+			System.out.format(leftAlignFormat, bkey, rList);
 		default:
 			break;
 
@@ -198,7 +205,7 @@ public class fubar {
 		roomInfo.add("Status: ");
 		roomInfo.add("Booking no: ");
 		roomInfo.add("Customer no: ");
-		roomInfo.add("Booking end date: ");
+		roomInfo.add("Booking start date: ");
 
 		bookingInfo = new ArrayList<String>();
 		bookingInfo.add("Room no: ");
@@ -522,6 +529,8 @@ public class fubar {
 		ArrayList<String> inputList = new ArrayList<String>();
 		for (String room_str : roomInfo) {
 			String inputValue = "";
+			
+			
 			if (room_str.equals("Status: ")) {
 				System.out.print("Room is bookable (y/n): ");
 				inputValue = input.nextLine();
@@ -530,8 +539,8 @@ public class fubar {
 				} else {
 					inputValue = "0";
 				}
-			} else if (room_str.equals("Booking no: ")) {
-				break;
+			} else if (room_str.equals("Booking no: ") || (room_str.equals("Customer no: ")) || (room_str.equals("Booking start date: "))){
+				inputValue = "0";
 			} else {
 				System.out.print(room_str);
 				inputValue = input.nextLine();
@@ -623,8 +632,8 @@ public class fubar {
 				skipp = 0;
 				break;
 			case "5":
-				//clearScreen();
-				//roomScreen(2);
+				// clearScreen();
+				// roomScreen(2);
 				System.out.println("Fill in room information:");
 				roomManagerAddNewRoom();
 				saveToFile("room");
@@ -672,8 +681,8 @@ public class fubar {
 				System.out.print(str);
 				inputValue = input.nextLine();
 				eKey = Integer.parseInt(inputValue);
-				rooValue= roomDb.get(eKey);
-				
+				rooValue = roomDb.get(eKey);
+
 				rooValue.set(3 - 1, "0");
 				roomDb.put(eKey, rooValue);
 				break;
@@ -696,6 +705,10 @@ public class fubar {
 					System.out.print("Add cutomer no: ");
 				}
 				inputValue = input.nextLine();
+				rooValue = roomDb.get(eKey);
+				rooValue.set(6 - 1, inputValue);
+				roomDb.put(eKey, rooValue);
+				
 				break;
 			case "Status: ":
 				inputValue = "1";
@@ -721,6 +734,10 @@ public class fubar {
 
 				}
 				System.out.println(inputValue);
+				rooValue = roomDb.get(eKey);
+				rooValue.set(5 - 1, inputValue);
+				roomDb.put(eKey, rooValue);
+				
 				break;
 			case "Stay days: ":
 				System.out.print(str);
@@ -742,23 +759,21 @@ public class fubar {
 			inputList.add(inputValue);
 		}
 
-		bookingDb.put(bId + 1, inputList); 
-		
+		bookingDb.put(bId + 1, inputList);
+
 		// update Room database
-		
-		rooValue= roomDb.get(eKey);
+
+		rooValue = roomDb.get(eKey);
 		System.out.println(rooValue);
-		
-		
-		
+
 		saveToFile("booking");
 		saveToFile("room");
-		
+
 		return bId + 1;
 	}
 
 	private static void bookingHandlerCancelBooking() {
-		bookingScreen(2);
+		bookingScreen(2,0);
 		Scanner input = new Scanner(System.in);
 		Scanner custValue = new Scanner(System.in);
 		System.out.print("Cancel booking on booking no: ");
@@ -798,9 +813,19 @@ public class fubar {
 		saveToFile("room");
 	}
 
+	private static void bookingHandlerSearchByBookingNo() {
+		System.out.print("Add booking no: ");
+		Scanner input = new Scanner(System.in);
+		String bId = input.nextLine();
+		bookingScreen(3,Integer.parseInt(bId));
+		
+	
+
+	}
+
 	private static void bookingHandler() {
-		String[] bookingMenu = { "Book", "List All Booking", "List Free Room", "Cancel reservation", "Search date",
-				"Exit" };
+		String[] bookingMenu = { "Book", "List All Booking", "List Free Room", "Cancel reservation",
+				"Search Booking no", "Exit" };
 		mainScreen(bookingMenu);
 		String mSelection = "";
 		Scanner mainInput = new Scanner(System.in);
@@ -819,7 +844,7 @@ public class fubar {
 				break;
 			case "2":
 				clearScreen();
-				bookingScreen(2);
+				bookingScreen(2,0);
 				mainScreen(bookingMenu);
 				skipp = 1;
 				break;
@@ -838,6 +863,9 @@ public class fubar {
 				mSelection = "2";
 				break;
 			case "5":
+				clearScreen();
+				bookingScreen(2,0);
+				bookingHandlerSearchByBookingNo();
 				skipp = 1;
 				break;
 			case "6":
@@ -860,7 +888,6 @@ public class fubar {
 	public static void main(String[] args) {
 		clearScreen();
 		setDbColumn();
-		// System.out.println(cuntomerDb);
 		mainMenu();
 
 		// addcutomerInfo();
