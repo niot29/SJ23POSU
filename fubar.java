@@ -38,6 +38,8 @@ public class fubar {
 	static HashMap<Integer, ArrayList<String>> cuntomerDb = new HashMap<Integer, ArrayList<String>>();
 	static HashMap<Integer, ArrayList<String>> roomDb = new HashMap<Integer, ArrayList<String>>();
 	static HashMap<Integer, ArrayList<String>> bookingDb = new HashMap<Integer, ArrayList<String>>();
+	
+	static HashMap<Integer, HashMap<String, ArrayList<String>>> bookingData = new HashMap<Integer, HashMap<String, ArrayList<String>>>();
 
 	private static void clearScreen() {
 		int width = 200;
@@ -135,7 +137,7 @@ public class fubar {
 
 				ArrayList<String> rList = roomDb.get(cKey);
 				ArrayList<String> newRoomList = new ArrayList<String>();
-				if (rList.get(2).equals("1")) {
+				if (rList.get(5).equals("1")) {
 					newRoomList.addAll(rList);
 					System.out.format(leftAlignFormat, cKey, newRoomList);
 				}
@@ -202,10 +204,10 @@ public class fubar {
 		roomInfo = new ArrayList<String>();
 		roomInfo.add("Type (Bed in the room): ");
 		roomInfo.add("Description: ");
-		roomInfo.add("Status: ");
 		roomInfo.add("Booking no: ");
 		roomInfo.add("Customer no: ");
 		roomInfo.add("Booking start date: ");
+		roomInfo.add("Status: ");
 
 		bookingInfo = new ArrayList<String>();
 		bookingInfo.add("Room no: ");
@@ -706,8 +708,8 @@ public class fubar {
 				}
 				inputValue = input.nextLine();
 				rooValue = roomDb.get(eKey);
-				rooValue.set(6 - 1, inputValue);
-				roomDb.put(eKey, rooValue);
+				//rooValue.set(5 - 1, inputValue);
+				//roomDb.put(eKey, rooValue);
 				
 				break;
 			case "Status: ":
@@ -734,8 +736,7 @@ public class fubar {
 
 				}
 				System.out.println(inputValue);
-				rooValue = roomDb.get(eKey);
-				rooValue.set(5 - 1, inputValue);
+				rooValue.set(5, inputValue);
 				roomDb.put(eKey, rooValue);
 				
 				break;
