@@ -29,13 +29,11 @@ import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-
 public class fubar {
 
 	static ArrayList<String> cutomerInfo;
-	static ArrayList<String> roomInfo;
 	static ArrayList<String> bookingInfo;
-
+	static ArrayList<String> roomInfo;
 	static HashMap<Integer, ArrayList<String>> cuntomerDb = new HashMap<Integer, ArrayList<String>>();
 	static HashMap<Integer, ArrayList<String>> roomDb = new HashMap<Integer, ArrayList<String>>();
 	static HashMap<Integer, ArrayList<String>> bookingDb = new HashMap<Integer, ArrayList<String>>();
@@ -98,100 +96,155 @@ public class fubar {
 
 	private static void customerScreen() {
 
-		String leftAlignFormat = "|   %-3d | %-25s |%n";
+		int num = 143;
+		for (int i = 0; i <= num; ++i) {
+			System.out.print("-");
+		}
+		System.out.println();
+		System.out.printf("| %-10s | %-25s |  %-25s | %-25s | %-25s |  %-12s | %n", "CUTOMER.NO", "FIRSTNAME",
+				"LASTNAME", "EMAIL", "ADDRESS", "PHONE");
+		String inline = "| %-10s | %-25s |  %-25s | %-25s | %-25s |  %-12s | %n";
+
+		for (int i = 0; i <= num; ++i) {
+			System.out.print("-");
+		}
+		// System.out.print(out);
 		System.out.println("");
-		System.out.println("");
-		System.out.format("+-------+---------------------------+%n");
-		System.out.format("| Customer no  | Customer info              |%n");
-		System.out.format("+-------+---------------------------+%n");
 
 		for (int cKey : cuntomerDb.keySet()) {
-			System.out.format(leftAlignFormat, cKey, cuntomerDb.get(cKey));
+			/*
+			 * String STATUS = roomDb.get(cKey).get(5).replace("0", "BOOKED"); STATUS =
+			 * STATUS.replace("1", "---"); STATUS = STATUS.replace("X", "OOS"); String
+			 * CUSTOM = roomDb.get(cKey).get(3).replace("0", "--"); String BOKNO =
+			 * roomDb.get(cKey).get(2).replace("0", "--");
+			 */
+			System.out.format(inline, cKey, cuntomerDb.get(cKey).get(0), cuntomerDb.get(cKey).get(1),
+					cuntomerDb.get(cKey).get(2), cuntomerDb.get(cKey).get(3), cuntomerDb.get(cKey).get(4));
 		}
-
-		System.out.format("+-------+---------------------------+%n");
-		System.out.format("*************************************%n");
-		System.out.format("*************************************%n");
+		for (int i = 0; i <= num; ++i) {
+			System.out.print("-");
+		}
+		System.out.println("");
 	}
 
 	private static void roomScreen(int listType) {
 
-		String screenHead = "+----------+-------------+--------------+--------------+---------------+--------+-------------------+%n";
-		String screenMenu = "|  ROOM NO |  ROOM TYPE  |  BOOKING NO  |  CUTOMER NO  |  BOOKING DATE | STATUS |  DESCRIPTION %n";
+		int num = 100;
+		for (int i = 0; i <= num; ++i) {
+			System.out.print("-");
+		}
+		System.out.println();
+		System.out.printf("|  %-10s | %-10s |  %-10s | %-10s | %-15s |  %-10s | %-10s  | %n", "ROOM.NO", "ROOM TYPE",
+				"BOOKING NO", "CUTOMER.NO", "BOOKING DATE", "STATUS", "DESCRIPTION");
+		String inline = "|  %-10s | %-10s |  %-10s | %-10s | %-15s | %-10s | %-10s | %n";
 
-		String leftAlignFormat = "|   %-3d | %-25s |%n";
+		for (int i = 0; i <= num; ++i) {
+			System.out.print("-");
+		}
+		// System.out.print(out);
 		System.out.println("");
-		System.out.println("");
-		System.out.format("+-------+---------------------------+%n");
-		System.out.format("| Room no  | Room info              |%n");
-		System.out.format("+-------+---------------------------+%n");
 
 		switch (listType) {
 		case 1:
+
 			for (int cKey : roomDb.keySet()) {
-				System.out.format(leftAlignFormat, cKey, roomDb.get(cKey));
+				String STATUS = roomDb.get(cKey).get(5).replace("0", "BOOKED");
+				STATUS = STATUS.replace("1", "---");
+				STATUS = STATUS.replace("X", "OOS");
+				String CUSTOM = roomDb.get(cKey).get(3).replace("0", "--");
+				String BOKNO = roomDb.get(cKey).get(2).replace("0", "--");
+
+				System.out.format(inline, cKey, roomDb.get(cKey).get(0), BOKNO, CUSTOM, roomDb.get(cKey).get(4), STATUS,
+						roomDb.get(cKey).get(1));
 			}
+
 			break;
 		case 2:
 
 			for (int cKey : roomDb.keySet()) {
+				if (roomDb.get(cKey).get(5).equals("1")) {
+					String STATUS = roomDb.get(cKey).get(5).replace("0", "BOOKED");
+					STATUS = STATUS.replace("1", "--");
+					STATUS = STATUS.replace("X", "OOS");
+					String CUSTOM = roomDb.get(cKey).get(3).replace("0", "--");
+					String BOKNO = roomDb.get(cKey).get(2).replace("0", "--");
 
-				ArrayList<String> rList = roomDb.get(cKey);
-				ArrayList<String> newRoomList = new ArrayList<String>();
-				if (rList.get(5).equals("1")) {
-					newRoomList.addAll(rList);
-					System.out.format(leftAlignFormat, cKey, newRoomList);
+					System.out.format(inline, cKey, roomDb.get(cKey).get(0), BOKNO, CUSTOM, roomDb.get(cKey).get(4),
+							STATUS, roomDb.get(cKey).get(1));
 				}
+
 			}
+
 			break;
 		default:
 			break;
 
 		}
 
-		System.out.format("+-------+---------------------------+%n");
-		System.out.format("*************************************%n");
-		System.out.format("*************************************%n");
+		for (int i = 0; i <= num; ++i) {
+			System.out.print("-");
+		}
+		System.out.println("");
 
 	}
 
 	private static void bookingScreen(int listType, int bkey) {
-		String leftAlignFormat = "| %-5s | %-25s |%n";
+
+		int num = 130;
+		for (int i = 0; i <= num; ++i) {
+			System.out.print("-");
+		}
+		System.out.println();
+		System.out.printf("| %-10s | %-10s | %-10s | %-15s | %-10s |  %-15s | %-10s | %-25s | %n", "BOOKING.NO",
+				"ROOM.NO", "CUTOMER.NO", "BOOKING DATE", "STAY", "DEPARTURE", "STATUS", "DESCRIPTION");
+		String inline = "| %-10s | %-10s | %-10s | %-15s | %-10s |  %-15s | %-10s | %-25s | %n";
+
+		for (int i = 0; i <= num; ++i) {
+			System.out.print("-");
+		}
+		// System.out.print(out);
 		System.out.println("");
-		System.out.println("");
-		System.out.format("+-------+---------------------------+%n");
-		System.out.format("| Booning no  | Booking info        |%n");
-		System.out.format("+-------+---------------------------+%n");
 
 		switch (listType) {
 		case 1:
+
 			for (int cKey : bookingDb.keySet()) {
-				System.out.format(leftAlignFormat, cKey, bookingDb.get(cKey));
+				String STATUS = bookingDb.get(cKey).get(6).replace("0", "BOOKED");
+				STATUS = STATUS.replace("1", "---");
+				STATUS = STATUS.replace("X", "OOS");
+				String CUSTOM = bookingDb.get(cKey).get(1).replace("0", "--");
+				String ROMMNO = bookingDb.get(cKey).get(0).replace("0", "--");
+
+				System.out.format(inline, cKey, ROMMNO, CUSTOM, bookingDb.get(cKey).get(2), bookingDb.get(cKey).get(3),
+						bookingDb.get(cKey).get(4), STATUS, bookingDb.get(cKey).get(5));
 			}
-			break;
-		case 2:
 
+			break;
+
+		case 2:
 			for (int cKey : bookingDb.keySet()) {
 
-				ArrayList<String> rList = bookingDb.get(cKey);
-				ArrayList<String> bList = new ArrayList<String>();
-				if (rList.get(6).equals("1")) {
-					bList.addAll(rList);
-					System.out.format(leftAlignFormat, cKey, bList);
+				if (bookingDb.get(cKey).get(6).equals("1")) {
+					String STATUS = bookingDb.get(cKey).get(6).replace("0", "BOOKED");
+					STATUS = STATUS.replace("1", "---");
+					STATUS = STATUS.replace("X", "OOS");
+					String CUSTOM = bookingDb.get(cKey).get(1).replace("0", "--");
+					String ROMMNO = bookingDb.get(cKey).get(0).replace("0", "--");
+
+					System.out.format(inline, cKey, ROMMNO, CUSTOM, bookingDb.get(cKey).get(2),
+							bookingDb.get(cKey).get(3), bookingDb.get(cKey).get(4), STATUS, bookingDb.get(cKey).get(5));
 				}
 			}
 
-			break;
-		case 3:
-			ArrayList<String> rList = bookingDb.get(bkey);
-			System.out.format(leftAlignFormat, bkey, rList);
 		default:
 			break;
 
 		}
-		System.out.format("+-------+---------------------------+%n");
-		System.out.format("*************************************%n");
-		System.out.format("*************************************%n");
+
+		for (int i = 0; i <= num; ++i) {
+			System.out.print("-");
+		}
+		System.out.println("");
 	}
 
 	private static void setDbColumn() {
@@ -745,7 +798,7 @@ public class fubar {
 					}
 
 				}
-				
+
 				break;
 			case "Stay days: ":
 				System.out.print(str);
@@ -787,16 +840,15 @@ public class fubar {
 		Scanner custValue = new Scanner(System.in);
 		System.out.print("Cancel booking on booking no: ");
 		int boid = input.nextInt();
-		
+
 		if (bookingDb.containsKey(boid)) {
 			ArrayList<String> values = bookingDb.get(boid);
 			int index = bookingInfo.indexOf("Status: ");
-			int roomKey = Integer.parseInt(values.get(0)); // get room NO 
+			int roomKey = Integer.parseInt(values.get(0)); // get room NO
 			System.out.print("Verified remove booning y/n:");
 			String confirme = custValue.nextLine();
-			//clearScreen();
-			
-			
+			// clearScreen();
+
 			ArrayList<String> roomList = roomDb.get(roomKey);
 
 			switch (confirme) {
@@ -834,7 +886,7 @@ public class fubar {
 		}
 		saveToFile("booking");
 		saveToFile("room");
-		
+
 	}
 
 	private static void bookingHandlerSearchByBookingNo() {
@@ -847,67 +899,71 @@ public class fubar {
 
 	private static void bookingHandlerSearchByDate() {
 		System.out.println("");
-		System.out.print("search for date: ");
-		Scanner input = new Scanner(System.in);
-		LocalDate searchDate = null;
+
+		System.out.println("");
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		/*
-		String bookDate = input.nextLine();
-		while (!bookDate.isEmpty()) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		int inStatus = 0;
+		Scanner input = new Scanner(System.in);
+		// String insDate = "2023-10LocalDate -26";
+		String insDate = null;
+		LocalDate insearchDate = null;
+
+		while (inStatus == 0) {
+			System.out.print("search for date (YYYY-MM-DD): ");
+			insDate = input.nextLine();
+
 			try {
-
-				searchDate = LocalDate.parse(bookDate, formatter);
-				// System.out.println(firstDate);
-				bookDate = searchDate.toString();
-
-			} catch (Exception e) {
-				System.out.print("Wrong format on date. Need to bee number format: ");
-				bookDate = "";
+				dateFormat.parse(insDate.trim());
+				insearchDate = LocalDate.parse(insDate, formatter);
+				inStatus = 1;
+			} catch (ParseException pe) {
+				System.out.println("Wrong format on date. Need to bee number format: ");
+				inStatus = 0;
 			}
 
 		}
-		*/
-		
-		/*
-		String sdate = "2023-10-26";
-		LocalDate x = LocalDate.parse(sdate, formatter);
-		
-		String sdate2 = "2023-10-25";
-		LocalDate y = LocalDate.parse(sdate2, formatter);
-		int compareValue = x.compareTo(y);
-		System.out.println(compareValue);
-		
-		if (compareValue > 0) {
-			  System.out.println("x is latter than" + y);
-			} else if (compareValue < 0) {
-			  System.out.println("x is earlier than" + y);
-			} else {
-			  System.out.println("both dates are equal");
-			}
-		
-		
-		boolean isBefore = y.isBefore(x); //false
-		boolean isAfter  = y.isBefore(x); //true
-		
-		System.out.println(isBefore);
-		System.out.println(isAfter);
-		*/
-		
-		ArrayList<LocalDate> searchList = new ArrayList<LocalDate>();
-		for(int roomKey : roomDb .keySet()) {
+
+		// LocalDate insearchDate = LocalDate.parse(insDate, formatter);
+
+		ArrayList<Integer> freeRoomList = new ArrayList<Integer>();
+		for (int roomKey : roomDb.keySet()) {
 			ArrayList<String> roomList = roomDb.get(roomKey);
-			if(roomList.get(5).equals("0") && !roomList.get(4).isEmpty()) {
-				System.out.println(roomList);
-				
+
+			if (roomList.get(5).equals("0") && !roomList.get(4).isEmpty()) {
+
+				if (!roomList.get(4).equals("0")) {
+					LocalDate localDate = LocalDate.parse(roomList.get(4), formatter);
+					int compareValueStatusDate = insearchDate.compareTo(localDate);
+
+					if (compareValueStatusDate > 0) {
+						// System.out.println(insDate + " is latter than " + localDate);
+					} else {
+						freeRoomList.add(roomKey);
+
+					}
+				} else {
+					freeRoomList.add(roomKey);
+
+				}
+			} else {
+				freeRoomList.add(roomKey);
 			}
+
 		}
-			
-		
+
+		// Remove room that cant bee book
+		for (int key : freeRoomList) {
+			roomDb.remove(key);
+		}
+		roomScreen(1);
+		setDbColumn();
+
 	}
 
 	private static void bookingHandler() {
 		String[] bookingMenu = { "Book", "List All Booking", "List Free Room", "Cancel reservation",
-				"Search Booking no", "Search Booking no", "Exit" };
+				"Search By Booking no", "Search By Date", "Exit" };
 		mainScreen(bookingMenu);
 		String mSelection = "";
 		Scanner mainInput = new Scanner(System.in);
@@ -951,6 +1007,8 @@ public class fubar {
 				skipp = 1;
 				break;
 			case "6":
+				clearScreen();
+				bookingScreen(2, 0);
 				bookingHandlerSearchByDate();
 				skipp = 1;
 				break;
@@ -973,6 +1031,12 @@ public class fubar {
 		clearScreen();
 		setDbColumn();
 		mainMenu();
+
+		// Test funk
+		// customerScreen();
+		//bookingScreen(1, 1);
+		//bookingScreen(2, 1);
+		// roomScreen(2);
 
 		// addcutomerInfo();
 	}
