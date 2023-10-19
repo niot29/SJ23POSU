@@ -625,16 +625,18 @@ public class fubar {
 			String[] custInfo = cutomerInfo.toArray(new String[cutomerInfo.size()]); //
 			String[] values = cuntomerDb.get(rCuId).toArray(new String[cutomerInfo.size()]);
 			System.out.print("Customer: " + values[0] + " " + values[1]);
-			System.out.print("Verified y/n:");
+			System.out.print("  Verified y/n:");
 			String confirme = custValue.nextLine();
 			switch (confirme) {
 			case "y":
 				cuntomerDb.remove(rCuId);
+				saveToFile("customer");
 				clearScreen();
 				customerScreen();
 				break;
 			case "Y":
 				cuntomerDb.remove(rCuId);
+				saveToFile("customer");
 				clearScreen();
 				customerScreen();
 				break;
