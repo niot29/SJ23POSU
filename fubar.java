@@ -26,11 +26,14 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class fubar {
 
+	private static final String regexMail = "^(.+)@(.+)$";
+	private static final String regexPhone = "^\\d{10}$";
 	static ArrayList<String> cutomerInfo;
 	static ArrayList<String> bookingInfo;
 	static ArrayList<String> roomInfo;
@@ -43,38 +46,36 @@ public class fubar {
 	private static void clearScreen() {
 		int width = 200;
 		int height = 30;
+
 		String str = "HOTEL FUBAR";
 		// clear screen
 		System.out.print("\033[H\033[2J");
 		System.out.flush();
 
-		// BufferedImage image = ImageIO.read(new
-		// File("/Users/mkyong/Desktop/logo.jpg"));
-		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-		Graphics g = image.getGraphics();
-		g.setFont(new Font("SansSerif", Font.BOLD, 24));
-
-		Graphics2D graphics = (Graphics2D) g;
-		graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-		graphics.drawString(str, 10, 20);
-
-		// save this image
-		// ImageIO.write(image, "png", new File("/users/mkyong/ascii-art.png"));
-
-		for (int y = 0; y < height; y++) {
-			StringBuilder sb = new StringBuilder();
-			for (int x = 0; x < width; x++) {
-
-				sb.append(image.getRGB(x, y) == -16777216 ? " " : "$");
-
-			}
-
-			if (sb.toString().trim().isEmpty()) {
-				continue;
-			}
-
-			System.out.println(sb);
-		}
+		/*
+		 * // BufferedImage image = ImageIO.read(new //
+		 * File("/Users/mkyong/Desktop/logo.jpg")); BufferedImage image = new
+		 * BufferedImage(width, height, BufferedImage.TYPE_INT_RGB); Graphics g =
+		 * image.getGraphics(); g.setFont(new Font("SansSerif", Font.BOLD, 24));
+		 * 
+		 * Graphics2D graphics = (Graphics2D) g;
+		 * graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
+		 * RenderingHints.VALUE_TEXT_ANTIALIAS_ON); graphics.drawString(str, 10, 20);
+		 * 
+		 * // save this image // ImageIO.write(image, "png", new
+		 * File("/users/mkyong/ascii-art.png"));
+		 * 
+		 * for (int y = 0; y < height; y++) { StringBuilder sb = new StringBuilder();
+		 * for (int x = 0; x < width; x++) {
+		 * 
+		 * sb.append(image.getRGB(x, y) == -16777216 ? " " : "$");
+		 * 
+		 * }
+		 * 
+		 * if (sb.toString().trim().isEmpty()) { continue; }
+		 * 
+		 * System.out.println(sb); }
+		 */
 
 	}
 
@@ -156,6 +157,8 @@ public class fubar {
 
 				System.out.format(inline, cKey, roomDb.get(cKey).get(0), BOKNO, CUSTOM, roomDb.get(cKey).get(4), STATUS,
 						roomDb.get(cKey).get(1));
+				
+				
 			}
 
 			break;
@@ -427,6 +430,33 @@ public class fubar {
 
 	}
 
+	private static Boolean stringValidation(String value, String checktyp) {
+		// check if string is email or phone - as simple check with regex
+		Boolean resturnCheck = null;
+		
+		switch (checktyp) {
+
+		case "email":
+			// String value = "killer.ldkl@dkiller.se";
+			Pattern patternMail = Pattern.compile(regexMail);
+			Matcher matcherMail = patternMail.matcher(value);
+			//System.out.println("The Email address " + value + " is " + (matcher.matches() ? true : false));
+			
+			resturnCheck = (matcherMail.matches() ? true : false);
+			break;
+		case "phone":
+			
+			Pattern patternPhone = Pattern.compile(regexPhone);
+			Matcher matcherPhone = patternPhone.matcher(value);
+			//System.out.println("The Email address " + value + " is " + (matcherPhone.matches() ? true : false));
+			
+			resturnCheck = (matcherPhone.matches() ? true : false);
+			break;
+		}
+
+		return resturnCheck;
+	}
+
 	private static int customerManagerAddNewCutomer() {
 		int custId = 1;
 		try {
@@ -441,15 +471,42 @@ public class fubar {
 			System.out.print(customer_str);
 			String inputValue = "";
 			inputValue = input.nextLine();
+			Boolean checkStatus = false;
+
+			switch (customer_str) {
+			case "Email: ":
+				checkStatus = stringValidation(inputValue, "email");
+				System.out.println("");
+				 while (!checkStatus) {
+					System.out.println("The input dosen't match validation:");
+					System.out.print(customer_str);
+					inputValue = input.nextLine();
+					checkStatus = stringValidation(inputValue, "email");
+				}
+				break;
+			case "Phone: ":
+				checkStatus = stringValidation(inputValue, "phone");
+				System.out.println("");
+				 while (!checkStatus) {
+					System.out.println("The input dosen't match validation ():");
+					System.out.print(customer_str);
+					inputValue = input.nextLine();
+					checkStatus = stringValidation(inputValue, "phone");
+				}
+			default:
+				break;
+			}
+			
 			inputList.add(inputValue);
+			checkStatus = false;
 		}
 
 		cuntomerDb.put(custId + 1, inputList);
 
 		// Sort HasMap by key
-		HashMap<Integer, ArrayList<String>> temp = cuntomerDb.entrySet().stream()
-				.sorted((i1, i2) -> i1.getKey().compareTo(i2.getKey()))
-				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+//		HashMap<Integer, ArrayList<String>> temp = cuntomerDb.entrySet().stream()
+//				.sorted((i1, i2) -> i1.getKey().compareTo(i2.getKey()))
+//				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 
 		// BUGG CAST EXEPTION WHEN ADDING MER CUTOMER AND SCANNER IS CLOSE.
 		// input.close();
@@ -1033,9 +1090,10 @@ public class fubar {
 		mainMenu();
 
 		// Test funk
+		//stringValidation("7984286257", "phone");
 		// customerScreen();
-		//bookingScreen(1, 1);
-		//bookingScreen(2, 1);
+		// bookingScreen(1, 1);
+		// bookingScreen(2, 1);
 		// roomScreen(2);
 
 		// addcutomerInfo();
