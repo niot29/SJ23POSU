@@ -30,7 +30,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import com.sun.tools.javac.code.Attribute.Array;
 
 public class fubar {
 
@@ -127,7 +126,7 @@ public class fubar {
 
 		switch (listType) {
 		case 1:
-
+		
 			for (int cKey : roomDb.keySet()) {
 				String STATUS = roomDb.get(cKey).get(5).replace("0", "BOOKED");
 				STATUS = STATUS.replace("1", "---");
@@ -184,8 +183,9 @@ public class fubar {
 				STATUS = STATUS.replace("1", "---");
 				STATUS = STATUS.replace("X", "OOS");
 				String CUSTOM = bookingDb.get(cKey).get(1).replace("0", "--");
-				String ROMMNO = bookingDb.get(cKey).get(0).replace("0", "--");
-
+				//String ROMMNO = bookingDb.get(cKey).get(0).replace("0", "--");
+				String ROMMNO = bookingDb.get(cKey).get(0);
+				
 				System.out.format(inline, cKey, ROMMNO, CUSTOM, bookingDb.get(cKey).get(2), bookingDb.get(cKey).get(3),
 						bookingDb.get(cKey).get(4), STATUS, bookingDb.get(cKey).get(5));
 			}
@@ -1090,19 +1090,17 @@ public class fubar {
 				// Compare date in db if enddate is between seachdate and endsearchdate  (searchdate -> <enddate>  <- endsearchdate )
 				compareValueStatusDate =  localEnddate.compareTo(insearchDate) >= 0 && localEnddate.compareTo(stayDate) <= 0;
 				if(compareValueStatusDate) {
-					deleteRoomList.add(bookKey);
+					// temp remove rum from inmemory db. it will not save to file
+ 					roomDb.remove(Integer. valueOf(bookList.get(0)));
 				}
 				
 			}
 			
 		}
-		// Remove room that cant bee book
-		for (int key : deleteRoomList) {
-			bookingDb.remove(key);
-		}
+	
+		System.out.println(roomDb);
+		roomScreen(2);
 		
-		roomScreen(1);
-		setDbColumn();
 	
 	}
 
