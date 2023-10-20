@@ -30,7 +30,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-
 public class fubar {
 
 	private static final String regexMail = "^(.+)@(.+)$";
@@ -126,7 +125,7 @@ public class fubar {
 
 		switch (listType) {
 		case 1:
-		
+
 			for (int cKey : roomDb.keySet()) {
 				String STATUS = roomDb.get(cKey).get(5).replace("0", "BOOKED");
 				STATUS = STATUS.replace("1", "---");
@@ -183,9 +182,9 @@ public class fubar {
 				STATUS = STATUS.replace("1", "---");
 				STATUS = STATUS.replace("X", "OOS");
 				String CUSTOM = bookingDb.get(cKey).get(1).replace("0", "--");
-				//String ROMMNO = bookingDb.get(cKey).get(0).replace("0", "--");
+				// String ROMMNO = bookingDb.get(cKey).get(0).replace("0", "--");
 				String ROMMNO = bookingDb.get(cKey).get(0);
-				
+
 				System.out.format(inline, cKey, ROMMNO, CUSTOM, bookingDb.get(cKey).get(2), bookingDb.get(cKey).get(3),
 						bookingDb.get(cKey).get(4), STATUS, bookingDb.get(cKey).get(5));
 			}
@@ -245,16 +244,23 @@ public class fubar {
 			System.out.println("");
 
 			ArrayList<String> searchValue = new ArrayList<String>();
-			searchValue = bookingDb.get(bkey);
+			String STATUS;
+			String CUSTOM;
+			try {
+				searchValue = bookingDb.get(bkey);
 
-			String STATUS = searchValue.get(6).replace("1", "BOOKED");
-			STATUS = STATUS.replace("1", "---");
-			STATUS = STATUS.replace("X", "OOS");
-			String CUSTOM = searchValue.get(1).replace("0", "--");
-			String ROMMNO = searchValue.get(0).replace("0", "--");
+				STATUS = searchValue.get(6).replace("1", "BOOKED");
+				STATUS = STATUS.replace("1", "---");
+				STATUS = STATUS.replace("X", "OOS");
+				CUSTOM = searchValue.get(1).replace("0", "--");
+				String ROMMNO = searchValue.get(0).replace("0", "--");
 
-			System.out.format(inline, bkey, ROMMNO, CUSTOM, searchValue.get(2), searchValue.get(3), searchValue.get(4),
-					STATUS, searchValue.get(5));
+				System.out.format(inline, bkey, ROMMNO, CUSTOM, searchValue.get(2), searchValue.get(3),
+						searchValue.get(4), STATUS, searchValue.get(5));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 			// print Customer
 			num = 143;
@@ -390,18 +396,21 @@ public class fubar {
 				break;
 			case "4":
 				System.out.println("Exit");
+				mainInput.close();
 				break;
 			default:
 				// mainScreen();
 				System.out.print("Your chouse is incorrect. Pleace try again: ");
+				break;
 			}
 			clearScreen();
 			mainScreen(menu);
+
 			mSelection = mainInput.nextLine();
 
 		}
-		mainInput.close();
-		mainScreen(menu);
+
+//		mainScreen(menu);
 	}
 
 	private static void saveToFile(String dbFile) {
@@ -537,6 +546,13 @@ public class fubar {
 
 			resturnCheck = (matcherPhone.matches() ? true : false);
 			break;
+		case "isInteger":
+			try {
+				Integer.parseInt(value);
+				return true;
+			} catch (NumberFormatException e) {
+				return false;
+			}
 		}
 
 		return resturnCheck;
@@ -561,7 +577,7 @@ public class fubar {
 			switch (customer_str) {
 			case "Email: ":
 				checkStatus = stringValidation(inputValue, "email");
-				System.out.println("");
+//				System.out.println("");
 				while (!checkStatus) {
 					System.out.println("The input dosen't match validation:");
 					System.out.print(customer_str);
@@ -571,7 +587,7 @@ public class fubar {
 				break;
 			case "Phone: ":
 				checkStatus = stringValidation(inputValue, "phone");
-				System.out.println("");
+//				System.out.println("");
 				while (!checkStatus) {
 					System.out.println("The input dosen't match validation (10 digit):");
 					System.out.print(customer_str);
@@ -585,7 +601,7 @@ public class fubar {
 			inputList.add(inputValue);
 			checkStatus = false;
 		}
-
+//		input.close();
 		cuntomerDb.put(custId + 1, inputList);
 		saveToFile("customer");
 		return custId + 1;
@@ -706,7 +722,7 @@ public class fubar {
 			}
 
 		}
-
+		mainInput.close();
 		mainMenu();
 
 	}
@@ -983,48 +999,53 @@ public class fubar {
 		System.out.print("Cancel booking on booking no: ");
 		int boid = input.nextInt();
 
-		if (bookingDb.containsKey(boid)) {
-			ArrayList<String> values = bookingDb.get(boid);
-			int index = bookingInfo.indexOf("Status: ");
-			int roomKey = Integer.parseInt(values.get(0)); // get room NO
-			System.out.print("Verified remove booning y/n:");
-			String confirme = custValue.nextLine();
-			// clearScreen();
+		try {
+			if (bookingDb.containsKey(boid)) {
+				ArrayList<String> values = bookingDb.get(boid);
+				int index = bookingInfo.indexOf("Status: ");
+				int roomKey = Integer.parseInt(values.get(0)); // get room NO
+				System.out.print("Verified remove booning y/n:");
+				String confirme = custValue.nextLine();
+				// clearScreen();
 
-			ArrayList<String> roomList = roomDb.get(roomKey);
+				ArrayList<String> roomList = roomDb.get(roomKey);
 
-			switch (confirme) {
-			case "y":
-				roomList.set(2, "0");
-				roomDb.put(roomKey, roomList);
-				roomList.set(3, "0");
-				roomDb.put(roomKey, roomList);
-				roomList.set(4, "0");
-				roomDb.put(roomKey, roomList);
-				roomList.set(5, "1");
-				roomDb.put(roomKey, roomList);
+				switch (confirme) {
+				case "y":
+					roomList.set(2, "0");
+					roomDb.put(roomKey, roomList);
+					roomList.set(3, "0");
+					roomDb.put(roomKey, roomList);
+					roomList.set(4, "0");
+					roomDb.put(roomKey, roomList);
+					roomList.set(5, "1");
+					roomDb.put(roomKey, roomList);
 
-				values.set(index, "0");
-				bookingDb.put(boid, values);
+					values.set(index, "0");
+					bookingDb.put(boid, values);
 
-				break;
-			case "Y":
-				roomList.set(2, "0");
-				roomDb.put(roomKey, roomList);
-				roomList.set(3, "0");
-				roomDb.put(roomKey, roomList);
-				roomList.set(4, "0");
-				roomDb.put(roomKey, roomList);
-				roomList.set(5, "1");
-				roomDb.put(roomKey, roomList);
+					break;
+				case "Y":
+					roomList.set(2, "0");
+					roomDb.put(roomKey, roomList);
+					roomList.set(3, "0");
+					roomDb.put(roomKey, roomList);
+					roomList.set(4, "0");
+					roomDb.put(roomKey, roomList);
+					roomList.set(5, "1");
+					roomDb.put(roomKey, roomList);
 
-				values.set(index, "0");
-				bookingDb.put(boid, values);
+					values.set(index, "0");
+					bookingDb.put(boid, values);
 
-				break;
-			default:
-				break;
+					break;
+				default:
+					break;
+				}
 			}
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		saveToFile("booking");
 		saveToFile("room");
@@ -1034,9 +1055,29 @@ public class fubar {
 	private static void bookingHandlerSearchByBookingNo() {
 		System.out.print("Add booking no: ");
 		Scanner input = new Scanner(System.in);
-		String bId = input.nextLine();
-		bookingScreen(3, Integer.parseInt(bId));
-		bookingHandler();
+		int bKey;
+		String inputValue = input.nextLine();
+		
+		Boolean checkStatus = stringValidation(inputValue, "isInteger");
+//		System.out.println("");
+		while (!checkStatus) {
+			System.out.println("Wrong typ of input: ");
+			System.out.print("Add booking no: ");
+			inputValue = input.nextLine();
+			checkStatus = stringValidation(inputValue, "isInteger");
+		}
+		bKey =  Integer.parseInt(inputValue);
+		if (bookingDb.containsKey(bKey)) {
+			bookingScreen(3, bKey);
+		}else {
+			clearScreen();
+			System.out.println("Booking no dosen't exists: ");
+		}
+		
+		
+		
+		
+//		bookingHandler();
 	}
 
 	private static void bookingHandlerSearchByDate() {
@@ -1069,7 +1110,6 @@ public class fubar {
 
 		}
 
-		
 		int staydays = 0;
 		LocalDate stayDate = null;
 		System.out.print("How many stay days: ");
@@ -1083,25 +1123,23 @@ public class fubar {
 		ArrayList<Integer> deleteRoomList = new ArrayList<Integer>();
 		for (int bookKey : bookingDb.keySet()) {
 			ArrayList<String> bookList = bookingDb.get(bookKey);
-			if (bookList.get(6).equals("1") && !bookList.get(2).isEmpty() && !bookList.get(4).isEmpty() ) {
+			if (bookList.get(6).equals("1") && !bookList.get(2).isEmpty() && !bookList.get(4).isEmpty()) {
 				LocalDate localEnddate = LocalDate.parse(bookList.get(4), formatter);
 
-				
-				// Compare date in db if enddate is between seachdate and endsearchdate  (searchdate -> <enddate>  <- endsearchdate )
-				compareValueStatusDate =  localEnddate.compareTo(insearchDate) >= 0 && localEnddate.compareTo(stayDate) <= 0;
-				if(compareValueStatusDate) {
+				// Compare date in db if enddate is between seachdate and endsearchdate
+				// (searchdate -> <enddate> <- endsearchdate )
+				compareValueStatusDate = localEnddate.compareTo(insearchDate) >= 0
+						&& localEnddate.compareTo(stayDate) <= 0;
+				if (compareValueStatusDate) {
 					// temp remove rum from inmemory db. it will not save to file
- 					roomDb.remove(Integer. valueOf(bookList.get(0)));
+					roomDb.remove(Integer.valueOf(bookList.get(0)));
 				}
-				
+
 			}
-			
+
 		}
-	
-		System.out.println(roomDb);
 		roomScreen(2);
-		
-	
+
 	}
 
 	private static void bookingHandler() {
