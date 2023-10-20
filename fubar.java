@@ -61,30 +61,28 @@ public class fubar {
 		} catch (IOException | InterruptedException ex) {
 		}
 
-		 BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-	        Graphics g = image.getGraphics();
-	        g.setFont(new Font("SansSerif", Font.BOLD, 24));
-		
+		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		Graphics g = image.getGraphics();
+		g.setFont(new Font("SansSerif", Font.BOLD, 24));
+
 		Graphics2D graphics = (Graphics2D) g;
-        graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
-                RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-        graphics.drawString(str, 10, 20);
-		
-        
-        for (int y = 0; y < height; y++) {
-            StringBuilder sb = new StringBuilder();
-            for (int x = 0; x < width; x++) {
+		graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+		graphics.drawString(str, 10, 20);
 
-                sb.append(image.getRGB(x, y) == -16777216 ? " " : "$");
+		for (int y = 0; y < height; y++) {
+			StringBuilder sb = new StringBuilder();
+			for (int x = 0; x < width; x++) {
 
-            }
+				sb.append(image.getRGB(x, y) == -16777216 ? " " : "$");
 
-            if (sb.toString().trim().isEmpty()) {
-                continue;
-            }
+			}
 
-            System.out.println(sb);
-        }
+			if (sb.toString().trim().isEmpty()) {
+				continue;
+			}
+
+			System.out.println(sb);
+		}
 	}
 
 	private static void mainScreen(String[] menu) {
@@ -154,8 +152,10 @@ public class fubar {
 				String STATUS = roomDb.get(cKey).get(5).replace("0", "BOOKED");
 				STATUS = STATUS.replace("1", "---");
 				STATUS = STATUS.replace("X", "OOS");
-				String CUSTOM = roomDb.get(cKey).get(3).replace("0", "--");
-				String BOKNO = roomDb.get(cKey).get(2).replace("0", "--");
+//				String CUSTOM = roomDb.get(cKey).get(3).replace("0", "--");
+				String CUSTOM = roomDb.get(cKey).get(3);
+//				String BOKNO = roomDb.get(cKey).get(2).replace("0", "--");
+				String BOKNO = roomDb.get(cKey).get(2);
 
 				System.out.format(inline, cKey, roomDb.get(cKey).get(0), BOKNO, CUSTOM, roomDb.get(cKey).get(4), STATUS,
 						roomDb.get(cKey).get(1));
@@ -170,8 +170,10 @@ public class fubar {
 					String STATUS = roomDb.get(cKey).get(5).replace("0", "BOOKED");
 					STATUS = STATUS.replace("1", "--");
 					STATUS = STATUS.replace("X", "OOS");
-					String CUSTOM = roomDb.get(cKey).get(3).replace("0", "--");
-					String BOKNO = roomDb.get(cKey).get(2).replace("0", "--");
+//					String CUSTOM = roomDb.get(cKey).get(3).replace("0", "--");
+					String CUSTOM = roomDb.get(cKey).get(3);
+//					String BOKNO = roomDb.get(cKey).get(2).replace("0", "--");
+					String BOKNO = roomDb.get(cKey).get(2);
 
 					System.out.format(inline, cKey, roomDb.get(cKey).get(0), BOKNO, CUSTOM, roomDb.get(cKey).get(4),
 							STATUS, roomDb.get(cKey).get(1));
@@ -239,8 +241,10 @@ public class fubar {
 					String STATUS = bookingDb.get(cKey).get(6).replace("1", "BOOKED");
 					STATUS = STATUS.replace("1", "---");
 					STATUS = STATUS.replace("X", "OOS");
-					String CUSTOM = bookingDb.get(cKey).get(1).replace("0", "--");
-					String ROMMNO = bookingDb.get(cKey).get(0).replace("0", "--");
+//					String CUSTOM = bookingDb.get(cKey).get(1).replace("0", "--");
+					String CUSTOM = bookingDb.get(cKey).get(1);
+//					String ROMMNO = bookingDb.get(cKey).get(0).replace("0", "--");
+					String ROMMNO = bookingDb.get(cKey).get(0);
 
 					System.out.format(inline, cKey, ROMMNO, CUSTOM, bookingDb.get(cKey).get(2),
 							bookingDb.get(cKey).get(3), bookingDb.get(cKey).get(4), STATUS, bookingDb.get(cKey).get(5));
@@ -276,8 +280,10 @@ public class fubar {
 				STATUS = searchValue.get(6).replace("1", "BOOKED");
 				STATUS = STATUS.replace("1", "---");
 				STATUS = STATUS.replace("X", "OOS");
-				CUSTOM = searchValue.get(1).replace("0", "--");
-				String ROMMNO = searchValue.get(0).replace("0", "--");
+//				CUSTOM = searchValue.get(1).replace("0", "--");
+				CUSTOM = searchValue.get(1);
+//				String ROMMNO = searchValue.get(0).replace("0", "--");
+				String ROMMNO = searchValue.get(0);
 
 				System.out.format(inline, bkey, ROMMNO, CUSTOM, searchValue.get(2), searchValue.get(3),
 						searchValue.get(4), STATUS, searchValue.get(5));
@@ -337,8 +343,10 @@ public class fubar {
 			STATUS = roomDb.get(cKey).get(5).replace("0", "BOOKED");
 			STATUS = STATUS.replace("1", "--");
 			STATUS = STATUS.replace("X", "OOS");
-			CUSTOM = roomDb.get(cKey).get(3).replace("0", "--");
-			String BOKNO = roomDb.get(cKey).get(2).replace("0", "--");
+//			CUSTOM = roomDb.get(cKey).get(3).replace("0", "--");
+//			String BOKNO = roomDb.get(cKey).get(2).replace("0", "--");
+			CUSTOM = roomDb.get(cKey).get(3);
+			String BOKNO = roomDb.get(cKey).get(2);
 
 			System.out.format(inline, rKey, roomDb.get(rKey).get(0), BOKNO, CUSTOM, roomDb.get(rKey).get(4), STATUS,
 					roomDb.get(rKey).get(1));
@@ -936,12 +944,13 @@ public class fubar {
 					choisetValue = switchInput.nextLine();
 					if (choisetValue.equals("y")) {
 						cuID = customerManagerAddNewCutomer();
-						System.out.println(cuID);
+//						System.out.println(cuID);
 						inputValue = String.valueOf(cuID);
 
 						// roomValue = roomDb.get(roomKey);
-						roomValue.set(3, inputValue);
-
+						roomValue.set(3, String.valueOf(cuID));
+						saveToFile("room");
+//						System.out.println(roomValue);
 					} else {
 						System.out.print("Add cutomer no: ");
 						inputValue = input.nextLine();
@@ -953,8 +962,8 @@ public class fubar {
 					inputValue = input.nextLine();
 					break;
 				}
-				inputValue = input.nextLine();
-				roomValue.set(3, inputValue);
+//				inputValue = input.nextLine();
+//				System.out.println(roomValue);
 				break;
 			case "Status: ":
 				inputValue = "1";
@@ -993,6 +1002,10 @@ public class fubar {
 				System.out.println("Booking end date (YYYY-MM-DD): " + secondDate);
 				inputValue = String.valueOf(secondDate);
 				roomValue.set(4, inputValue);
+				break;
+			case "Description: ":
+				System.out.print(str);
+				inputValue = input.nextLine();
 				break;
 			default:
 				inputValue = input.nextLine();
@@ -1081,7 +1094,7 @@ public class fubar {
 		Scanner input = new Scanner(System.in);
 		int bKey;
 		String inputValue = input.nextLine();
-		
+
 		Boolean checkStatus = stringValidation(inputValue, "isInteger");
 //		System.out.println("");
 		while (!checkStatus) {
@@ -1090,17 +1103,14 @@ public class fubar {
 			inputValue = input.nextLine();
 			checkStatus = stringValidation(inputValue, "isInteger");
 		}
-		bKey =  Integer.parseInt(inputValue);
+		bKey = Integer.parseInt(inputValue);
 		if (bookingDb.containsKey(bKey)) {
 			bookingScreen(3, bKey);
-		}else {
+		} else {
 			clearScreen();
 			System.out.println("Booking no dosen't exists: ");
 		}
-		
-		
-		
-		
+
 //		bookingHandler();
 	}
 
