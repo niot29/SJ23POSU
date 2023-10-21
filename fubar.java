@@ -428,7 +428,7 @@ public class fubar {
 				break;
 			case "4":
 				System.out.println("Exit");
-				mainInput.close();
+				mSelection = null;
 				break;
 			default:
 				// mainScreen();
@@ -437,11 +437,12 @@ public class fubar {
 			}
 			clearScreen();
 			mainScreen(menu);
-
-			mSelection = mainInput.nextLine();
-
+			if (mainInput.hasNextLine()) {
+				mSelection = mainInput.nextLine();
+			}
+//			mainInput.close();
 		}
-
+//		mainInput.close();
 //		mainScreen(menu);
 	}
 
@@ -706,7 +707,9 @@ public class fubar {
 		String mSelection = "";
 		int skipp = 1;
 		Scanner mainInput = new Scanner(System.in);
-		mSelection = mainInput.nextLine();
+		if (mainInput.hasNextLine()) {
+			mSelection = mainInput.nextLine();
+		}
 		while (!mSelection.equals(Integer.toString(customerMenu.length))) {
 
 			switch (mSelection) {
@@ -739,7 +742,6 @@ public class fubar {
 				skipp = 0;
 				break;
 			case "5":
-				clearScreen();
 				break;
 			default:
 				clearScreen();
@@ -750,13 +752,15 @@ public class fubar {
 
 			}
 			if (skipp != 0) {
-				mSelection = mainInput.nextLine();
+				if (mainInput.hasNextLine()) {
+					mSelection = mainInput.nextLine();
+				}
+
 			}
 
 		}
-		mainInput.close();
-		mainMenu();
 
+//		mainInput.close();
 	}
 
 	private static int roomManagerAddNewRoom() {
@@ -847,7 +851,10 @@ public class fubar {
 		String mSelection = "";
 		int skipp = 1;
 		Scanner mainInput = new Scanner(System.in);
-		mSelection = mainInput.nextLine();
+		if (mainInput.hasNextLine()) {
+			mSelection = mainInput.nextLine();
+		}
+
 		while (!mSelection.equals(Integer.toString(roomMenu.length))) {
 
 			switch (mSelection) {
@@ -888,6 +895,7 @@ public class fubar {
 				saveToFile("room");
 				mSelection = "1";
 				skipp = 0;
+
 				break;
 			case "6":
 				break;
@@ -895,11 +903,13 @@ public class fubar {
 				break;
 			}
 			if (skipp != 0) {
-				mSelection = mainInput.nextLine();
+				if (mainInput.hasNextLine()) {
+					mSelection = mainInput.nextLine();
+				}
 			}
 
 		}
-
+//		mainInput.close();
 	}
 
 	private static int bookingHandlerAddNewBooking() {
@@ -1248,7 +1258,6 @@ public class fubar {
 		clearScreen();
 		setDbColumn();
 		mainMenu();
-
 		// Test funk
 //		bookingHandlerSearchByDate();
 	}
