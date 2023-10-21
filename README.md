@@ -20,11 +20,13 @@ Bokning system som tillhado håller kundbokning.
 - MANAGER CUTOMER - *Hanter kund information (lägga till kund och dess kontat info, samt tarbort info)*
 
 **Söka booking och detalj information**
+
 Under huvud "BOOKING" så finns det möjlighet att så efter lediga rum mellan booking datum. 
 system presenterar de tillgänliga rum som går att boka under den agivna tids perioden.
 
-Söka delja information om bokning, kan även göra under huvud "BOOKING". Ange booknings nr. då resenteras dokning, rum information dvs vilken rum  och typ som är relaterad till bokningen samt kund information.
-![bdbb564cebae1b73db9d363f7d6c6b8a.png](:/c856fb3ef56942bdb9a721b596e5c467)
+Söka delja information om bokning, kan även göra under huvud "BOOKING". 
+
+Ange booknings nr. då presentera bokning, rum information dvs vilken rum  och typ som är relaterad till bokningen samt kund information.
 
 
 System använder java "HasMap" som inmemory databas lagring. 
