@@ -1,2 +1,0 @@
-2:[Nils, Ottosson, nils@n.com, no, 1234567890]
-3:[killer, killer, killer@killer.se, nomail, 1234567890]
