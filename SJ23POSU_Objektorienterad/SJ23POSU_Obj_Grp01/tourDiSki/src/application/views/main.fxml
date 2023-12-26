@@ -15,7 +15,7 @@
           <TableColumn fx:id="colPartvipantName" minWidth="20.0" prefWidth="130.0" text="Name" />
         </columns>
       </TableView>
-      <Button fx:id="mainStart" layoutX="30.0" layoutY="72.0" mnemonicParsing="false" text="Start" />
+      <Button fx:id="mainStart" layoutX="30.0" layoutY="72.0" mnemonicParsing="false" onAction="#mainStart" text="Start" />
       <Button fx:id="mainStop" layoutX="93.0" layoutY="72.0" mnemonicParsing="false" text="Stop" />
       <Text fx:id="mainClock" layoutX="24.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00:00:00:00" textAlignment="CENTER" wrappingWidth="137.13671875">
          <font>

@@ -49,6 +49,15 @@ public class MainController implements Initializable{
 	    
 	    
 	    
+	    public void mainStart(ActionEvent event) {
+	    	System.out.println("## Start ##");
+	    	mainClock.setText("11:00:00:00");
+	    }
+	    
+	    public void mainStop(ActionEvent event) {
+	    	System.out.println("## Start ##");
+	    }
+	    
 	    
 		@Override
 		public void initialize(URL location, ResourceBundle resources) {
@@ -57,30 +66,6 @@ public class MainController implements Initializable{
 			mainClock.setText("00:00:00:00");
 			
 			
-			
-			
-			
-			// Start Button on click
-			mainStart.setOnAction(new EventHandler<ActionEvent>() {
-				
-				@Override
-				public void handle(ActionEvent event) {
-					System.out.println("## Start ##");
-					
-					
-				}
-			});
-			
-			
-			// Stop Button
-			mainStop.setOnAction(new EventHandler<ActionEvent>() {
-				
-				@Override
-				public void handle(ActionEvent event) {
-					System.out.println("## Stop ##");
-					
-				}
-			});
 			
 			try {
 				ArrayList<Participant> participantList = parHandler.addRanPercitipantfromFile(7);

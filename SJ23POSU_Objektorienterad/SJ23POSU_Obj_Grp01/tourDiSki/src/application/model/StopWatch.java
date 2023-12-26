@@ -49,7 +49,7 @@ public class StopWatch implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		elapsedTime=elapsedTime+1000;
+		elapsedTime.this =elapsedTime+1000;
 		   hours = (elapsedTime/3600000);
 		   minutes = (elapsedTime/60000) % 60;
 		   seconds = (elapsedTime/1000) % 60;
