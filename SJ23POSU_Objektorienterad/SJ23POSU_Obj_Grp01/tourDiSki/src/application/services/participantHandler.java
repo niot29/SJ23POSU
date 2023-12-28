@@ -9,19 +9,33 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import application.model.Participant;
+import javafx.collections.ObservableList;
 
 public class participantHandler {
 	
-	public void addRanPercitipant() {
+	public ObservableList<Participant> addRanPercitipant(ObservableList<Participant> parUserList,String name) {
+		Participant pUser = new Participant();
+		int indexid = parUserList.size();
 		
+		
+		if(indexid != 0) {
+			
+			indexid = parUserList.get(indexid-1).getId();
+		}
+		
+		pUser.setId(indexid + 1);
+		pUser.setNamen(name);
+		pUser.setPosition(0);
+		parUserList.add(pUser);
+		
+		return parUserList;
 
 	}
 	
-	public ArrayList<Participant>  addRanPercitipantfromFile(int  count) throws IOException {
+	public ObservableList<Participant>  addRanPercitipantfromFile( ObservableList<Participant> parUserList,int  count) throws IOException {
 		BufferedReader br = null;
-		
 		ArrayList<String> nameList  = new ArrayList<String>();
-		ArrayList<Participant> participantList  = new ArrayList<Participant>();
+		//ArrayList<Participant> participantList  = new ArrayList<Participant>();
 		//HashMap<Integer, ArrayList<competitor>> participant = new HashMap<Integer, ArrayList<competitor>>();
 		
 		try {
@@ -43,17 +57,24 @@ public class participantHandler {
 		
 		// Random get list av contest
 		Random rand = new Random();
-		int listSize = nameList.size();
-		for (int i = 0; i <= count; i++) {
+		int listSize = parUserList.size();
+		
+		if(count > 20) {
+			count = 15;
+		}
+		if(listSize != 0) {
+			
+			listSize = parUserList.get(listSize-1).getId();
+		}
+		for (int i = 1; i <= count; i++) {
 			Participant competitor = new Participant();
 			int rand_int1 = rand.nextInt(50);
-			competitor.setId(i + 1);
+			competitor.setId(listSize + i);
 			competitor.setNamen(nameList.get(rand_int1));
-			participantList.add(competitor);
+			parUserList.add(competitor);
 		}
 		
-	
-		return participantList;
+		return parUserList;
 		
 	}
 	

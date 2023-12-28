@@ -48,15 +48,15 @@ public class StopWatch implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
-		elapsedTime.this =elapsedTime+1000;
-		   hours = (elapsedTime/3600000);
-		   minutes = (elapsedTime/60000) % 60;
-		   seconds = (elapsedTime/1000) % 60;
-		   seconds_string = String.format("%02d", seconds);
-		   minutes_string = String.format("%02d", minutes);
-		   hours_string = String.format("%02d", hours);
-		   timeLabel.setText(hours_string+":"+minutes_string+":"+seconds_string);
+//
+//		elapsedTime.this =elapsedTime+1000;
+//		   hours = (elapsedTime/3600000);
+//		   minutes = (elapsedTime/60000) % 60;
+//		   seconds = (elapsedTime/1000) % 60;
+//		   seconds_string = String.format("%02d", seconds);
+//		   minutes_string = String.format("%02d", minutes);
+//		   hours_string = String.format("%02d", hours);
+//		   timeLabel.setText(hours_string+":"+minutes_string+":"+seconds_string);
 	}
 	
 }

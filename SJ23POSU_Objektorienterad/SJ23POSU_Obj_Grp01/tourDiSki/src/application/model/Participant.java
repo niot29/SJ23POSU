@@ -5,21 +5,28 @@ public class Participant {
 	private int id;
 	private String namen;
 	private int position;
-	private String startTime;
-	private String totalDiffrenceTime;
-	private String endTime;
+	private String startTime = "0";
+	private String totalDiffrenceTime = "0";
+	private String race1 = "0";
+	private String race2 = "0";
+	private String race3 = "0";
+	private String endTime = "0";
 	
 	public Participant() {
 	}
 
-	public Participant(int id, String namen, int startOrder, String startTime, String totalDiffrenceTime,
-			String endTime) {
+	
+	public Participant(int id, String namen, int position, String startTime, String totalDiffrenceTime,
+			String compTime01, String compTime02, String compTime03, String endTime) {
 		super();
 		this.id = id;
 		this.namen = namen;
-		this.position = startOrder;
+		this.position = position;
 		this.startTime = startTime;
 		this.totalDiffrenceTime = totalDiffrenceTime;
+		this.race1 = compTime01;
+		this.race2 = compTime02;
+		this.race3 = compTime03;
 		this.endTime = endTime;
 	}
 
@@ -30,6 +37,48 @@ public class Participant {
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	
+	
+	public int getPosition() {
+		return position;
+	}
+
+
+	public void setPosition(int position) {
+		this.position = position;
+	}
+
+
+	public String getRac1() {
+		return race1;
+	}
+
+
+	public void setRac1(String race1) {
+		this.race1 = race1;
+	}
+
+
+	public String getRac2() {
+		return race2;
+	}
+
+
+	public void setRac2(String race2) {
+		this.race2 = race2;
+	}
+
+
+	public String getRac3() {
+		return race3;
+	}
+
+
+	public void setRac3(String race3) {
+		this.race3 = race3;
+	}
+
 
 	public String getNamen() {
 		return namen;
