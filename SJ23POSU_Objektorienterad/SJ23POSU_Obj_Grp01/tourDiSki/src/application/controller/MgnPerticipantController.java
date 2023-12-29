@@ -101,7 +101,7 @@ public class MgnPerticipantController {
 		colPartvipantPosition.setCellValueFactory(new PropertyValueFactory<Participant, Integer>("position"));
 
 		tbplist.setItems(list);
-
+		parHandler.savePercitipantToFile(list);
 		txFieldName.setText("");
 
 	}
@@ -133,8 +133,9 @@ public class MgnPerticipantController {
 			colPartvipantID.setCellValueFactory(new PropertyValueFactory<Participant, Integer>("id"));
 			colPartvipantName.setCellValueFactory(new PropertyValueFactory<Participant, String>("namen"));
 			colPartvipantPosition.setCellValueFactory(new PropertyValueFactory<Participant, Integer>("position"));
-
+			
 			tbplist.setItems(list);
+			parHandler.savePercitipantToFile(list);
 			txfRadomAdd.setText(null);
 		}
 
@@ -143,7 +144,13 @@ public class MgnPerticipantController {
 	@FXML
 	void mgnPartRemove(ActionEvent event) {
 		int selectID = tbplist.getSelectionModel().getSelectedIndex();
+		
+		
 		tbplist.getItems().remove(selectID);
+		
+		list = parHandler.getPercitipantsFromFile();
+		parHandler.removeRanPercitipant(list, selectID);
+		tbplist.setItems(list);
 	}
 
 	@FXML
@@ -167,11 +174,13 @@ public class MgnPerticipantController {
 	@FXML
 	void search(ActionEvent event) {
 		System.out.println("search " + txSearchFeild.getText());
+		//parHandler.getPercitipantsFromFile();
 		
 		// Create temp search list
 		ObservableList<Participant> list2 = parHandler.searchList(list, txSearchFeild.getText());
 
 		if (txSearchFeild.getText().isEmpty()) {
+			list = parHandler.getPercitipantsFromFile();
 			tbplist.setItems(list);
 		} else {
 			tbplist.setItems(list2);
