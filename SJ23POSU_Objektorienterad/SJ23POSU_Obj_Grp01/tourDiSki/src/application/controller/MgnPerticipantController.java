@@ -18,6 +18,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 public class MgnPerticipantController {
@@ -87,6 +88,9 @@ public class MgnPerticipantController {
 
 	@FXML
 	private TextField txFieldName;
+	
+	@FXML
+    private AnchorPane partiDetailAchorePane;
 
 	participantHandler parHandler = new participantHandler();
 
@@ -107,7 +111,8 @@ public class MgnPerticipantController {
 	}
 
 	@FXML
-	void mgnPartExit(ActionEvent event) {
+	void mgnPartExit(ActionEvent event) throws IOException {
+		new SceneSwitch(partiDetailAchorePane, "views/main.fxml");
 
 	}
 

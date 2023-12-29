@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 public class MainController implements Initializable{
@@ -40,15 +41,25 @@ public class MainController implements Initializable{
 
 	    @FXML
 	    private Button mainStop;
+	    
+	    @FXML
+	    private Button mgn;
 
+	    @FXML
+	    private AnchorPane mainAchorePane;
 	    
 	    participantHandler parHandler = new participantHandler();
 	    
 	    ObservableList<Participant> list = FXCollections.observableArrayList();
 
 	    
+	    @FXML
+	    void switchScene(ActionEvent event) throws IOException {
+	    	System.out.println("switchScene");
+	    	new SceneSwitch(mainAchorePane, "views/ParticipantDetails.fxml");
+	    }
 	    
-	    
+	    @FXML
 	    public void mainStart(ActionEvent event) {
 	    	System.out.println("## Start ##");
 	    	mainClock.setText("11:00:00:00");
@@ -63,21 +74,6 @@ public class MainController implements Initializable{
 		public void initialize(URL location, ResourceBundle resources) {
 			
 			
-			mainClock.setText("00:00:00:00");
-			
-			
-			
-			try {
-				ArrayList<Participant> participantList = parHandler.addRanPercitipantfromFile(7);
-				for (Participant participant : participantList) {
-										
-					
-					list.add(participant);
-				}
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			
 			colPartvipantID.setCellValueFactory(new PropertyValueFactory<Participant, Integer>("id"));
 			colPartvipantName.setCellValueFactory(new PropertyValueFactory<Participant, String>("namen"));
