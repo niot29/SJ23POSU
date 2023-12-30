@@ -19,6 +19,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class participantHandler {
+	
+	
+	public void clearfile() {
+		File file = new File("Percitipant.txt");
+		try {
+			new FileWriter(file, false).close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public void savePercitipantToFile(ObservableList<Participant> parUserList) {
 		File file = new File("Percitipant.txt");

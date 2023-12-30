@@ -48,6 +48,12 @@ public class MainController implements Initializable {
 	private TableColumn<Participant, String> colPartvipantName;
 
 	@FXML
+	private TableColumn<Participant, Integer> colPartvipantPosition;
+	
+	@FXML
+    private TableColumn<Participant, String> colPartvipantDiffTime;
+
+	@FXML
 	private TableView<Participant> tbplist;
 
 	@FXML
@@ -99,13 +105,16 @@ public class MainController implements Initializable {
 		mainClock.setText(timerHandler.resetTimer());
 	}
 
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		//parHandler.clearfile();
 		mainClock.setText("00:00:00:000");
+		list = parHandler.getPercitipantsFromFile();
 
 		colPartvipantID.setCellValueFactory(new PropertyValueFactory<Participant, Integer>("id"));
 		colPartvipantName.setCellValueFactory(new PropertyValueFactory<Participant, String>("namen"));
+		colPartvipantPosition.setCellValueFactory(new PropertyValueFactory<Participant, Integer>("position"));
+		colPartvipantDiffTime.setCellValueFactory(new PropertyValueFactory<Participant, String>("totalDiffrenceTime"));
 
 		tbplist.setItems(list);
 

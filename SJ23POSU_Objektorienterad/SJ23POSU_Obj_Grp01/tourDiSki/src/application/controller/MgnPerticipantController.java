@@ -1,8 +1,10 @@
 package application.controller;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import application.model.Participant;
 import application.services.participantHandler;
@@ -11,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 //import com.gluonhq.charm.glisten.control.TextField;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -21,7 +24,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
-public class MgnPerticipantController {
+public class MgnPerticipantController  implements Initializable{
 
 	@FXML
 	private Button btAdd;
@@ -192,5 +195,17 @@ public class MgnPerticipantController {
 		}
 
 	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		list = parHandler.getPercitipantsFromFile();
+		colPartvipantID.setCellValueFactory(new PropertyValueFactory<Participant, Integer>("id"));
+		colPartvipantName.setCellValueFactory(new PropertyValueFactory<Participant, String>("namen"));
+		colPartvipantPosition.setCellValueFactory(new PropertyValueFactory<Participant, Integer>("position"));
+		
+		tbplist.setItems(list);
+	}
+	
+	
 
 }
