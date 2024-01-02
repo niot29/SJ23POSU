@@ -6,7 +6,7 @@ import java.util.TimerTask;
 
 public class TimerHandler {
 
-	private int hours = 0;
+	private int hours = 0; 
 	private int minuts = 0;
 	private int seconds = 0;
 	private int miliseconds = 0;
@@ -28,7 +28,7 @@ public class TimerHandler {
 		this.miliseconds = miliseconds;
 		this.elastedTime = elastedTime;
 		this.state = state;
-	}
+	} 
 
 	public String getCurrentTime() {
 		// watchTimer = hours_string + ":" + minuts_string + ":" + seconds_string + ":"
@@ -77,9 +77,10 @@ public class TimerHandler {
 
 	}
 
-	public Long convertStringTimeToMilliseconds(String time) {
-		String str = "00:01:50:987";
-		String[] t = str.split(":");		
+	public long convertStringTimeToMilliseconds(String str) {
+		System.out.println("convertStringTimeToMilliseconds");
+//		String str = "00:01:50:987";
+		String[] t = str.split(":");		  
 		
 		long  a =  Integer.valueOf(t[1]) * 60000;
 		a = a + Integer.valueOf(t[2]) * 1000;

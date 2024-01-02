@@ -25,8 +25,8 @@ public class Main extends Application {
 		Scene scene = new Scene(fxmlLoader.load(), 900, 600);
 		primaryStage.setTitle("Tour Di Ski");
 		primaryStage.setScene(scene);
-		primaryStage.show();
-
+		primaryStage.show(); 
+ 
 	}
 
 	@Override

@@ -65,6 +65,15 @@ public class MainController implements Initializable {
 	private TableColumn<Participant, String> colPartvipantRace1;
 
 	@FXML
+	private TableColumn<Participant, String> colPartvipantRace2;
+
+	@FXML
+	private TableColumn<Participant, String> colPartvipantRace3;
+
+	@FXML
+	private TableColumn<Participant, String> colPartvipantEndTime;
+
+	@FXML
 	private TableView<Participant> tbplist;
 
 	@FXML
@@ -87,16 +96,15 @@ public class MainController implements Initializable {
 
 	@FXML
 	private AnchorPane mainAchorePane;
-	
-	@FXML
-    private ChoiceBox<String> mainCompChoice;
-	
-	private String choice;
-	
-	private String watcher;
-	
-	private String[] compchoice = {"Massstart","Individuals","Chased"};
 
+	@FXML
+	private ChoiceBox<String> mainCompChoice;
+
+	private String choice;
+
+	private String watcher;
+
+	private String[] compchoice = { "Massstart", "Individuals", "Chased" };
 
 	ProgressBar pb = new ProgressBar(0.6);
 
@@ -140,25 +148,38 @@ public class MainController implements Initializable {
 
 	Timeline raceStatus = new Timeline(new KeyFrame(Duration.millis(1000), e -> {
 
-
 		if (state2) {
 			System.out.println("raceStatus:" + progStaus + " Current time: " + watcher);
-			
-			state2 = parHandler.race1Handler(list,watcher);
-			
-		}else {
-			
-			timerHandler.convertStringTimeToMilliseconds("teset");
+
+			state2 = parHandler.race1Handler(list, watcher);
+
+		} else {
+		
 			endTimeLine();
 			timeline.stop();
 			
+
 		}
-		
+
+//		list = parHandler.race1Handler(list);
+//		// System.out.println(list);
+
+	}));
 	
+	Timeline updateTabel = new Timeline(new KeyFrame(Duration.millis(3000), e -> {
+
+		System.out.println("Update tabel");
+		//list.clear();
+		//list = parHandler.getPercitipantsFromFile();
 		
-		//list = parHandler.race1Handler(list);
-		//System.out.println(list);
+		colPartvipantRace1.setSortType(TableColumn.SortType.ASCENDING);
+		tbplist.getSortOrder().add(colPartvipantRace1);
+		tbplist.sort();
+		
+		tbplist.refresh();
+
 	
+
 	}));
 
 	@FXML
@@ -172,9 +193,11 @@ public class MainController implements Initializable {
 		System.out.println("## Start ##");
 		timeline.setCycleCount(Timeline.INDEFINITE);
 		raceStatus.setCycleCount(Timeline.INDEFINITE);
+		updateTabel.setCycleCount(Timeline.INDEFINITE);
 
 		raceStatus.play();
 		timeline.play();
+		updateTabel.play();
 
 	}
 
@@ -184,28 +207,31 @@ public class MainController implements Initializable {
 
 		timeline.stop();
 		raceStatus.stop();
+		updateTabel.stop();
 
+		
+		tbplist.refresh();
 		mainClock.setText(timerHandler.resetTimer());
 		mainPrograsBar.setProgress(0);
 		mainProgStatusText.setText("Done");
 		i = 0;
 	}
 
-	
 	public void endTimeLine() {
 		timeline.stop();
 		raceStatus.stop();
+		updateTabel.stop();
 		state2 = true;
 		state = true;
-		
+		tbplist.refresh();
 	}
-	
+
 	public void choiseComp(ActionEvent event) {
 		choice = mainCompChoice.getValue();
-		//System.out.println(choice);
-		
+		System.out.println(choice);
+
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -213,7 +239,7 @@ public class MainController implements Initializable {
 		mainPrograsBar.setProgress(0.0100);
 		mainCompChoice.getItems().addAll(compchoice);
 		mainCompChoice.setOnAction(this::choiseComp);
-		//mainPrograsBar.setProgress(0);
+		// mainPrograsBar.setProgress(0);
 
 		mainClock.setText("00:00:00:000");
 		list = parHandler.getPercitipantsFromFile();
@@ -222,10 +248,12 @@ public class MainController implements Initializable {
 		colPartvipantName.setCellValueFactory(new PropertyValueFactory<Participant, String>("namen"));
 		colPartvipantPosition.setCellValueFactory(new PropertyValueFactory<Participant, Integer>("position"));
 		colPartvipantDiffTime.setCellValueFactory(new PropertyValueFactory<Participant, String>("totalDiffrenceTime"));
-		colPartvipantRace1.setCellValueFactory(new PropertyValueFactory<Participant,  String>("compTime01"));
+		colPartvipantRace1.setCellValueFactory(new PropertyValueFactory<Participant, String>("compTime01"));
+		colPartvipantRace2.setCellValueFactory(new PropertyValueFactory<Participant, String>("compTime02"));
+		colPartvipantRace3.setCellValueFactory(new PropertyValueFactory<Participant, String>("compTime03"));
+		colPartvipantEndTime.setCellValueFactory(new PropertyValueFactory<Participant, String>("endTime"));
 		tbplist.setItems(list);
 
 	}
-
 
 }

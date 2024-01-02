@@ -26,13 +26,16 @@
             <Text fx:id="mainProgStatusText" layoutX="461.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Done" />
          </children>
       </AnchorPane>
-      <TableView fx:id="tbplist" layoutX="8.0" layoutY="130.0" prefHeight="456.0" prefWidth="453.0">
+      <TableView fx:id="tbplist" layoutX="8.0" layoutY="130.0" prefHeight="456.0" prefWidth="791.0">
         <columns>
           <TableColumn fx:id="colPartvipantID" text="StartID" />
           <TableColumn fx:id="colPartvipantName" minWidth="20.0" prefWidth="130.0" text="Name" />
-            <TableColumn fx:id="colPartvipantPosition" prefWidth="75.0" text="Position" />
-            <TableColumn fx:id="colPartvipantDiffTime" prefWidth="75.0" text="DiffTime" />
-            <TableColumn fx:id="colPartvipantRace1" prefWidth="75.0" text="Race1" />
+            <TableColumn fx:id="colPartvipantPosition" prefWidth="92.0" text="Position" />
+            <TableColumn fx:id="colPartvipantDiffTime" prefWidth="91.0" text="DiffTime" />
+            <TableColumn fx:id="colPartvipantEndTime" prefWidth="89.0" text="EndTime" />
+            <TableColumn fx:id="colPartvipantRace1" prefWidth="42.0" text="Race1" />
+            <TableColumn fx:id="colPartvipantRace2" prefWidth="127.0" text="Race2" />
+            <TableColumn fx:id="colPartvipantRace3" prefWidth="88.0" text="Race3" />
         </columns>
       </TableView>
       <Text fx:id="mainClock" layoutX="24.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00:00:00:00" textAlignment="CENTER" wrappingWidth="137.13671875">

@@ -24,7 +24,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
-public class MgnPerticipantController  implements Initializable{
+public class MgnPerticipantController  implements Initializable{ 
 
 	@FXML
 	private Button btAdd;
@@ -49,6 +49,7 @@ public class MgnPerticipantController  implements Initializable{
 
 	@FXML
 	private TableColumn<Participant, Integer> colPartvipantPosition;
+	
 
 	@FXML
 	private TextField inputFCount;

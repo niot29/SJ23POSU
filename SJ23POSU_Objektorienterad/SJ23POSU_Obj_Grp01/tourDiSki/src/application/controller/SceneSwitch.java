@@ -14,6 +14,6 @@ public class SceneSwitch {
 		currentAnchorePane.getChildren().removeAll();
 		currentAnchorePane.getChildren().setAll(nextAnchorePabe);
 		
-	}
+	} 
 
 }

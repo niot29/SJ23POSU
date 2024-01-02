@@ -49,14 +49,14 @@ public class participantHandler {
 			new FileWriter(file, false).close();
 			for (Participant p : parUserList) {
 
-//				System.out.println("savePercitipantToFile " + p);
+				System.out.println("savePercitipantToFile " + p);
 
 				FileWriter fr = new FileWriter(file, true);
 				BufferedWriter bw = new BufferedWriter(fr);
 				// bw.write(p.toString());
 				bw.write(p.getId() + "," + p.getNamen() + "," + p.getPosition() + "," + p.getStartTime() + ","
 						+ p.getTotalDiffrenceTime() + "," + p.getCompTime01() + "," + p.getCompTime02() + ","
-						+ p.getCompTime03() + "," + p.getEndTime());
+						+ p.getCompTime03() + "," + p.getEndTime() + "," + p.getSpeed());
 
 				bw.newLine();
 
@@ -76,6 +76,7 @@ public class participantHandler {
 	}
 
 	public ObservableList<Participant> getPercitipantsFromFile() {
+		System.out.println("getPercitipantsFromFile");
 		BufferedReader br = null;
 		ObservableList<Participant> list = FXCollections.observableArrayList();
 
@@ -89,7 +90,7 @@ public class participantHandler {
 			String line = null;
 
 			// read file line by line
-			while ((line = br.readLine()) != null) {
+			while ((line = br.readLine()) != null) { 
 				System.out.println("read file: " + line);
 				String[] parts = line.split(",");
 
@@ -246,29 +247,39 @@ public class participantHandler {
 		Random rand = new Random();
 		int distanceCount100 = 0;
 		int distanceCount50 = 0;
-
+  
 		for (Participant p : parUserList) {
-			double speed = Double.valueOf(p.getCompTime01());
+			
+			
+//			double speed = Double.valueOf(p.getCompTime01());
+			double speed = Double.valueOf(p.getSpeed());
+			
 			int race1Speed = rand.nextInt(4);
-			//System.out.println(speed);
 			
 			for (int i = 0; race1Speed >= i; i++) {
-				if (speed == 0.5) {
+				
+				
+				if (speed == 0.1) {
 					System.out.println(
 							"------------------- 50% " + p.getNamen() + " - speed " + speed + " Time: " + watcher);
-					distanceCount50 = ++distanceCount50;
+//					distanceCount50 = ++distanceCount50;
 					
-					p.setTotalDiffrenceTime(watcher);
 					
+					p.setTotalDiffrenceTime(String.valueOf(timeHandler.convertStringTimeToMilliseconds(watcher)));
+					p.setCompTime01(watcher);
 				
 				}
 
-				if (speed >= 1.0) {
+				if (speed == 0.5) { 
 					System.out.println(
 							"------------------- 100% " + p.getNamen() + " - speed " + speed + " Time: " + watcher);
 					distanceCount100 = ++distanceCount100;
+					i = race1Speed;
+					
+					p.setTotalDiffrenceTime(String.valueOf(timeHandler.convertStringTimeToMilliseconds(watcher)));
 					p.setCompTime01(watcher);
-
+					
+					
 					break;
 				}
 
@@ -280,18 +291,14 @@ public class participantHandler {
 			}
 			String inValue = df.format(speed);
 			String str = inValue.replace(",", ".");
-			p.setCompTime01(str);
-			p.setTotalDiffrenceTime(watcher);
+			
+			p.setSpeed(str);
 			list.add(p);
+			
 
 		}
-
-		if (distanceCount50 == parUserList.size()) {
-
-			System.out.println(distanceCount50 + " " + parUserList.size());
-			
-			
-		}
+		
+	
 
 		if (distanceCount100 == parUserList.size()) {
 
