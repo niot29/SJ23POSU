@@ -21,6 +21,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
@@ -39,6 +40,7 @@ public class MainController implements Initializable {
 //	static int miliseconds = 0;
 //	static int elastedTime = 0;
 	static boolean state = true;
+	static boolean state2 = true;
 	static double i = 0;
 	static double progStaus = 0;
 //	String miliseconds_string = String.format("%02d", miliseconds);
@@ -60,7 +62,7 @@ public class MainController implements Initializable {
 	private TableColumn<Participant, String> colPartvipantDiffTime;
 
 	@FXML
-	private TableColumn<Participant, String> colPartvipantX;
+	private TableColumn<Participant, String> colPartvipantRace1;
 
 	@FXML
 	private TableView<Participant> tbplist;
@@ -85,6 +87,16 @@ public class MainController implements Initializable {
 
 	@FXML
 	private AnchorPane mainAchorePane;
+	
+	@FXML
+    private ChoiceBox<String> mainCompChoice;
+	
+	private String choice;
+	
+	private String watcher;
+	
+	private String[] compchoice = {"Massstart","Individuals","Chased"};
+
 
 	ProgressBar pb = new ProgressBar(0.6);
 
@@ -103,10 +115,9 @@ public class MainController implements Initializable {
 				mainClock.setText(timerHandler.getCurrentTime());
 
 				if (state) {
-					parHandler.setStartTime(list, "1", timerHandler.getCurrentTime());
+					parHandler.setStartTime(list, choice, timerHandler.getCurrentTime());
 					state = false;
 				}
-				System.out.println(i + "--" + progStaus + "---" +  i / 1000);
 				progStaus = i / 1000;
 				int intValue = (int) Math.round(progStaus);
 
@@ -123,21 +134,31 @@ public class MainController implements Initializable {
 
 				timerHandler.timeRunnger();
 				mainPrograsBar.setProgress(++i / 100000);
+				watcher = timerHandler.getCurrentTime();
 
 			}));
 
-	Timeline raceStatus = new Timeline(new KeyFrame(Duration.millis(100), e -> {
+	Timeline raceStatus = new Timeline(new KeyFrame(Duration.millis(1000), e -> {
 
-		// progStaus = ++progStaus;
-		// System.out.println(++progStaus + " " + progStaus/100);
 
-		System.out.println("raceStatus:" + progStaus + " Current time: " + timerHandler.getCurrentTime());
+		if (state2) {
+			System.out.println("raceStatus:" + progStaus + " Current time: " + watcher);
+			
+			state2 = parHandler.race1Handler(list,watcher);
+			
+		}else {
+			
+			timerHandler.convertStringTimeToMilliseconds("teset");
+			endTimeLine();
+			timeline.stop();
+			
+		}
 		
-		parHandler.race1Handler(list);
 	
-		tbplist.setItems(parHandler.race1Handler(list));
 		
-		
+		//list = parHandler.race1Handler(list);
+		//System.out.println(list);
+	
 	}));
 
 	@FXML
@@ -170,11 +191,28 @@ public class MainController implements Initializable {
 		i = 0;
 	}
 
+	
+	public void endTimeLine() {
+		timeline.stop();
+		raceStatus.stop();
+		state2 = true;
+		state = true;
+		
+	}
+	
+	public void choiseComp(ActionEvent event) {
+		choice = mainCompChoice.getValue();
+		//System.out.println(choice);
+		
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// parHandler.clearfile();
 		mainPrograsBar.setProgress(0.0100);
+		mainCompChoice.getItems().addAll(compchoice);
+		mainCompChoice.setOnAction(this::choiseComp);
 		//mainPrograsBar.setProgress(0);
 
 		mainClock.setText("00:00:00:000");
@@ -184,7 +222,7 @@ public class MainController implements Initializable {
 		colPartvipantName.setCellValueFactory(new PropertyValueFactory<Participant, String>("namen"));
 		colPartvipantPosition.setCellValueFactory(new PropertyValueFactory<Participant, Integer>("position"));
 		colPartvipantDiffTime.setCellValueFactory(new PropertyValueFactory<Participant, String>("totalDiffrenceTime"));
-		colPartvipantX.setCellValueFactory(new PropertyValueFactory<Participant,  String>("compTime01"));
+		colPartvipantRace1.setCellValueFactory(new PropertyValueFactory<Participant,  String>("compTime01"));
 		tbplist.setItems(list);
 
 	}

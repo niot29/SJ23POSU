@@ -165,7 +165,7 @@ public class MgnPerticipantController  implements Initializable{
 	void tbCelDetail(MouseEvent event) {
 		int selectID = tbplist.getSelectionModel().getSelectedIndex();
 		System.out.println(tbplist.getItems().get(selectID).getId());
-		System.err.println();
+
 		txtId.setText(String.valueOf(tbplist.getItems().get(selectID).getId()));
 		txtName.setText(tbplist.getItems().get(selectID).getNamen());
 		txtPosition.setText(String.valueOf(tbplist.getItems().get(selectID).getPosition()));
