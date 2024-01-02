@@ -1,4 +1,4 @@
-package application.services; 
+package application.services;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,8 +9,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -22,8 +29,7 @@ import javafx.collections.ObservableList;
 import javafx.util.Duration;
 
 public class participantHandler {
-	
-	
+
 	public void clearfile() {
 		File file = new File("Percitipant.txt");
 		try {
@@ -47,8 +53,10 @@ public class participantHandler {
 
 				FileWriter fr = new FileWriter(file, true);
 				BufferedWriter bw = new BufferedWriter(fr);
-				//bw.write(p.toString());
-				bw.write(p.getId()  + ":" + p.getNamen() + ":" + p.getPosition() + ":" + p.getStartTime() + ":" + p.getTotalDiffrenceTime() + ":" + p.getCompTime01() + ":" + p.getCompTime02() + ":" + p.getCompTime03() + ":" + p.getEndTime());
+				// bw.write(p.toString());
+				bw.write(p.getId() + "," + p.getNamen() + "," + p.getPosition() + "," + p.getStartTime() + ","
+						+ p.getTotalDiffrenceTime() + "," + p.getCompTime01() + "," + p.getCompTime02() + ","
+						+ p.getCompTime03() + "," + p.getEndTime());
 
 				bw.newLine();
 
@@ -70,21 +78,21 @@ public class participantHandler {
 	public ObservableList<Participant> getPercitipantsFromFile() {
 		BufferedReader br = null;
 		ObservableList<Participant> list = FXCollections.observableArrayList();
-		
+
 		try {
 			// create file object
 			File file = new File("Percitipant.txt");
 
 			// create BufferedReader object from the File
-			br  = new BufferedReader(new FileReader(file));
-			
+			br = new BufferedReader(new FileReader(file));
+
 			String line = null;
 
 			// read file line by line
 			while ((line = br.readLine()) != null) {
 				System.out.println("read file: " + line);
-				String[] parts = line.split(":");
-				
+				String[] parts = line.split(",");
+
 				Participant pa = new Participant();
 				pa.setId(Integer.parseInt(parts[0]));
 				pa.setNamen(parts[1]);
@@ -95,16 +103,15 @@ public class participantHandler {
 				pa.setCompTime02(parts[6]);
 				pa.setCompTime03(parts[7]);
 				pa.setEndTime(parts[8]);
-				
-				//System.out.println("PS " + pa);
+
+				// System.out.println("PS " + pa);
 				list.add(pa);
 			}
-			
-			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 
 			// Always close the BufferedReader
 			if (br != null) {
@@ -119,7 +126,7 @@ public class participantHandler {
 		return list;
 
 	}
-     
+
 	public ObservableList<Participant> addRanPercitipant(ObservableList<Participant> parUserList, String name) {
 		Participant pUser = new Participant();
 		int indexid = parUserList.size();
@@ -218,58 +225,80 @@ public class participantHandler {
 
 	}
 
-	public void setStartTime(ObservableList<Participant> parUserList, String recrType, String getCurrentTime) {
-		System.out.println("setStartTime");
+	public void setStartTime(ObservableList<Participant> parUserList, String raceType, String getCurrentTime) {
+		System.out.println("setStartTime - RaceType: " + raceType);
 		ObservableList<Participant> list = FXCollections.observableArrayList();
-		
-		for(Participant p: parUserList) {
+
+		for (Participant p : parUserList) {
 			p.setStartTime(getCurrentTime);
 			list.add(p);
-			
+
 		}
 		savePercitipantToFile(list);
-		
-		
+
 	}
 
-	public ObservableList<Participant> race1Handler(ObservableList<Participant> parUserList){
-		//ArrayList<Participant> list = new ArrayList<Participant>() ;
+	public boolean race1Handler(ObservableList<Participant> parUserList, String watcher) {
+		// ArrayList<Participant> list = new ArrayList<Participant>() ;
 		ObservableList<Participant> list = FXCollections.observableArrayList();
-
+		TimerHandler timeHandler = new TimerHandler();
 		DecimalFormat df = new DecimalFormat("0.00000");
 		Random rand = new Random();
-		double min = 0.0010;
-		double  max = 0.0030;
-		
-		System.out.println(parUserList.get(0));
-		
-		for (Participant p : parUserList) {
-			
-			//System.out.println("- " + p);
-			 
-			double race1Speed = rand.nextDouble() * (max - min) + min;
-			double speed = Double.valueOf(p.getCompTime01());
-						
-//			System.out.println("speed: " + speed);
-			System.out.println("race1Speed: " + race1Speed);
-			System.out.println("race1Speed % : " + race1Speed * 100);
+		int distanceCount100 = 0;
+		int distanceCount50 = 0;
 
-//			System.out.println(speed + race1Speed);
-			String inValue = df.format(speed + race1Speed);
-			
-			String str = inValue.replace(",", ".");
-			
-			p.setCompTime01(str);
-			
+		for (Participant p : parUserList) {
+			double speed = Double.valueOf(p.getCompTime01());
+			int race1Speed = rand.nextInt(4);
+
+			for (int i = 0; race1Speed >= i; i++) {
+				if (speed == 0.5) {
+					System.out.println(
+							"------------------- 50% " + p.getNamen() + " - speed " + speed + " Time: " + watcher);
+					distanceCount50 = ++distanceCount50;
+					p.setTotalDiffrenceTime(watcher);
+					
+				
+				}
+
+				if (speed >= 1.0) {
+					System.out.println(
+							"------------------- 100% " + p.getNamen() + " - speed " + speed + " Time: " + watcher);
+					distanceCount100 = ++distanceCount100;
+					p.setCompTime01(watcher);
+
+					break;
+				}
+
+				speed = speed + 0.005;
+
+				// System.out.println(p.getNamen() + " - speed " + speed);
+				// int roundIntValue = (int) Math.round(speed + (race1Speed/100));
+
+			}
+//			String inValue = df.format(speed);
+//			String str = inValue.replace(",", ".");
+//			p.setCompTime01(str);
+
 			list.add(p);
-						
+
 		}
-		
-	
-		
-		//System.out.println(df.format(list));
-		return list;
-		
+
+		if (distanceCount50 == parUserList.size()) {
+
+			System.out.println(distanceCount50 + " " + parUserList.size());
+			
+			
+		}
+
+		if (distanceCount100 == parUserList.size()) {
+
+			System.out.println(distanceCount100 + " " + parUserList.size());
+			savePercitipantToFile(list);
+			return false;
+		}
+		return true;
+
 	}
 
 }
