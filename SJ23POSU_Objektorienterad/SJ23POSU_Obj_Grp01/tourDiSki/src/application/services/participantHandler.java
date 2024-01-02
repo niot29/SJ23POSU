@@ -250,12 +250,14 @@ public class participantHandler {
 		for (Participant p : parUserList) {
 			double speed = Double.valueOf(p.getCompTime01());
 			int race1Speed = rand.nextInt(4);
-
+			//System.out.println(speed);
+			
 			for (int i = 0; race1Speed >= i; i++) {
 				if (speed == 0.5) {
 					System.out.println(
 							"------------------- 50% " + p.getNamen() + " - speed " + speed + " Time: " + watcher);
 					distanceCount50 = ++distanceCount50;
+					
 					p.setTotalDiffrenceTime(watcher);
 					
 				
@@ -276,10 +278,10 @@ public class participantHandler {
 				// int roundIntValue = (int) Math.round(speed + (race1Speed/100));
 
 			}
-//			String inValue = df.format(speed);
-//			String str = inValue.replace(",", ".");
-//			p.setCompTime01(str);
-
+			String inValue = df.format(speed);
+			String str = inValue.replace(",", ".");
+			p.setCompTime01(str);
+			p.setTotalDiffrenceTime(watcher);
 			list.add(p);
 
 		}
