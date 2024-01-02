@@ -6,7 +6,7 @@ public class Participant  implements Comparable<Participant>{
 	private String namen;
 	private int position;
 	private String startTime = "0";
-	private String  totalDiffrenceTime = "0";
+	private String totalDiffrenceTime = "0";
 	private String compTime01 = "0";
 	private String compTime02 = "0";
 	private String compTime03 = "0";
