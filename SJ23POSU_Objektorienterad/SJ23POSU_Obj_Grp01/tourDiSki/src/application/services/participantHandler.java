@@ -7,6 +7,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +19,7 @@ import java.util.stream.Collectors;
 import application.model.Participant;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.util.Duration;
 
 public class participantHandler {
 	
@@ -45,7 +48,7 @@ public class participantHandler {
 				FileWriter fr = new FileWriter(file, true);
 				BufferedWriter bw = new BufferedWriter(fr);
 				//bw.write(p.toString());
-				bw.write(p.getId()  + ":" + p.getNamen() + ":" + p.getPosition() + ":" + p.getStartTime() + ":" + p.getTotalDiffrenceTime() + ":" + p.getRac1() + ":" + p.getRac2() + ":" + p.getRac3() + ":" + p.getEndTime());
+				bw.write(p.getId()  + ":" + p.getNamen() + ":" + p.getPosition() + ":" + p.getStartTime() + ":" + p.getTotalDiffrenceTime() + ":" + p.getCompTime01() + ":" + p.getCompTime02() + ":" + p.getCompTime03() + ":" + p.getEndTime());
 
 				bw.newLine();
 
@@ -81,7 +84,6 @@ public class participantHandler {
 			while ((line = br.readLine()) != null) {
 				System.out.println("read file: " + line);
 				String[] parts = line.split(":");
-				System.out.println(parts.length);
 				
 				Participant pa = new Participant();
 				pa.setId(Integer.parseInt(parts[0]));
@@ -89,9 +91,9 @@ public class participantHandler {
 				pa.setPosition(Integer.parseInt(parts[2]));
 				pa.setStartTime(parts[3]);
 				pa.setTotalDiffrenceTime(parts[4]);
-				pa.setRac1(parts[5]);
-				pa.setRac2(parts[6]);
-				pa.setRac3(parts[7]);
+				pa.setCompTime01(parts[5]);
+				pa.setCompTime02(parts[6]);
+				pa.setCompTime03(parts[7]);
 				pa.setEndTime(parts[8]);
 				
 				//System.out.println("PS " + pa);
@@ -114,11 +116,10 @@ public class participantHandler {
 			}
 		}
 
-		System.out.println("PS Lisr: " + list);
 		return list;
 
 	}
-
+     
 	public ObservableList<Participant> addRanPercitipant(ObservableList<Participant> parUserList, String name) {
 		Participant pUser = new Participant();
 		int indexid = parUserList.size();
@@ -216,4 +217,59 @@ public class participantHandler {
 		return returnList;
 
 	}
+
+	public void setStartTime(ObservableList<Participant> parUserList, String recrType, String getCurrentTime) {
+		System.out.println("setStartTime");
+		ObservableList<Participant> list = FXCollections.observableArrayList();
+		
+		for(Participant p: parUserList) {
+			p.setStartTime(getCurrentTime);
+			list.add(p);
+			
+		}
+		savePercitipantToFile(list);
+		
+		
+	}
+
+	public ObservableList<Participant> race1Handler(ObservableList<Participant> parUserList){
+		//ArrayList<Participant> list = new ArrayList<Participant>() ;
+		ObservableList<Participant> list = FXCollections.observableArrayList();
+
+		DecimalFormat df = new DecimalFormat("0.00000");
+		Random rand = new Random();
+		double min = 0.0010;
+		double  max = 0.0030;
+		
+		System.out.println(parUserList.get(0));
+		
+		for (Participant p : parUserList) {
+			
+			//System.out.println("- " + p);
+			 
+			double race1Speed = rand.nextDouble() * (max - min) + min;
+			double speed = Double.valueOf(p.getCompTime01());
+						
+//			System.out.println("speed: " + speed);
+			System.out.println("race1Speed: " + race1Speed);
+			System.out.println("race1Speed % : " + race1Speed * 100);
+
+//			System.out.println(speed + race1Speed);
+			String inValue = df.format(speed + race1Speed);
+			
+			String str = inValue.replace(",", ".");
+			
+			p.setCompTime01(str);
+			
+			list.add(p);
+						
+		}
+		
+	
+		
+		//System.out.println(df.format(list));
+		return list;
+		
+	}
+
 }

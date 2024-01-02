@@ -7,15 +7,14 @@ public class Participant {
 	private int position;
 	private String startTime = "0";
 	private String totalDiffrenceTime = "0";
-	private String race1 = "0";
-	private String race2 = "0";
-	private String race3 = "0";
+	private String compTime01 = "0";
+	private String compTime02 = "0";
+	private String compTime03 = "0";
 	private String endTime = "0";
 	
 	public Participant() {
 	}
 
-	
 	public Participant(int id, String namen, int position, String startTime, String totalDiffrenceTime,
 			String compTime01, String compTime02, String compTime03, String endTime) {
 		super();
@@ -24,9 +23,9 @@ public class Participant {
 		this.position = position;
 		this.startTime = startTime;
 		this.totalDiffrenceTime = totalDiffrenceTime;
-		this.race1 = compTime01;
-		this.race2 = compTime02;
-		this.race3 = compTime03;
+		this.compTime01 = compTime01;
+		this.compTime02 = compTime02;
+		this.compTime03 = compTime03;
 		this.endTime = endTime;
 	}
 
@@ -38,48 +37,6 @@ public class Participant {
 		this.id = id;
 	}
 
-	
-	
-	public int getPosition() {
-		return position;
-	}
-
-
-	public void setPosition(int position) {
-		this.position = position;
-	}
-
-
-	public String getRac1() {
-		return race1;
-	}
-
-
-	public void setRac1(String race1) {
-		this.race1 = race1;
-	}
-
-
-	public String getRac2() {
-		return race2;
-	}
-
-
-	public void setRac2(String race2) {
-		this.race2 = race2;
-	}
-
-
-	public String getRac3() {
-		return race3;
-	}
-
-
-	public void setRac3(String race3) {
-		this.race3 = race3;
-	}
-
-
 	public String getNamen() {
 		return namen;
 	}
@@ -88,12 +45,12 @@ public class Participant {
 		this.namen = namen;
 	}
 
-	public int getStartOrder() {
+	public int getPosition() {
 		return position;
 	}
 
-	public void setStartOrder(int startOrder) {
-		this.position = startOrder;
+	public void setPosition(int position) {
+		this.position = position;
 	}
 
 	public String getStartTime() {
@@ -112,6 +69,30 @@ public class Participant {
 		this.totalDiffrenceTime = totalDiffrenceTime;
 	}
 
+	public String getCompTime01() {
+		return compTime01;
+	}
+
+	public void setCompTime01(String compTime01) {
+		this.compTime01 = compTime01;
+	}
+
+	public String getCompTime02() {
+		return compTime02;
+	}
+
+	public void setCompTime02(String compTime02) {
+		this.compTime02 = compTime02;
+	}
+
+	public String getCompTime03() {
+		return compTime03;
+	}
+
+	public void setCompTime03(String compTime03) {
+		this.compTime03 = compTime03;
+	}
+
 	public String getEndTime() {
 		return endTime;
 	}
@@ -122,13 +103,13 @@ public class Participant {
 
 	@Override
 	public String toString() {
-		return "participant [id=" + id + ", namen=" + namen + ", startOrder=" + position + ", startTime=" + startTime
-				+ ", totalDiffrenceTime=" + totalDiffrenceTime + ", endTime=" + endTime + "]";
+		return "Participant [id=" + id + ", namen=" + namen + ", position=" + position + ", startTime=" + startTime
+				+ ", totalDiffrenceTime=" + totalDiffrenceTime + ", compTime01=" + compTime01 + ", compTime02="
+				+ compTime02 + ", compTime03=" + compTime03 + ", endTime=" + endTime + "]";
 	}
+
 	
-	
-	
-	
+
 	
 	
 }
