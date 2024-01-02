@@ -1,12 +1,12 @@
 package application.model;
 
-public class Participant {
+public class Participant  implements Comparable<Participant>{
 	
 	private int id;
 	private String namen;
 	private int position;
 	private String startTime = "0";
-	private String totalDiffrenceTime = "0";
+	private String  totalDiffrenceTime = "0";
 	private String compTime01 = "0";
 	private String compTime02 = "0";
 	private String compTime03 = "0";
@@ -106,6 +106,12 @@ public class Participant {
 		return "Participant [id=" + id + ", namen=" + namen + ", position=" + position + ", startTime=" + startTime
 				+ ", totalDiffrenceTime=" + totalDiffrenceTime + ", compTime01=" + compTime01 + ", compTime02="
 				+ compTime02 + ", compTime03=" + compTime03 + ", endTime=" + endTime + "]";
+	}
+
+	@Override
+	public int compareTo(Participant totalDiffrenceTime) {
+		// TODO Auto-generated method stub
+		return (Integer) null;
 	}
 
 	
