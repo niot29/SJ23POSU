@@ -149,36 +149,41 @@ public class MainController implements Initializable {
 	Timeline raceStatus = new Timeline(new KeyFrame(Duration.millis(1000), e -> {
 
 		if (state2) {
+
+			switch (choice) {
+			case "Massstart":
+				state2 = parHandler.race1Handler(list, watcher);
+
+				break;
+			case "Individuals":
+				System.out.println("Timeline raceStatus Individuals");
+				
+				break;
+			default:
+				state2 = parHandler.race1Handler(list, watcher);
+
 //			System.out.println("raceStatus:" + progStaus + " Current time: " + watcher);
-
-			state2 = parHandler.race1Handler(list, watcher);
-
+			}
 		} else {
-		
+			list = parHandler.getDiffTime(list, choice);
 			endTimeLine();
 			timeline.stop();
-			
 
 		}
 
-//		list = parHandler.race1Handler(list);
-//		// System.out.println(list);
-
 	}));
-	
+
 	Timeline updateTabel = new Timeline(new KeyFrame(Duration.millis(3000), e -> {
 
 		System.out.println("Update tabel");
-		//list.clear();
-		//list = parHandler.getPercitipantsFromFile();
-		
+		// list.clear();
+		// list = parHandler.getPercitipantsFromFile();
+
 		colPartvipantRace1.setSortType(TableColumn.SortType.ASCENDING);
 		tbplist.getSortOrder().add(colPartvipantRace1);
 		tbplist.sort();
-		
-		tbplist.refresh();
 
-	
+		tbplist.refresh();
 
 	}));
 
@@ -191,6 +196,8 @@ public class MainController implements Initializable {
 	@FXML
 	public void mainStart(ActionEvent event) {
 		System.out.println("## Start ##");
+		parHandler.resetForNextRace(list);
+
 		timeline.setCycleCount(Timeline.INDEFINITE);
 		raceStatus.setCycleCount(Timeline.INDEFINITE);
 		updateTabel.setCycleCount(Timeline.INDEFINITE);
@@ -206,12 +213,11 @@ public class MainController implements Initializable {
 		System.out.println("## Stop ##");
 
 		tbplist.refresh();
-		
+
 		timeline.stop();
 		raceStatus.stop();
 		updateTabel.stop();
 
-		
 		;
 		mainClock.setText(timerHandler.resetTimer());
 		mainPrograsBar.setProgress(0);
@@ -222,7 +228,6 @@ public class MainController implements Initializable {
 	public void endTimeLine() {
 		timeline.stop();
 		raceStatus.stop();
-		
 		state2 = true;
 		state = true;
 		tbplist.refresh();

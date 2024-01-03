@@ -6,9 +6,9 @@ public class Participant implements Comparable<Participant> {
 	private String namen;
 	private int position;
 	private String startTime = "0";
-	private String totalDiffrenceTime = "0";
+	private int totalDiffrenceTime = 0;
 	private String compTime01 = "0";
-	private String compTime02 = "0";
+	private String compTime02 = "0"; 
 	private String compTime03 = "0";
 	private String speed = "0";
 	private String endTime = "0";
@@ -16,7 +16,7 @@ public class Participant implements Comparable<Participant> {
 	public Participant() {
 	}
 
-	public Participant(int id, String namen, int position, String startTime, String totalDiffrenceTime,
+	public Participant(int id, String namen, int position, String startTime, int totalDiffrenceTime,
 			String compTime01, String compTime02, String compTime03, String speed, String endTime) {
 		super();
 		this.id = id;
@@ -63,11 +63,11 @@ public class Participant implements Comparable<Participant> {
 		this.startTime = startTime;
 	}
 
-	public String getTotalDiffrenceTime() {
+	public int getTotalDiffrenceTime() {
 		return totalDiffrenceTime;
 	}
 
-	public void setTotalDiffrenceTime(String totalDiffrenceTime) {
+	public void setTotalDiffrenceTime(int totalDiffrenceTime) {
 		this.totalDiffrenceTime = totalDiffrenceTime;
 	}
 
@@ -127,9 +127,9 @@ public class Participant implements Comparable<Participant> {
 	}
 
 	@Override
-	public int compareTo(Participant totalDiffrenceTime) {
-		// TODO Auto-generated method stub
-		return (Integer) null;
+	public int compareTo(Participant p) {
+		
+		return this.totalDiffrenceTime - p.totalDiffrenceTime;
 	}
 
 }

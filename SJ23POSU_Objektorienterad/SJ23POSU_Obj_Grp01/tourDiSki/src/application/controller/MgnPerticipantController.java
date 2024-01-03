@@ -171,8 +171,8 @@ public class MgnPerticipantController  implements Initializable{
 		txtName.setText(tbplist.getItems().get(selectID).getNamen());
 		txtPosition.setText(String.valueOf(tbplist.getItems().get(selectID).getPosition()));
 		txtStartTime.setText(tbplist.getItems().get(selectID).getStartTime());
-
-		txtDiffrenceTime.setText(tbplist.getItems().get(selectID).getTotalDiffrenceTime());
+ 
+		txtDiffrenceTime.setText(Integer.toString(tbplist.getItems().get(selectID).getTotalDiffrenceTime()));
 		txtEndTime.setText(tbplist.getItems().get(selectID).getEndTime());
 		txtRace1.setText(tbplist.getItems().get(selectID).getCompTime01());
 		txtRace2.setText(tbplist.getItems().get(selectID).getCompTime02());
