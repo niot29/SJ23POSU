@@ -149,7 +149,7 @@ public class MainController implements Initializable {
 	Timeline raceStatus = new Timeline(new KeyFrame(Duration.millis(1000), e -> {
 
 		if (state2) {
-			System.out.println("raceStatus:" + progStaus + " Current time: " + watcher);
+//			System.out.println("raceStatus:" + progStaus + " Current time: " + watcher);
 
 			state2 = parHandler.race1Handler(list, watcher);
 
@@ -205,12 +205,14 @@ public class MainController implements Initializable {
 	void mainStop(ActionEvent event) {
 		System.out.println("## Stop ##");
 
+		tbplist.refresh();
+		
 		timeline.stop();
 		raceStatus.stop();
 		updateTabel.stop();
 
 		
-		tbplist.refresh();
+		;
 		mainClock.setText(timerHandler.resetTimer());
 		mainPrograsBar.setProgress(0);
 		mainProgStatusText.setText("Done");
@@ -220,10 +222,11 @@ public class MainController implements Initializable {
 	public void endTimeLine() {
 		timeline.stop();
 		raceStatus.stop();
-		updateTabel.stop();
+		
 		state2 = true;
 		state = true;
 		tbplist.refresh();
+		updateTabel.stop();
 	}
 
 	public void choiseComp(ActionEvent event) {
