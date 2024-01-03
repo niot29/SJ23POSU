@@ -29,6 +29,10 @@ import javafx.collections.ObservableList;
 import javafx.util.Duration;
 
 public class participantHandler {
+	
+	int distanceCount100 = 0;
+	int distanceCount50 = 0;
+	
 
 	public void clearfile() {
 		File file = new File("Percitipant.txt");
@@ -42,6 +46,7 @@ public class participantHandler {
 
 	public void savePercitipantToFile(ObservableList<Participant> parUserList) {
 		File file = new File("Percitipant.txt");
+		int i=1;
 
 		try {
 
@@ -50,6 +55,7 @@ public class participantHandler {
 			for (Participant p : parUserList) {
 
 				System.out.println("savePercitipantToFile " + p);
+				System.out.println("user and index: " + p.getId() + "--" + p.getNamen());
 
 				FileWriter fr = new FileWriter(file, true);
 				BufferedWriter bw = new BufferedWriter(fr);
@@ -58,6 +64,12 @@ public class participantHandler {
 						+ p.getTotalDiffrenceTime() + "," + p.getCompTime01() + "," + p.getCompTime02() + ","
 						+ p.getCompTime03() + "," + p.getEndTime() + "," + p.getSpeed());
 
+				
+//				bw.write(i + "," + p.getNamen() + "," + p.getPosition() + "," + p.getStartTime() + ","
+//						+ p.getTotalDiffrenceTime() + "," + p.getCompTime01() + "," + p.getCompTime02() + ","
+//						+ p.getCompTime03() + "," + p.getEndTime() + "," + p.getSpeed());
+//				
+				i++;
 				bw.newLine();
 
 				bw.close();
@@ -244,22 +256,27 @@ public class participantHandler {
 		ObservableList<Participant> list = FXCollections.observableArrayList();
 		TimerHandler timeHandler = new TimerHandler();
 		DecimalFormat df = new DecimalFormat("0.00000");
+		int pIndex= 0;
 		Random rand = new Random();
-		int distanceCount100 = 0;
-		int distanceCount50 = 0;
+		
+		
   
 		for (Participant p : parUserList) {
-			
+			pIndex++;
 			
 //			double speed = Double.valueOf(p.getCompTime01());
 			double speed = Double.valueOf(p.getSpeed());
 			
-			int race1Speed = rand.nextInt(4);
+			int race1Speed = rand.nextInt(3);
 			
 			for (int i = 0; race1Speed >= i; i++) {
 				
 				
-				if (speed == 0.1) {
+				
+//				System.out.println(
+//						"-------------------  " + p.getNamen() + " - speed " + speed + " Time: " + watcher + " Count " + i);
+				
+				if (speed == 0.5) {
 					System.out.println(
 							"------------------- 50% " + p.getNamen() + " - speed " + speed + " Time: " + watcher);
 //					distanceCount50 = ++distanceCount50;
@@ -267,24 +284,29 @@ public class participantHandler {
 					
 					p.setTotalDiffrenceTime(String.valueOf(timeHandler.convertStringTimeToMilliseconds(watcher)));
 					p.setCompTime01(watcher);
+					p.setPosition(pIndex);
 				
 				}
 
-				if (speed == 0.5) { 
-					System.out.println(
-							"------------------- 100% " + p.getNamen() + " - speed " + speed + " Time: " + watcher);
-					distanceCount100 = ++distanceCount100;
-					i = race1Speed;
+				if (speed == 1.0) { 
 					
-					p.setTotalDiffrenceTime(String.valueOf(timeHandler.convertStringTimeToMilliseconds(watcher)));
-					p.setCompTime01(watcher);
 					
+					if (p.getEndTime().equals("0")) {
+						System.out.println(
+								"------------------- 100% " + p.getNamen() + " - speed " + speed + " Time: " + watcher + " Position " + p.getEndTime());
+						distanceCount100 = ++distanceCount100;
+						System.out.println("100 " + distanceCount100 + " " + parUserList.size());
+						p.setTotalDiffrenceTime(String.valueOf(timeHandler.convertStringTimeToMilliseconds(watcher)));
+						p.setEndTime(watcher);
+						System.out.println(p);
+						
+					}
 					
 					break;
 				}
 
+				
 				speed = speed + 0.005;
-
 				// System.out.println(p.getNamen() + " - speed " + speed);
 				// int roundIntValue = (int) Math.round(speed + (race1Speed/100));
 
@@ -298,12 +320,12 @@ public class participantHandler {
 
 		}
 		
-	
-
 		if (distanceCount100 == parUserList.size()) {
 
 			System.out.println(distanceCount100 + " " + parUserList.size());
 			savePercitipantToFile(list);
+			distanceCount100 = 0;
+			distanceCount50 = 0;
 			return false;
 		}
 		return true;
