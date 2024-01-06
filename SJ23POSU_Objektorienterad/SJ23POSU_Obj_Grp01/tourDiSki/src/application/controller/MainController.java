@@ -72,6 +72,9 @@ public class MainController implements Initializable {
 
 	@FXML
 	private TableColumn<Participant, String> colPartvipantEndTime;
+	
+    @FXML
+    private TableColumn<Participant, String> colPartvipantStartTime;
 
 	@FXML
 	private TableView<Participant> tbplist;
@@ -118,9 +121,10 @@ public class MainController implements Initializable {
 //            new KeyFrame(Duration.seconds(1),
 			new KeyFrame(Duration.millis(1), e -> {
 
-				// System.out.println("timeline: " + ++i/10000 + " " + i/1000 + " -100000- " +
-				// ++i/100000);
+//				 System.out.println("timeline: " + ++i/10000 + " " + i/1000 + " -100000- " +
+//				 ++i/100000);
 				mainClock.setText(timerHandler.getCurrentTime());
+				parHandler.setStartStatus(list, i,timerHandler.getCurrentTime());
 
 				if (state) {
 					parHandler.setStartTime(list, choice, timerHandler.getCurrentTime());
@@ -140,10 +144,13 @@ public class MainController implements Initializable {
 
 				}
 
+				
+
+				
 				timerHandler.timeRunnger();
 				mainPrograsBar.setProgress(++i / 100000);
 				watcher = timerHandler.getCurrentTime();
-
+				
 			}));
 
 	Timeline raceStatus = new Timeline(new KeyFrame(Duration.millis(1000), e -> {
@@ -152,17 +159,15 @@ public class MainController implements Initializable {
 
 			switch (choice) {
 			case "Massstart":
-				state2 = parHandler.race1Handler(list, watcher);
+				state2 = parHandler.race1Handler(list, watcher,choice);
 
 				break;
 			case "Individuals":
-				System.out.println("Timeline raceStatus Individuals");
-				
+				state2 = parHandler.race1Handler(list, watcher,choice);
 				break;
 			default:
-				state2 = parHandler.race1Handler(list, watcher);
+				state2 = parHandler.race1Handler(list, watcher,choice);
 
-//			System.out.println("raceStatus:" + progStaus + " Current time: " + watcher);
 			}
 		} else {
 			list = parHandler.getDiffTime(list, choice);
@@ -175,13 +180,26 @@ public class MainController implements Initializable {
 
 	Timeline updateTabel = new Timeline(new KeyFrame(Duration.millis(3000), e -> {
 
-		System.out.println("Update tabel");
-		// list.clear();
-		// list = parHandler.getPercitipantsFromFile();
+		switch (choice) {
+		case "Massstart":
+			colPartvipantRace1.setSortType(TableColumn.SortType.ASCENDING);
+			tbplist.getSortOrder().add(colPartvipantRace1);
+			tbplist.sort();
+			
+			break;
+		case "Individuals":
+			colPartvipantRace1.setSortType(TableColumn.SortType.ASCENDING);
+			tbplist.getSortOrder().add(colPartvipantRace2);
+			tbplist.sort();
+			break;
+		default:
+			colPartvipantRace1.setSortType(TableColumn.SortType.ASCENDING);
+			tbplist.getSortOrder().add(colPartvipantDiffTime);
+			tbplist.sort();
 
-		colPartvipantRace1.setSortType(TableColumn.SortType.ASCENDING);
-		tbplist.getSortOrder().add(colPartvipantRace1);
-		tbplist.sort();
+		}
+
+		
 
 		tbplist.refresh();
 
@@ -196,15 +214,15 @@ public class MainController implements Initializable {
 	@FXML
 	public void mainStart(ActionEvent event) {
 		System.out.println("## Start ##");
-		parHandler.resetForNextRace(list);
+//		parHandler.resetForNextRace(list);
 
 		timeline.setCycleCount(Timeline.INDEFINITE);
 		raceStatus.setCycleCount(Timeline.INDEFINITE);
-		updateTabel.setCycleCount(Timeline.INDEFINITE);
-
-		raceStatus.play();
+		
 		timeline.play();
-		updateTabel.play();
+		raceStatus.play();
+		
+		//updateTabel.play();
 
 	}
 
@@ -218,7 +236,7 @@ public class MainController implements Initializable {
 		raceStatus.stop();
 		updateTabel.stop();
 
-		;
+		
 		mainClock.setText(timerHandler.resetTimer());
 		mainPrograsBar.setProgress(0);
 		mainProgStatusText.setText("Done");
@@ -237,6 +255,22 @@ public class MainController implements Initializable {
 	public void choiseComp(ActionEvent event) {
 		choice = mainCompChoice.getValue();
 		System.out.println(choice);
+
+		switch (choice) {
+		case "Massstart":
+			parHandler.resetForNextRace(list,1);
+			break;
+		case "Individuals":
+			parHandler.resetForNextRace(list,2);
+			
+			break;
+		case "Chased":
+			parHandler.resetForNextRace(list,3);
+			break;
+		}
+		
+		updateTabel.setCycleCount(Timeline.INDEFINITE);
+		updateTabel.play();
 
 	}
 
@@ -260,6 +294,7 @@ public class MainController implements Initializable {
 		colPartvipantRace2.setCellValueFactory(new PropertyValueFactory<Participant, String>("compTime02"));
 		colPartvipantRace3.setCellValueFactory(new PropertyValueFactory<Participant, String>("compTime03"));
 		colPartvipantEndTime.setCellValueFactory(new PropertyValueFactory<Participant, String>("endTime"));
+		colPartvipantStartTime.setCellValueFactory(new PropertyValueFactory<Participant, String>("startTime"));
 		tbplist.setItems(list);
 
 	}

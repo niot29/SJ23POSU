@@ -103,7 +103,7 @@ public class TimerHandler {
 		String conminuts_string = String.format("%02d", conminuts);
 		String conhours_string = String.format("%02d", conhours);
 
-		System.out.println(conhours_string + ":" + conminuts_string + ":" + conseconds_string + ":" + conmiliseconds_string);
+//		System.out.println(conhours_string + ":" + conminuts_string + ":" + conseconds_string + ":" + conmiliseconds_string);
 		
 		return conhours_string + ":" + conminuts_string + ":" + conseconds_string + ":" + conmiliseconds_string;
 		

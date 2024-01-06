@@ -32,6 +32,7 @@
           <TableColumn fx:id="colPartvipantName" minWidth="20.0" prefWidth="120.0" text="Name" />
             <TableColumn fx:id="colPartvipantPosition" prefWidth="60.0" text="Position" />
             <TableColumn fx:id="colPartvipantDiffTime" prefWidth="100.0" text="DiffTime" />
+            <TableColumn fx:id="colPartvipantStartTime" prefWidth="75.0" text="StartTime" />
             <TableColumn fx:id="colPartvipantEndTime" prefWidth="100.0" text="EndTime" />
             <TableColumn fx:id="colPartvipantRace1" prefWidth="100.0" text="Race1" />
             <TableColumn fx:id="colPartvipantRace2" prefWidth="100.0" text="Race2" />

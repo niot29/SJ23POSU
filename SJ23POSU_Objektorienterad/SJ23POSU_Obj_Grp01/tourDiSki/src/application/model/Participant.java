@@ -8,16 +8,17 @@ public class Participant implements Comparable<Participant> {
 	private String startTime = "0";
 	private int totalDiffrenceTime = 0;
 	private String compTime01 = "0";
-	private String compTime02 = "0"; 
+	private String compTime02 = "0";
 	private String compTime03 = "0";
 	private String speed = "0";
 	private String endTime = "0";
+	private int status = 0;
 
 	public Participant() {
 	}
 
-	public Participant(int id, String namen, int position, String startTime, int totalDiffrenceTime,
-			String compTime01, String compTime02, String compTime03, String speed, String endTime) {
+	public Participant(int id, String namen, int position, String startTime, int totalDiffrenceTime, String compTime01,
+			String compTime02, String compTime03, String speed, String endTime, int status) {
 		super();
 		this.id = id;
 		this.namen = namen;
@@ -29,6 +30,7 @@ public class Participant implements Comparable<Participant> {
 		this.compTime03 = compTime03;
 		this.speed = speed;
 		this.endTime = endTime;
+		this.status = status;
 	}
 
 	public int getId() {
@@ -111,6 +113,14 @@ public class Participant implements Comparable<Participant> {
 		this.speed = speed;
 	}
 
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
 	
 	
 	
@@ -118,17 +128,13 @@ public class Participant implements Comparable<Participant> {
 	public String toString() {
 		return "Participant [id=" + id + ", namen=" + namen + ", position=" + position + ", startTime=" + startTime
 				+ ", totalDiffrenceTime=" + totalDiffrenceTime + ", compTime01=" + compTime01 + ", compTime02="
-				+ compTime02 + ", compTime03=" + compTime03 + ", speed=" + speed + ", endTime=" + endTime + ", getId()="
-				+ getId() + ", getNamen()=" + getNamen() + ", getPosition()=" + getPosition() + ", getStartTime()="
-				+ getStartTime() + ", getTotalDiffrenceTime()=" + getTotalDiffrenceTime() + ", getCompTime01()="
-				+ getCompTime01() + ", getCompTime02()=" + getCompTime02() + ", getCompTime03()=" + getCompTime03()
-				+ ", getEndTime()=" + getEndTime() + ", getSpeed()=" + getSpeed() + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+				+ compTime02 + ", compTime03=" + compTime03 + ", speed=" + speed + ", endTime=" + endTime + ", status="
+				+ status + "]";
 	}
 
 	@Override
 	public int compareTo(Participant p) {
-		
+
 		return this.totalDiffrenceTime - p.totalDiffrenceTime;
 	}
 

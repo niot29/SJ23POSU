@@ -33,7 +33,9 @@ public class participantHandler {
 
 	int distanceCount100 = 0;
 	int distanceCount50 = 0;
-	
+	double speedMark50 = 0.3;
+	double speedMark100 = 0.5;
+	int startDeplay = 15000;
 
 	public void clearfile() {
 		File file = new File("Percitipant.txt");
@@ -55,8 +57,8 @@ public class participantHandler {
 			new FileWriter(file, false).close();
 			for (Participant p : parUserList) {
 
-				System.out.println("savePercitipantToFile " + p);
-				System.out.println("user and index: " + p.getId() + "--" + p.getNamen());
+//				System.out.println("savePercitipantToFile " + p);
+//				System.out.println("user and index: " + p.getId() + "--" + p.getNamen());
 
 				FileWriter fr = new FileWriter(file, true);
 				BufferedWriter bw = new BufferedWriter(fr);
@@ -67,7 +69,7 @@ public class participantHandler {
 
 				bw.write(i + "," + p.getNamen() + "," + p.getPosition() + "," + p.getStartTime() + ","
 						+ p.getTotalDiffrenceTime() + "," + p.getCompTime01() + "," + p.getCompTime02() + ","
-						+ p.getCompTime03() + "," + p.getEndTime() + "," + p.getSpeed());
+						+ p.getCompTime03() + "," + p.getEndTime() + "," + p.getSpeed() + "," + p.getStatus());
 
 				i++;
 				bw.newLine();
@@ -110,12 +112,14 @@ public class participantHandler {
 				pa.setId(Integer.parseInt(parts[0]));
 				pa.setNamen(parts[1]);
 				pa.setPosition(Integer.parseInt(parts[2]));
-				pa.setStartTime(parts[3]);
+				pa.setStartTime(parts[3]);  //--
 				pa.setTotalDiffrenceTime(Integer.parseInt(parts[4]));
 				pa.setCompTime01(parts[5]);
 				pa.setCompTime02(parts[6]);
 				pa.setCompTime03(parts[7]);
 				pa.setEndTime(parts[8]);
+				pa.setSpeed(parts[9]);
+				pa.setStatus(Integer.parseInt(parts[10]));
 
 				// System.out.println("PS " + pa);
 				list.add(pa);
@@ -238,10 +242,11 @@ public class participantHandler {
 
 	}
 
-	public void setStartTime(ObservableList<Participant> parUserList, String raceType, String getCurrentTime) {
+ 	public void setStartTime(ObservableList<Participant> parUserList, String raceType, String getCurrentTime) {
 		System.out.println("setStartTime - RaceType: " + raceType);
 		ObservableList<Participant> list = FXCollections.observableArrayList();
-
+		
+		System.out.println(getCurrentTime);
 		for (Participant p : parUserList) {
 			p.setStartTime(getCurrentTime);
 			list.add(p);
@@ -250,133 +255,197 @@ public class participantHandler {
 		savePercitipantToFile(list);
 
 	}
-	
-	public ObservableList<Participant> resetForNextRace(ObservableList<Participant> parUserList){
+
+	public ObservableList<Participant> setStartStatus(ObservableList<Participant> parUserList, double i,
+			String watcher) {
 		ObservableList<Participant> list = FXCollections.observableArrayList();
-		
+
+		for (Participant p : parUserList) {
+			if (p.getTotalDiffrenceTime() == i) {
+				System.out.println("----- " + p.getNamen() + " -- getTotalDiffrenceTime: " + p.getTotalDiffrenceTime() + " i - " + i);
+				p.setStatus(1);
+//				p.setStartTime(watcher);
+			
+			}
+//			else if (p.getTotalDiffrenceTime() == 0) {
+//				p.setStatus(1);
+//				p.setStartTime(watcher);
+//
+//			}
+
+			list.add(p);
+
+		}
+		return list;
+
+	}
+
+	public ObservableList<Participant> resetForNextRace(ObservableList<Participant> parUserList, int raceType) {
+		ObservableList<Participant> list = FXCollections.observableArrayList();
+		TimerHandler timeHandler = new TimerHandler();
+
 		for (Participant p : parUserList) {
 			p.setPosition(0);
 			p.setTotalDiffrenceTime(0);
 			p.setEndTime("0");
+
+			if (raceType == 1) {
+				System.err.println("resetForNextRace raceType: " + raceType);
+				p.setStatus(1);
+				p.setSpeed("0");
+
+			} else if (raceType == 2) {
+				System.err.println("resetForNextRace raceType: " + raceType);
+				p.setStatus(0);
+				p.setSpeed("0");
+				p.setStartTime(timeHandler.convertMillisecondsTimeToString((p.getId() - 1) * 15000));
+				p.setTotalDiffrenceTime((p.getId() - 1) * 15000);
+				p.setPosition(p.getTotalDiffrenceTime());
+				
+			} else if (raceType == 3) {
+				p.setStatus(0);
+				p.setSpeed("0");
+				int com1 = timeHandler.convertStringTimeToMilliseconds(p.getCompTime01());
+				int com2 = timeHandler.convertStringTimeToMilliseconds(p.getCompTime02());
+				
+				
+				p.setStartTime(timeHandler.convertMillisecondsTimeToString(com1 + com2));
+				p.setTotalDiffrenceTime(com1 + com2);
+				p.setPosition(p.getTotalDiffrenceTime());
+			}
+
 			list.add(p);
 		}
-		
 		savePercitipantToFile(list);
 		return list;
-		
+
 	}
 
-	public  ObservableList<Participant> getDiffTime(ObservableList<Participant> parUserList,String raceType) {
+	public ObservableList<Participant> getDiffTime(ObservableList<Participant> parUserList, String raceType) {
 		ObservableList<Participant> list = FXCollections.observableArrayList();
-		TimerHandler timHandler = new TimerHandler();	
-//		String raceType = "Massstart";
-		
-		
-		System.out.println(parUserList);
- 
+		TimerHandler timHandler = new TimerHandler();
+
 		Collections.sort(parUserList);
-		Participant pLead = new Participant();
-		
+//		Participant pLead = new Participant();
+
 		int lead = parUserList.get(0).getTotalDiffrenceTime();
-		int leadId =  parUserList.get(0).getId();
-		System.out.println(lead);
-		
-		
-	
-		
+		int leadId = parUserList.get(0).getId();
+		System.out.println("getDiffTime LEAD: " + lead + " LEADID " + leadId);
+
 		for (Participant p : parUserList) {
-			
-			int diff =0;
-			
-			switch(raceType) {
+
+			int diff = 0;
+
+			switch (raceType) {
 			case "Massstart":
-				 diff = p.getTotalDiffrenceTime() - lead;
+				diff = p.getTotalDiffrenceTime() - lead;
 				p.setCompTime01(timHandler.convertMillisecondsTimeToString(diff));
 				break;
 			case "Individuals":
-				 diff = p.getTotalDiffrenceTime() - lead;
-				p.setCompTime02(Integer.toString(diff));
+				diff = p.getTotalDiffrenceTime() - lead;
+				p.setCompTime02(timHandler.convertMillisecondsTimeToString(diff));
 				break;
 			case "Chased":
 				diff = p.getTotalDiffrenceTime() - lead;
-				p.setCompTime02(Integer.toString(diff));
+				p.setCompTime03(timHandler.convertMillisecondsTimeToString(diff));
 				break;
 			}
-			
+
 			System.out.println(p.getId() + "  " + p.getNamen() + " " + p.getTotalDiffrenceTime());
 			list.add(p);
-			
-			
+
 		}
 		System.out.println(list);
 		return list;
-		
+
 	}
 
-	public boolean race1Handler(ObservableList<Participant> parUserList, String watcher) {
-		// ArrayList<Participant> list = new ArrayList<Participant>() ;
+	public boolean race1Handler(ObservableList<Participant> parUserList, String watcher, String raceType) {
 		ObservableList<Participant> list = FXCollections.observableArrayList();
 		TimerHandler timeHandler = new TimerHandler();
 		DecimalFormat df = new DecimalFormat("0.00000");
-		int pIndex = 0;
 		Random rand = new Random();
 
 		for (Participant p : parUserList) {
-			pIndex++;
 
-//			double speed = Double.valueOf(p.getCompTime01());
-			double speed = Double.valueOf(p.getSpeed());
+			if (p.getStatus() == 1) {
 
-			int race1Speed = rand.nextInt(3);
+				double speed = Double.valueOf(p.getSpeed());
 
-			for (int i = 0; race1Speed >= i; i++) {
+				int race1Speed = rand.nextInt(4);
 
-//				System.out.println(
-//						"-------------------  " + p.getNamen() + " - speed " + speed + " Time: " + watcher + " Count " + i);
+				for (int i = 0; race1Speed >= i; i++) {
 
-				if (speed == 0.2) {
-					System.out.println(
-							"------------------- 50% " + p.getNamen() + " - speed " + speed + " Time: " + watcher);
+				System.out.println(
+						"-------------------  " + p.getNamen() + " - speed " + speed + " Time: " + watcher + " Count " + i);
+
+					if (speed == speedMark50) {
+						System.out.println(
+								"------------------- 50% " + p.getNamen() + " - speed " + speed + " Time: " + watcher);
 //					distanceCount50 = ++distanceCount50;
 
-//					p.setTotalDiffrenceTime(String.valueOf(timeHandler.convertStringTimeToMilliseconds(watcher)));
-					p.setTotalDiffrenceTime(timeHandler.convertStringTimeToMilliseconds(watcher));
-					p.setCompTime01(watcher);
-					p.setPosition(pIndex);
+//						p.setTotalDiffrenceTime(timeHandler.convertStringTimeToMilliseconds(watcher));
 
-				}
+						switch (raceType) {
+						case "Massstart":
+							p.setCompTime01(watcher);
 
-				if (speed == 0.5) {
+							break;
+						case "Individuals":
+							p.setCompTime02(watcher);
+							break;
+						default:
+							p.setCompTime03(watcher);
+						}
 
-					if (p.getEndTime().equals("0")) {
-						System.out.println("------------------- 100% " + p.getNamen() + " - speed " + speed + " Time: "
-								+ watcher + " Position " + p.getEndTime());
-						distanceCount100 = ++distanceCount100;
-//						System.out.println("100 " + distanceCount100 + " " + parUserList.size());
-//						p.setTotalDiffrenceTime(String.valueOf(timeHandler.convertStringTimeToMilliseconds(watcher)));
-						p.setTotalDiffrenceTime(timeHandler.convertStringTimeToMilliseconds(watcher));
-						p.setEndTime(watcher);
+//					p.setPosition(pIndex);
+
 					}
 
-					break;
+					if (speed == speedMark100) {
+						
+//						if (p.getStatus() == 1) {
+						if (p.getEndTime().equals("0")) {
+							System.out.println("------------------- 100% " + p.getNamen() + " - speed " + speed
+									+ " Time: " + watcher + " Position " + p.getEndTime());
+							distanceCount100 = ++distanceCount100;
+							System.out.println("100 " + distanceCount100 + " " + parUserList.size());
+							
+
+							int time = timeHandler.convertStringTimeToMilliseconds(watcher);
+							System.out.println("diff " + (time - p.getPosition()));
+							p.setTotalDiffrenceTime(time - p.getPosition());
+
+							p.setEndTime(watcher);
+							
+
+							p.setStatus(0);
+						}
+
+						break;
+					}
+
+					speed = speed + 0.005;
+					
+
 				}
+				String inValue = df.format(speed);
+				String str = inValue.replace(",", ".");
+								
+				p.setSpeed(str);
+				list.add(p);
+			
 
-				speed = speed + 0.005;
-				// System.out.println(p.getNamen() + " - speed " + speed);
-				// int roundIntValue = (int) Math.round(speed + (race1Speed/100));
-
+			} else {
+//				System.out.println("------- " + p.getNamen() + " Time: " + watcher + " StartTime: " + p.getStartTime()
+//						+ " Status " + p.getStatus());
 			}
-			String inValue = df.format(speed);
-			String str = inValue.replace(",", ".");
-
-			p.setSpeed(str);
-			list.add(p);
-
 		}
 
 		if (distanceCount100 == parUserList.size()) {
 
-			System.out.println(distanceCount100 + " " + parUserList.size());
+//			System.out.println(distanceCount100 + " " + parUserList.size());
+			System.out.println("New List: " + list);
 			savePercitipantToFile(list);
 			distanceCount100 = 0;
 			distanceCount50 = 0;
@@ -385,5 +454,7 @@ public class participantHandler {
 		return true;
 
 	}
+
+
 
 }

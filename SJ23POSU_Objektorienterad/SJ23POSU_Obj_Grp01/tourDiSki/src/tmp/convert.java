@@ -7,7 +7,7 @@ public class convert {
 		
 		
 		
-	int milli = 3024;
+	int milli = 15000;
 	
 	
 	int hours = (milli / 3600000);
