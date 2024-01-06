@@ -1,0 +1,257 @@
+* commit ae90cbd1ff26659e7b75d6a85669a292868c1613 (HEAD -> main, origin/main, origin/HEAD)
+| Author: Nils Ottosson <info@noidea.se>
+| Date:   Sat Jan 6 09:11:39 2024 +0100
+| 
+|     functionen for handling race2 and race3
+Log comment:
+ - Hantera uträking av lopp (race2-race3 masstart) funkar som jag vill ha. 
+ - utränking för race2-race3 stämmer forfrande inte som det skall.
+| 
+* commit fd64d68db1e905c11dcdd7003dfbd4cc0f928435
+| Author: Nils Ottosson <info@noidea.se>
+| Date:   Wed Jan 3 23:06:54 2024 +0100
+| 
+|     done with massStart
+Log comment:
+ - Hantera uträking av lopp (race1 masstart) funkar som jag vill ha. 
+ 
+| 
+* commit bdba3121c6ed633204e104032d271cc9dec3d511
+| Author: niot29 <50738105+niot29@users.noreply.github.com>
+| Date:   Wed Jan 3 15:43:31 2024 +0100
+| 
+|     fix mass start funk
+Log comment:
+ - Hantera uträking av lopp (race1 masstart). 
+| 
+* commit c7b80e83959e8e9bd5174ac2dd3572a25c65549d
+| Author: niot29 <50738105+niot29@users.noreply.github.com>
+| Date:   Wed Jan 3 15:41:55 2024 +0100
+| 
+|     Fixa mass start funk
+Log comment:
+ - Hantera uträking av lopp (race1 masstart). 
+| 
+* commit c5a71821cd8d8f232531f72acca3075f9b060cf2
+| Author: Nils Ottosson <info@noidea.se>
+| Date:   Wed Jan 3 00:52:08 2024 +0100
+| 
+|     table refresh
+Log comment:
+	- lista ut autmatis updatering av infrmation 
+| 
+* commit 829d0361b26c519eca20299a3a844866bb3fae0c
+| Author: niot29 <50738105+niot29@users.noreply.github.com>
+| Date:   Tue Jan 2 16:21:15 2024 +0100
+| 
+|     2
+Log comment:
+ - Hantera uträking av lopp (race1 masstart). 
+ - design av view och controller
+| 
+* commit 5b2e18f05b65ba83f59a181acab1effa0ba13c24
+| Author: niot29 <50738105+niot29@users.noreply.github.com>
+| Date:   Tue Jan 2 16:20:48 2024 +0100
+| 
+|     2
+Log comment:
+ - Hantera uträking av lopp (race1 masstart). 
+ - design av view och controller
+| 
+* commit 92df8ab3098e508e00a87bf210d147efa7168683
+| Author: niot29 <50738105+niot29@users.noreply.github.com>
+| Date:   Tue Jan 2 15:49:54 2024 +0100
+| 
+|     1
+Log comment:
+ - Hantera uträking av lopp (race1 masstart). 
+ - design av view och controller
+| 
+* commit 97518910bdb5d1626dc45f6aca9a9f85393f8ef4
+| Author: niot29 <50738105+niot29@users.noreply.github.com>
+| Date:   Tue Jan 2 15:49:23 2024 +0100
+| 
+|     1
+Log comment:
+ - Hantera uträking av lopp (race1 masstart). 
+ - design av view och controller
+| 
+* commit 72606db1ac9955cecce383db952ab7cef2ac6fad
+| Author: niot29 <50738105+niot29@users.noreply.github.com>
+| Date:   Tue Jan 2 15:48:54 2024 +0100
+| 
+|     1
+Log comment:
+ - Hantera uträking av lopp (race1 masstart). 
+ - design av view och controller
+| 
+* commit 587d796c0dabc92151670575b73fd3daf8ea3e32
+| Author: niot29 <50738105+niot29@users.noreply.github.com>
+| Date:   Tue Jan 2 15:48:25 2024 +0100
+| 
+|     1
+Log comment:
+ - Hantera uträking av lopp (race1 masstart). 
+ - design av view och controller
+ 
+Log comment:
+ - Hantera uträking av lopp (race1 masstart). 
+
+* commit c77bf1ab2368e07ad0cc2d6c869decd7314d5e6d
+| Author: niot29 <50738105+niot29@users.noreply.github.com>
+| Date:   Tue Jan 2 15:47:51 2024 +0100
+| 
+|     1
+Log comment:
+ - Hantera uträking av lopp (race1 masstart). 
+| 
+* commit df201ad1e6441bcb53e27e9edf18a1727f86b439
+| Author: Nils Ottosson <info@noidea.se>
+| Date:   Tue Jan 2 07:20:28 2024 +0100
+| 
+|     try tio fix competitions
+Log comment:
+ - ta fram och fixa tävlings typer.
+ - Hantera uträking av lopp (race1 masstart). 
+
+| 
+* commit e26f726b3226a61917ab7974167bba53722b536c
+| Author: Nils Ottosson <info@noidea.se>
+| Date:   Sat Dec 30 15:21:20 2023 +0100
+| 
+|     update table fom file
+Log comment:
+ - Hantering att ladd upp deltagarefilen till mainController tabelvieew.
+ - Samt hantering av att rensal filen vid uppdatering med listan.
+ 
+
+| 
+* commit 5ae3eccffb90bdbac4316debacb97810b0287c2b
+| Author: Nils Ottosson <info@noidea.se>
+| Date:   Sat Dec 30 14:51:33 2023 +0100
+| 
+|     test code in tmp folder
+Log comment:
+ - testa lite koder i en txtertn temp akatalog. mindra funktionen som ev skall in i proj 
+
+
+| 
+* commit 17f61368c6f2404e5485f6ae040c35a8f4aa5fd2
+| Author: Nils Ottosson <info@noidea.se>
+| Date:   Sat Dec 30 14:48:28 2023 +0100
+| 
+|     Fix main timer
+Log comment
+	- vidare SB design.
+	- äntligen listat ut hantering av huvud klocka. på börja lägga funktionen och designen¨
+	
+| 
+* commit 48e0534466e934e9cc41775bd6df82b5cb880dc2
+| Author: Nils Ottosson <info@noidea.se>
+| Date:   Fri Dec 29 19:56:19 2023 +0100
+| 
+|     doen
+Log comment:
+ - testa och klar med controller som switchar mellan view (controller)
+| 
+* commit f4fe8db867035d8737e82ca1de337cf927d47adf
+| Author: Nils Ottosson <info@noidea.se>
+| Date:   Fri Dec 29 19:36:00 2023 +0100
+| 
+|     Funktion for switch Scene
+| 
+Log comment:
+- testa funktionen för att switcha mellan controller. 
+- forsätt med att lista ut uträkningen samat hastighet av deltager vid åkning.
+- vidare SB design.
+
+| 
+* commit 32d097c41933b3c3dc727c72f74a24e5eed15a7a
+| Author: niot29 <50738105+niot29@users.noreply.github.com>
+| Date:   Fri Dec 29 14:09:23 2023 +0100
+| 
+|     Add files via upload
+|     
+		Log comment:
+		- Fixa bugg vid spra av infrmation till fil
+		- Samt bugg sökfunktion 
+
+| 
+* commit 892936e4921b1b1106b453470b7e80222bcc4768
+| Author: niot29 <50738105+niot29@users.noreply.github.com>
+| Date:   Fri Dec 29 14:06:09 2023 +0100
+| 
+|     fix list and remove
+|     
+
+Log comment:
+- Fixa bugg vid spra av infrmation till fil
+
+| 
+* commit d63aa0115af6afbcf434c8ee4ca8a9cae654cc8f
+| Author: Nils Ottosson <info@noidea.se>
+| Date:   Fri Dec 29 01:28:39 2023 +0100
+| 
+|     create search funk
+
+Log comment:
+- design participan view med sök funktion
+- participan controllen sökfunktion. skappa en seperat lista för sökfunktion.
+- samt testa husr man skall kunna att ta ut object från deltagar listan. ta bort funktionen. 
+
+| 
+* commit b8e28cd99f7935b7c8d0e7d18547c76bf204c13b
+| Author: Nils Ottosson <info@noidea.se>
+| Date:   Fri Dec 29 00:04:23 2023 +0100
+| 
+|     add tabel view with crud
+
+Log comment:
+- exprementerar hur SB funkar samt  designe och main view
+- test och design av Obejct strucktur.
+- test och design av main rep participan view
+
+| 
+* commit b758a8f41abb0c350660df5b6f82670244279ada
+| Author: niot29 <50738105+niot29@users.noreply.github.com>
+| Date:   Thu Dec 28 15:05:29 2023 +0100
+| 
+|     veiw perticipan
+		
+Log comment:
+- exprementerar hur SB funkar samt  designe och main view
+- på börja att designa peersiipan veiw (fxml fil)
+
+| 
+* commit 723d04e54c23bb4223a33f5b8b8c9b29af9af466
+| Author: Nils Ottosson <info@noidea.se>
+| Date:   Wed Dec 27 00:45:22 2023 +0100
+| 
+|     	add start stop fun
+		
+Log comment:
+- Från SceneBuilder  läggt till start & stop knappar
+- Uppbyggnad av mail controller.
+- Uppbyggnad av funtion anrop från SB (SceneBuilder)
+
+| 
+* commit 82ed816b95d9fb85b7da0b6954919c420f2d507c
+| Author: Nils Ottosson <info@noidea.se>
+| Date:   Wed Dec 27 00:33:09 2023 +0100
+| 
+|     init grp project
+
+	  
+Log comment:
+- Start av projec, 
+- uppbyggnad av MVC kod.
+- Testat och tog ett besluta att bytta GUI i SecreanBuilder
+- funktioner:
+- Obejct för deltagare
+- Lägga till deltagare.
+- Skapa en lista på namn på deltagre (50st)
+- Metod för att läsa deltar filen.
+- Metod för att slumpvis ta ut namn från deltagarefilen. Med definitionen hör många deltagare somm skall delta i tävlingen.
+		
+
+	  
