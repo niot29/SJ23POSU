@@ -201,7 +201,7 @@ public class DataHandler {
 				System.out.println(list);
 				room.setRoomid(Integer.parseInt(list.get(0)));
 				room.setRoomBookingNr(Integer.parseInt(list.get(1)));
-				room.setRommCustomerNr(Integer.parseInt(list.get(2)));
+				room.setRoomCustomerNr(Integer.parseInt(list.get(2)));
 				room.setRoomBookingDate(list.get(3));
 				room.setRoomDesc(list.get(4));
 				room.setStatus(Integer.parseInt(list.get(5)));

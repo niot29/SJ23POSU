@@ -1,19 +1,20 @@
 package application.modell;
 
+public class Booking extends Room{
 
-public class Booking {
 	
 	private int bookingId;
 	private int bookingRoomNr;
 	private int bookingCustomerId;
-	private int  bookingStayDay;
+	private int bookingStayDay;
 	private String bookingStartDate;
 	private String bookingEndDate;
 	private String bookingDesc;
 	private int status;
+
 	
 	public Booking() {
-		super();
+	
 	}
 
 	public Booking(int bookingId, int bookingRoomNr, int bookingCustomerId, int bookingStayDay, String bookingStartDate,
@@ -85,7 +86,7 @@ public class Booking {
 		this.bookingDesc = bookingDesc;
 	}
 
-	public int isStatus() {
+	public int getStatus() {
 		return status;
 	}
 
@@ -100,8 +101,4 @@ public class Booking {
 				+ ", bookingEndDate=" + bookingEndDate + ", bookingDesc=" + bookingDesc + ", status=" + status + "]";
 	}
 
-	
-	
-	
-	
 }

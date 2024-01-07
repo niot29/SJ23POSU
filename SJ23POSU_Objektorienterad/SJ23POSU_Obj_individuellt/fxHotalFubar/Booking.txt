@@ -1,0 +1,1 @@
+Booking [bookingId=1, bookingRoomNr=1, bookingCustomerId=1, bookingStayDay=3, bookingStartDate=2024-01-01, bookingEndDate=2024-01-04, bookingDesc=null, status=1]

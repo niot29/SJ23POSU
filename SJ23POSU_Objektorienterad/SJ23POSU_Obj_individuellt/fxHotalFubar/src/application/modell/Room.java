@@ -1,26 +1,39 @@
 package application.modell;
 
-public class Room {
+public class Room extends Customer{
 
 	private int roomid;
 	private int roomBookingNr;
-	private int rommCustomerNr;
+	private int roomCustomerNr;
+	private String roomType;
 	private String roomBookingDate;
 	private String roomDesc;
 	private int status;
 
+
+
 	public Room() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public Room(int roomid, String roomDesc, int roomBookingNr, int rommCustomerNr, String roomBookingDate,
-			int status) {
+	public Room(int customerId, String customerFname, String customerEnamne, String customerAddress,
+			String customerEmail, String customerPhone, int status) {
+		super(customerId, customerFname, customerEnamne, customerAddress, customerEmail, customerPhone, status);
+		// TODO Auto-generated constructor stub
+	}
+
+	
+
+	public Room(int roomid, int roomBookingNr, int roomCustomerNr, String roomType, String roomBookingDate,
+			String roomDesc, int status) {
 		super();
 		this.roomid = roomid;
-		this.roomDesc = roomDesc;
 		this.roomBookingNr = roomBookingNr;
-		this.rommCustomerNr = rommCustomerNr;
+		this.roomCustomerNr = roomCustomerNr;
+		this.roomType = roomType;
 		this.roomBookingDate = roomBookingDate;
+		this.roomDesc = roomDesc;
 		this.status = status;
 	}
 
@@ -32,14 +45,6 @@ public class Room {
 		this.roomid = roomid;
 	}
 
-	public String getRoomDesc() {
-		return roomDesc;
-	}
-
-	public void setRoomDesc(String roomDesc) {
-		this.roomDesc = roomDesc;
-	}
-
 	public int getRoomBookingNr() {
 		return roomBookingNr;
 	}
@@ -48,12 +53,20 @@ public class Room {
 		this.roomBookingNr = roomBookingNr;
 	}
 
-	public int getRommCustomerNr() {
-		return rommCustomerNr;
+	public int getRoomCustomerNr() {
+		return roomCustomerNr;
 	}
 
-	public void setRommCustomerNr(int rommCustomerNr) {
-		this.rommCustomerNr = rommCustomerNr;
+	public void setRoomCustomerNr(int roomCustomerNr) {
+		this.roomCustomerNr = roomCustomerNr;
+	}
+
+	public String getRoomType() {
+		return roomType;
+	}
+
+	public void setRoomType(String roomType) {
+		this.roomType = roomType;
 	}
 
 	public String getRoomBookingDate() {
@@ -64,7 +77,15 @@ public class Room {
 		this.roomBookingDate = roomBookingDate;
 	}
 
-	public int isStatus() {
+	public String getRoomDesc() {
+		return roomDesc;
+	}
+
+	public void setRoomDesc(String roomDesc) {
+		this.roomDesc = roomDesc;
+	}
+
+	public int getStatus() {
 		return status;
 	}
 
@@ -74,9 +95,10 @@ public class Room {
 
 	@Override
 	public String toString() {
-		return "Room [roomid=" + roomid + ", roomDesc=" + roomDesc + ", roomBookingNr=" + roomBookingNr
-				+ ", rommCustomerNr=" + rommCustomerNr + ", roomBookingDate=" + roomBookingDate + ", status=" + status
-				+ "]";
+		return "Room [roomid=" + roomid + ", roomBookingNr=" + roomBookingNr + ", roomCustomerNr=" + roomCustomerNr
+				+ ", roomType=" + roomType + ", roomBookingDate=" + roomBookingDate + ", roomDesc=" + roomDesc
+				+ ", status=" + status + "]";
 	}
 
+	
 }

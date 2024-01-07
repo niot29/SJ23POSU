@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -58,7 +60,55 @@
             </AnchorPane>
          </left>
          <center>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #5089a3;" BorderPane.alignment="CENTER" />
+            <AnchorPane fx:id="mainAchorCenter" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: #5089a3;" BorderPane.alignment="CENTER">
+               <children>
+                  <TabPane fx:id="mainTbPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <tabs>
+                      <Tab text="Booking List">
+                           <content>
+                              <TableView fx:id="mainBookingList" prefHeight="200.0" prefWidth="200.0">
+                                <columns>
+                                  <TableColumn fx:id="tbBookingNr" prefWidth="75.0" text="BookingNr" />
+                                  <TableColumn fx:id="tbBookingRoomNr" prefWidth="75.0" text="RoomNr" />
+                                    <TableColumn fx:id="tbBookingCusterFNamne" prefWidth="75.0" text="First Name" />
+                                    <TableColumn fx:id="tbBookingCustomerLName" prefWidth="75.0" text="Last Name" />
+                                    <TableColumn fx:id="tbBookingStartDate" prefWidth="75.0" text="Checkin Date" />
+                                    <TableColumn fx:id="tbBookingEndDate" prefWidth="75.0" text="Depart Date" />
+                                    <TableColumn fx:id="tbBookingDesc" prefWidth="75.0" text="Desc" />
+                                </columns>
+                              </TableView>
+                           </content>
+                        </Tab>
+                      <Tab text="Room List">
+                           <content>
+                              <TableView fx:id="mainRoomList" prefHeight="200.0" prefWidth="200.0">
+                                <columns>
+                                  <TableColumn fx:id="tbRoomNr" prefWidth="75.0" text="Room Nr" />
+                                    <TableColumn fx:id="tbRoomtype" prefWidth="75.0" text="Type" />
+                                    <TableColumn fx:id="tbRoomDesc" prefWidth="75.0" text="Desc" />
+                                  <TableColumn fx:id="tbRoomBookNr" prefWidth="75.0" text="Booking Nr" />
+                                    <TableColumn prefWidth="75.0" text="Column X" />
+                                </columns>
+                              </TableView>
+                           </content>
+                        </Tab>
+                        <Tab text="Customer List">
+                           <content>
+                              <TableView fx:id="mainCustomerList" prefHeight="200.0" prefWidth="200.0">
+                                 <columns>
+                                    <TableColumn fx:id="tbCustomerFName" prefWidth="75.0" text="First Name" />
+                                    <TableColumn fx:id="tbCustomerLName" prefWidth="75.0" text="Last Name" />
+                                    <TableColumn fx:id="tbCustomerAddress" prefWidth="75.0" text="Address" />
+                                    <TableColumn fx:id="tbCustomerEmail" prefWidth="75.0" text="Email" />
+                                    <TableColumn fx:id="tbCustomerPhone" prefWidth="75.0" text="Phone" />
+                                    <TableColumn fx:id="tbCustomerStatus" prefWidth="75.0" text="Aktive" />
+                                 </columns>
+                              </TableView>
+                           </content>
+                        </Tab>
+                    </tabs>
+                  </TabPane>
+               </children></AnchorPane>
          </center>
          <bottom>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #5089a3;" BorderPane.alignment="CENTER">
@@ -70,7 +120,7 @@
                               <Insets bottom="10.0" top="10.0" />
                            </HBox.margin>
                         </TextField>
-                        <ChoiceBox prefWidth="150.0">
+                        <ChoiceBox fx:id="pickController" prefWidth="150.0">
                            <HBox.margin>
                               <Insets bottom="10.0" left="30.0" top="10.0" />
                            </HBox.margin>
