@@ -1,100 +1,95 @@
 package application.modell;
 
 public class Customer {
-	private int id;
-	private String fname;
-	private String enamne;
-	private String email;
-	private String phone;
-	private String status;
-	
+	private int customerId;
+	private String customerFname;
+	private String customerEnamne;
+	private String customerAddress;
+	private String customerEmail;
+	private String customerPhone;
+	private int status;
 	
 	public Customer() {
 		super();
 	}
 
-
-	public Customer(int id, String fname, String enamne, String email, String phone, String status) {
+	public Customer(int customerId, String customerFname, String customerEnamne, String customerAddress,
+			String customerEmail, String customerPhone, int status) {
 		super();
-		this.id = id;
-		this.fname = fname;
-		this.enamne = enamne;
-		this.email = email;
-		this.phone = phone;
+		this.customerId = customerId;
+		this.customerFname = customerFname;
+		this.customerEnamne = customerEnamne;
+		this.customerAddress = customerAddress;
+		this.customerEmail = customerEmail;
+		this.customerPhone = customerPhone;
 		this.status = status;
 	}
 
-
-	public int getId() {
-		return id;
+	public int getCustomerId() {
+		return customerId;
 	}
 
-
-	public void setId(int id) {
-		this.id = id;
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
 	}
 
-
-	public String getFname() {
-		return fname;
+	public String getCustomerFname() {
+		return customerFname;
 	}
 
-
-	public void setFname(String fname) {
-		this.fname = fname;
+	public void setCustomerFname(String customerFname) {
+		this.customerFname = customerFname;
 	}
 
-
-	public String getEnamne() {
-		return enamne;
+	public String getCustomerEnamne() {
+		return customerEnamne;
 	}
 
-
-	public void setEnamne(String enamne) {
-		this.enamne = enamne;
+	public void setCustomerEnamne(String customerEnamne) {
+		this.customerEnamne = customerEnamne;
 	}
 
-
-	public String getEmail() {
-		return email;
+	public String getCustomerAddress() {
+		return customerAddress;
 	}
 
-
-	public void setEmail(String email) {
-		this.email = email;
+	public void setCustomerAddress(String customerAddress) {
+		this.customerAddress = customerAddress;
 	}
 
-
-	public String getPhone() {
-		return phone;
+	public String getCustomerEmail() {
+		return customerEmail;
 	}
 
-
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setCustomerEmail(String customerEmail) {
+		this.customerEmail = customerEmail;
 	}
 
+	public String getCustomerPhone() {
+		return customerPhone;
+	}
 
-	public String getStatus() {
+	public void setCustomerPhone(String customerPhone) {
+		this.customerPhone = customerPhone;
+	}
+
+	public int getStatus() {
 		return status;
 	}
 
-
-	public void setStatus(String status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", fname=" + fname + ", enamne=" + enamne + ", email=" + email + ", phone="
-				+ phone + ", status=" + status + "]";
+		return "Customer [customerId=" + customerId + ", customerFname=" + customerFname + ", customerEnamne="
+				+ customerEnamne + ", customerAddress=" + customerAddress + ", customerEmail=" + customerEmail
+				+ ", customerPhone=" + customerPhone + ", status=" + status + "]";
 	}
-	
-	
-	
-	
-	
+
 	
 	
 }
+	
+	
