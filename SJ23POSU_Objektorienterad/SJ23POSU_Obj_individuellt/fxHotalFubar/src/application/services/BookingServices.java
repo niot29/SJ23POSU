@@ -67,7 +67,6 @@ DataHandler dataHandler = new DataHandler();
 				booking.setCustomerFname("killer");
 				booking.setCustomerEnamne("Nalle");
 				
-				System.out.println(booking);
 				bookingList.add(booking);
 			}
 		}

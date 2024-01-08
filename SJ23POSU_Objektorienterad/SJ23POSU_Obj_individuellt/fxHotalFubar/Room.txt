@@ -1,2 +1,1 @@
-Room [roomid=1, roomDesc=Rummet är bokad , roomBookingNr=10, rommCustomerNr=1, roomBookingDate=2024-01-01, status=1]
-Room [roomid=1, roomDesc=Rummet är bokad , roomBookingNr=11, rommCustomerNr=1, roomBookingDate=2024-01-01, status=1]
+Room [roomid=2, roomBookingNr=1, roomCustomerNr=0, roomType=1, roomBookingDate=null, roomDesc=1, status=1]

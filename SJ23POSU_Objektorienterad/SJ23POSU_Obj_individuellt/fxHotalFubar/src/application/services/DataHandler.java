@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,18 @@ import application.modell.Customer;
 import application.modell.Room;
 
 public class DataHandler {
+	
+	
+	public void clearfile(String filename) {
+		File file = new File(filename);
+		try {
+			new FileWriter(file, false).close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 
 	public <T> void saveToFileList(List<T> customerList) {
 
@@ -25,16 +38,17 @@ public class DataHandler {
 		switch (oclass) {
 		case "application.modell.Customer":
 			filename = "Customer.txt";
-
+			clearfile(filename);
 			break;
 
 		case "application.modell.Booking":
 			filename = "Booking.txt";
+			clearfile(filename);
 			break;
 
 		case "application.modell.Room":
 			filename = "Room.txt";
-
+			clearfile(filename);
 			break;
 		}
 
@@ -90,7 +104,6 @@ public class DataHandler {
 
 				}
 				
-				System.out.println(list);
 				cust.setCustomerId(Integer.parseInt(list.get(0)));
 				cust.setCustomerFname(list.get(1));
 				cust.setCustomerEnamne(list.get(2));
@@ -175,6 +188,7 @@ public class DataHandler {
 	
 	
 	public List<Room> readRoomFromFile(String filname) {
+		System.out.println("readRoomFromFile: filename " + filname);
 		BufferedReader br = null;
 
 		List<Room> roomList = new ArrayList<Room>();
@@ -198,16 +212,16 @@ public class DataHandler {
 
 				}
 				
-				System.out.println(list);
 				room.setRoomid(Integer.parseInt(list.get(0)));
 				room.setRoomBookingNr(Integer.parseInt(list.get(1)));
 				room.setRoomCustomerNr(Integer.parseInt(list.get(2)));
-				room.setRoomBookingDate(list.get(3));
-				room.setRoomDesc(list.get(4));
-				room.setStatus(Integer.parseInt(list.get(5)));
+				room.setRoomType(list.get(3));
+				room.setRoomBookingDate(list.get(4));
+				room.setRoomDesc(list.get(5));
+				room.setStatus(Integer.parseInt(list.get(6)));
 				
 				roomList.add(room);
-				
+								
 			}
 		} catch (Exception e) {
 			// TODO: handle exception

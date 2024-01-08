@@ -18,14 +18,17 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.transform.NonInvertibleTransformException;
 
 public class MainController implements Initializable {
 
@@ -100,10 +103,30 @@ public class MainController implements Initializable {
 	private AnchorPane mainAchorCenter;
 
 	@FXML
+	private AnchorPane mainLeftAnchor;
+
+	@FXML
 	private BorderPane mainBoarder;
 
 	@FXML
+	private Button btRoomSave;
+	
+	@FXML
+	private Button btRoomRemove;
+	
+	@FXML
+	private TextArea mainTxtARoomDesc;
+
+	@FXML
+	private TextField mainTxtRoomNr;
+	@FXML
+	private TextField mainTxtRoomType;
+
+	@FXML
 	private ChoiceBox<String> pickController;
+
+	@FXML
+	private Tab tabBookList;
 
 	private String choice;
 
@@ -138,9 +161,42 @@ public class MainController implements Initializable {
 
 	}
 
+	@FXML
+	void tbRoomSaveAction(ActionEvent event) {
+		System.out.println(mainTxtARoomDesc.getText());
+		Room room = new Room();
+		room.setRoomBookingNr(Integer.parseInt(mainTxtRoomNr.getText()));
+		room.setRoomType(mainTxtRoomType.getText());
+		room.setRoomDesc(mainTxtARoomDesc.getText());
+		roomHandler.addNewRoom(room);
+		
+		roomList = (ObservableList<Room>) roomHandler.getOListOfRoom(1);
+		tbRoomBookNr.setSortType(TableColumn.SortType.ASCENDING);
+		mainRoomList.getSortOrder().add(tbRoomBookNr);
+		mainRoomList.sort();
+		
+		mainRoomList.setItems(roomList);
+		mainRoomList.refresh();
+	}
+	
+	@FXML
+	void tbRoomRemoveAction(ActionEvent event) {
+		int selectID = mainRoomList.getSelectionModel().getSelectedIndex();
+		mainRoomList.getItems().remove(selectID);
+
+		roomList = (ObservableList<Room>) roomHandler.getOListOfRoom(1);
+
+		roomHandler.removeRoom(roomList, selectID);
+		mainRoomList.setItems(roomList);
+		mainRoomList.refresh();
+
+	}
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("mainController");
+		
+		
 		pickController.getItems().addAll(controllerList);
 		pickController.setOnAction(arg0 -> {
 			try {
