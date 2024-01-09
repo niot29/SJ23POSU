@@ -6,6 +6,8 @@ public class Booking extends Room{
 	private int bookingId;
 	private int bookingRoomNr;
 	private int bookingCustomerId;
+	private String bookingCustomerFname;
+	private String bookingCustomerEnamne;
 	private int bookingStayDay;
 	private String bookingStartDate;
 	private String bookingEndDate;
@@ -17,18 +19,25 @@ public class Booking extends Room{
 	
 	}
 
-	public Booking(int bookingId, int bookingRoomNr, int bookingCustomerId, int bookingStayDay, String bookingStartDate,
-			String bookingEndDate, String bookingDesc, int status) {
+
+
+	public Booking(int bookingId, int bookingRoomNr, int bookingCustomerId, String bookingCustomerFname,
+			String bookingCustomerEnamne, int bookingStayDay, String bookingStartDate, String bookingEndDate,
+			String bookingDesc, int status) {
 		super();
 		this.bookingId = bookingId;
 		this.bookingRoomNr = bookingRoomNr;
 		this.bookingCustomerId = bookingCustomerId;
+		this.bookingCustomerFname = bookingCustomerFname;
+		this.bookingCustomerEnamne = bookingCustomerEnamne;
 		this.bookingStayDay = bookingStayDay;
 		this.bookingStartDate = bookingStartDate;
 		this.bookingEndDate = bookingEndDate;
 		this.bookingDesc = bookingDesc;
 		this.status = status;
 	}
+
+
 
 	public int getBookingId() {
 		return bookingId;
@@ -94,11 +103,44 @@ public class Booking extends Room{
 		this.status = status;
 	}
 
+
+
+	public String getBookingCustomerFname() {
+		return bookingCustomerFname;
+	}
+
+
+
+	public void setBookingCustomerFname(String bookingCustomerFname) {
+		this.bookingCustomerFname = bookingCustomerFname;
+	}
+
+
+
+	public String getBookingCustomerEnamne() {
+		return bookingCustomerEnamne;
+	}
+
+
+
+	public void setBookingCustomerEnamne(String bookingCustomerEnamne) {
+		this.bookingCustomerEnamne = bookingCustomerEnamne;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "Booking [bookingId=" + bookingId + ", bookingRoomNr=" + bookingRoomNr + ", bookingCustomerId="
-				+ bookingCustomerId + ", bookingStayDay=" + bookingStayDay + ", bookingStartDate=" + bookingStartDate
-				+ ", bookingEndDate=" + bookingEndDate + ", bookingDesc=" + bookingDesc + ", status=" + status + "]";
+				+ bookingCustomerId + ", bookingCustomerFname=" + bookingCustomerFname + ", bookingCustomerEnamne="
+				+ bookingCustomerEnamne + ", bookingStayDay=" + bookingStayDay + ", bookingStartDate="
+				+ bookingStartDate + ", bookingEndDate=" + bookingEndDate + ", bookingDesc=" + bookingDesc + ", status="
+				+ status + "]";
 	}
 
+	
+
+	
+	
+	
 }

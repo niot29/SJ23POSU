@@ -13,6 +13,7 @@ import application.modell.Customer;
 import application.modell.Room;
 import application.services.BookingServices;
 import application.services.CustomerServices;
+import application.services.DataHandler;
 import application.services.RoomHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -124,14 +125,19 @@ public class MainController implements Initializable {
 	private Button btSaveBooking;
 
 	@FXML
+	private Button btmainSearch;
+
+	@FXML
 	private DatePicker dpickEndtDay;
 
 	@FXML
 	private DatePicker dpickStartDay;
-	
-    @FXML
-    private TextArea txtBlDesc;
 
+	@FXML
+	private TextArea txtBlDesc;
+
+	@FXML
+	private TextField txtSearchFeild;
 	// Room
 
 	@FXML
@@ -186,10 +192,9 @@ public class MainController implements Initializable {
 
 	private String choice;
 
-	private String[] controllerList = { "Customer", "Room", "Booking" };
-	
+	private String[] controllerList = { "Customer", "BookingNr", "RoomNr" };
+
 	int customerSelectId;
-	
 
 //	int roomSelectId =  mainRoomList.getSelectionModel().getSelectedIndex();
 //	int customerSelectId =  mainCustomerList.getSelectionModel().getSelectedIndex();
@@ -202,26 +207,20 @@ public class MainController implements Initializable {
 	CustomerServices customerService = new CustomerServices();
 	BookingServices bookingService = new BookingServices();
 	RoomHandler roomHandler = new RoomHandler();
+	DataHandler dataHandler = new DataHandler();
 
-	public void sceneSwitch(ActionEvent event) throws IOException {
-
-		choice = pickController.getValue();
-		System.out.println(choice);
-
-		switch (choice) {
-		case "Customer":
-
-			new AnchoreSwitch(mainAchorCenter, "views/customer.fxml");
-
-			break;
-		case "Individuals":
-
-			break;
-		case "Booking":
-			new AnchoreSwitch(mainAnchore01, "views/main.fxml");
-			break;
+	@FXML
+	void btmainSearchAction(ActionEvent event) {
+		
+		if(txtSearchFeild.getText().isEmpty()){
+			bookingList = bookingService.getOListOfBooking(1);
+			mainBookingList.setItems(bookingList);
+		}else {
+			ObservableList<Booking> bookingList2 = bookingService.searchById(txtSearchFeild.getText());
+			mainBookingList.setItems(bookingList2);
 		}
-
+		
+//		mainBookingList.setItems(bookingList);
 	}
 
 	@FXML
@@ -233,12 +232,19 @@ public class MainController implements Initializable {
 
 		}
 
-//		String Customer = tbBookingCusterFNamne.getCellData(bookingSelectId).toString() + " " + tbBookingCustomerLName.getCellData(bookingSelectId).toString();
+		String Customer = tbCustomerFName.getCellData(customerSelectId).toString() + " "
+				+ tbCustomerLName.getCellData(customerSelectId).toString();
+		txtBlCustomer.setText(Customer);
 
 		txtBlNr.setText(tbBookingNr.getCellData(bookingSelectId).toString());
-//		txtBlRoomNr.setText(tbBookingRoomNr.getCellData(bookingSelectId).toString());
-		txtBlStayDay.setText("xxx");
-//		txtBlCustomer.setText(Customer);
+		txtBlRoomNr.setText(tbBookingRoomNr.getCellData(bookingSelectId).toString());
+
+		LocalDate startDay = LocalDate.parse(tbBookingStartDate.getCellData(bookingSelectId).toString());
+		LocalDate EndDay = LocalDate.parse(tbBookingEndDate.getCellData(bookingSelectId).toString());
+
+		txtBlStayDay.setText(Integer.toString(bookingService.returnDayStay(startDay, EndDay)));
+
+		txtBlCustomer.setText(Customer);
 
 	}
 
@@ -272,47 +278,45 @@ public class MainController implements Initializable {
 	@FXML
 	void getStartDay(ActionEvent event) {
 		System.out.println(dpickStartDay.getValue());
-		
+
 		LocalDate startDay = dpickStartDay.getValue();
 	}
 
 	@FXML
 	void getEndDay(ActionEvent event) {
 		System.out.println(dpickEndtDay.getValue());
-		
-		
-			try {
-				LocalDate startDay = dpickStartDay.getValue();
-				LocalDate EndDay = dpickEndtDay.getValue();
-				int days = bookingService.returnDayStay(startDay, EndDay);
-				txtBlStayDay.setText(Integer.toString(days));
-			} catch (Exception e) {
-				System.err.println("Some Date Pick value is not define");
+
+		try {
+			LocalDate startDay = dpickStartDay.getValue();
+			LocalDate EndDay = dpickEndtDay.getValue();
+			int days = bookingService.returnDayStay(startDay, EndDay);
+			txtBlStayDay.setText(Integer.toString(days));
+		} catch (Exception e) {
+			System.err.println("Some Date Pick value is not define");
 //				e.printStackTrace();
-			}
-		
+		}
+
 	}
 
 	@FXML
 	void btSaveBookingAction(ActionEvent event) {
 		System.out.println("btSaveBookingAction");
-		
+
 		Booking booking = new Booking();
 		booking.setBookingRoomNr(Integer.parseInt(txtBlRoomNr.getText()));
 		booking.setBookingStayDay(Integer.parseInt(txtBlStayDay.getText()));
 		booking.setBookingStartDate(dpickStartDay.getValue().toString());
 		booking.setBookingEndDate(dpickEndtDay.getValue().toString());
 		booking.setBookingDesc(txtBlDesc.getText());
-		booking.setCustomerId(customerSelectId);
-		
-		bookingService.addNewCustomer(booking);
-		
-		System.out.println(customerSelectId);
-		
-		
-		mainRoomList.getItems().get(booking.getRoomBookingNr()).setRoomCustomerNr(booking.getBookingCustomerId());;
-		System.out.println(" --- " + mainRoomList.getItems().get(booking.getRoomBookingNr()));
+		booking.setBookingCustomerId(mainCustomerList.getItems().get(customerSelectId).getCustomerId());
+
+		bookingService.addNewBooking(booking);
+		bookingList = bookingService.getOListOfBooking(1);
+		mainBookingList.setItems(bookingList);
+		resettxtFiled();
+
 	}
+	
 
 	@FXML
 	void btRemoveBookingActions(ActionEvent event) {
@@ -390,27 +394,26 @@ public class MainController implements Initializable {
 
 	}
 
+	
+	void resettxtFiled() {
+		txtBlNr.setText("");
+		txtBlRoomNr.setText("");
+		txtBlStayDay.setText("");
+		txtBlCustomer.setText("");
+		txtBlDesc.setText("");
+	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("mainController");
-
-		pickController.getItems().addAll(controllerList);
-		pickController.setOnAction(arg0 -> {
-			try {
-				sceneSwitch(arg0);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		});
 
 		// init Booking Tabel
 		bookingList = (ObservableList<Booking>) bookingService.getOListOfBooking(1);
 
 		tbBookingNr.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("bookingId"));
 		tbBookingRoomNr.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("bookingRoomNr"));
-		tbBookingCusterFNamne.setCellValueFactory(new PropertyValueFactory<Booking, String>("customerFname"));
-		tbBookingCustomerLName.setCellValueFactory(new PropertyValueFactory<Booking, String>("customerFname"));
+		tbBookingCusterFNamne.setCellValueFactory(new PropertyValueFactory<Booking, String>("bookingCustomerFname"));
+		tbBookingCustomerLName.setCellValueFactory(new PropertyValueFactory<Booking, String>("bookingCustomerEnamne"));
 		tbBookingStartDate.setCellValueFactory(new PropertyValueFactory<Booking, String>("bookingStartDate"));
 		tbBookingEndDate.setCellValueFactory(new PropertyValueFactory<Booking, String>("bookingEndDate"));
 		tbBookingDesc.setCellValueFactory(new PropertyValueFactory<Booking, String>("bookingDesc"));
@@ -425,8 +428,7 @@ public class MainController implements Initializable {
 		mainRoomList.setItems(roomList);
 
 //		mainTxtRoomNr.setPromptText(Integer.toString(roomList.size() +1));
-		
-		
+
 		// init Customer Tabel
 		customerList = (ObservableList<Customer>) customerService.getOListOfCustomer(1);
 		tbCustomerFName.setCellValueFactory(new PropertyValueFactory<Customer, String>("customerFname"));

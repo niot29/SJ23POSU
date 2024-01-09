@@ -30,10 +30,9 @@ public class RoomHandler {
 		
 		ObservableList<Room> roomList = FXCollections.observableArrayList();
 
-		System.out.println("getOListOfRoom: liset  " + list);
 		
 		for (Room r : list) {
-
+			
 			if (r.getStatus() == 1) {
 
 				Room room = new Room();

@@ -97,7 +97,7 @@ public class Room extends Customer{
 	public String toString() {
 		return "Room [roomid=" + roomid + ", roomBookingNr=" + roomBookingNr + ", roomCustomerNr=" + roomCustomerNr
 				+ ", roomType=" + roomType + ", roomBookingDate=" + roomBookingDate + ", roomDesc=" + roomDesc
-				+ ", status=" + status + "]";
+				+ ", status=" + status + ", toString()=" + super.toString() + "]";
 	}
 
 	

@@ -1,3 +1,4 @@
 Customer [customerId=3, customerFname=3, customerEnamne=3, customerAddress=3, customerEmail=3, customerPhone=3, status=1]
 Customer [customerId=4, customerFname=5, customerEnamne=5, customerAddress=5, customerEmail=5, customerPhone=5, status=1]
 Customer [customerId=5, customerFname=6, customerEnamne=6, customerAddress=6, customerEmail=6, customerPhone=6, status=1]
+Customer [customerId=6, customerFname=nils, customerEnamne=Ottosson, customerAddress=sdzfd, customerEmail=sdfsd, customerPhone=sdfs, status=1]

@@ -7,12 +7,15 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
+import java.util.stream.Collectors;
 
 import application.modell.Booking;
 import application.modell.Customer;
 import application.modell.Room;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class DataHandler {
 	
@@ -28,12 +31,11 @@ public class DataHandler {
 	}
 	
 
-	public <T> void saveToFileList(List<T> customerList) {
-
+	public <T> void saveToFileList(List<T> list) {
+//		System.out.println("saveToFileList - : " + list);
 		String filename = null;
 		// Get Object class type
-		String oclass = customerList.get(0).getClass().getName();
-//		System.out.println(oclass);
+		String oclass = list.get(0).getClass().getName();
 
 		switch (oclass) {
 		case "application.modell.Customer":
@@ -58,7 +60,7 @@ public class DataHandler {
 
 			// Remove content i file before add from list
 //			new FileWriter(file, false).close();
-			for (Object o : customerList) {
+			for (Object o : list) {
 
 				FileWriter fw = new FileWriter(file, true);
 				BufferedWriter bw = new BufferedWriter(fw);
@@ -157,15 +159,16 @@ public class DataHandler {
 
 				}
 				
-				System.out.println(list);
 				booking.setBookingId(Integer.parseInt(list.get(0)));
 				booking.setBookingRoomNr(Integer.parseInt(list.get(1)));
 				booking.setBookingCustomerId(Integer.parseInt(list.get(2)));
-				booking.setBookingStayDay(Integer.parseInt(list.get(3)));
-				booking.setBookingStartDate(list.get(4));
-				booking.setBookingEndDate(list.get(5));
-				booking.setBookingDesc(list.get(6));
-				booking.setStatus(Integer.parseInt(list.get(7)));
+				booking.setBookingCustomerFname(list.get(3));
+				booking.setBookingCustomerEnamne(list.get(4));
+				booking.setBookingStayDay(Integer.parseInt(list.get(5)));
+				booking.setBookingStartDate(list.get(6));
+				booking.setBookingEndDate(list.get(7));
+				booking.setBookingDesc(list.get(8));
+				booking.setStatus(Integer.parseInt(list.get(9)));
 				bookingList.add(booking);
 			}
 		} catch (Exception e) {
@@ -188,7 +191,6 @@ public class DataHandler {
 	
 	
 	public List<Room> readRoomFromFile(String filname) {
-		System.out.println("readRoomFromFile: filename " + filname);
 		BufferedReader br = null;
 
 		List<Room> roomList = new ArrayList<Room>();
@@ -243,5 +245,5 @@ public class DataHandler {
 
 	
 
-	
+
 }
