@@ -1,6 +1,7 @@
 package application.services;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import application.modell.Customer;
@@ -61,19 +62,25 @@ public class CustomerServices {
 
 //		customerList = dataHandler.readCutomerFromFile("Customer.txt");
 		customerList = getListOfCustomer();
-		newCustomer.setCustomerId(customerList.size() + 1);
+		Collections.sort(customerList);
+		
+		if(customerList.size() == 0) {
+			newCustomer.setCustomerId(1);
+		}else {
+			newCustomer.setCustomerId(customerList.getLast().getCustomerId() + 1);
+
+		}
 		newCustomer.setStatus(1);
 		customerList.add(newCustomer);
-		// To-do from file
-
+//		System.out.println("last " + customerList.getLast().getCustomerId());
+		
 		dataHandler.saveToFileList(customerList);
 
-		return customerList;
+		return  getListOfCustomer();
 
 	}
 	
 	public void removeCustome(ObservableList<Customer> customerList, int rId) {
-		System.out.println(customerList);
 //		roomList.get(rId).setStatus(0);
 		customerList.remove(rId);
 		dataHandler.saveToFileList(customerList);

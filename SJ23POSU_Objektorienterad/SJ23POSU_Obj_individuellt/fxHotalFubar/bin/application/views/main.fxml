@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -63,7 +64,25 @@
                     <tabs>
                         <Tab text="Booking">
                           <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                            <AnchorPane fx:id="txtBlBookingRoomNr" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Text layoutX="14.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bookning NR:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="30.0" />
+                                    <Text fx:id="txtBlNr" layoutX="89.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="." />
+                                    <Text layoutX="14.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room Nr:" AnchorPane.leftAnchor="5.0" />
+                                    <Text fx:id="txtBlRoomNr" layoutX="84.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="." />
+                                    <Text layoutX="14.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Day Stay:" AnchorPane.leftAnchor="5.0" />
+                                    <Text fx:id="txtBlStayDay" layoutX="85.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="." />
+                                    <Text layoutX="3.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer:" AnchorPane.leftAnchor="5.0" />
+                                    <Text fx:id="txtBlCustomer" layoutX="76.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="." />
+                                    <Text layoutX="18.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="StartDate" AnchorPane.leftAnchor="5.0" />
+                                    <Text fx:id="txtBlBookingDatas" layoutX="4.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EndDate:" wrappingWidth="55.0" AnchorPane.leftAnchor="4.0" />
+                                    <Button fx:id="btSaveBooking" layoutX="5.0" layoutY="505.0" mnemonicParsing="false" onAction="#btSaveBookingAction" text="Save" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+                                    <Button fx:id="btRemoveBooking" layoutX="5.0" layoutY="546.0" mnemonicParsing="false" onAction="#btRemoveBookingActions" text="Remove" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+                                    <DatePicker fx:id="dpickStartDay" layoutX="34.0" layoutY="149.0" onAction="#getStartDay" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="5.0" />
+                                    <DatePicker fx:id="dpickEndtDay" layoutX="54.0" layoutY="196.0" onAction="#getEndDay" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="5.0" />
+                                    <TextArea fx:id="txtBlDesc" layoutY="258.0" prefHeight="235.0" prefWidth="200.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+                                    <Text layoutX="5.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Desc:" AnchorPane.leftAnchor="5.0" />
+                                 </children></AnchorPane>
                           </content>
                         </Tab>
                       <Tab text="Cutomer">
@@ -72,9 +91,9 @@
                                  <children>
                                     <Button fx:id="btRemoveCustomer" layoutX="74.0" layoutY="432.0" mnemonicParsing="false" onAction="#btRemoveCustomerAction" text="Remove" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
                                     <Text layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FirstName:" AnchorPane.leftAnchor="5.0" />
-                                    <TextField fx:id="txtCustomerEName" layoutX="22.0" layoutY="136.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+                                    <TextField fx:id="txtCustomerFName" layoutX="5.0" layoutY="73.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
                                     <Text layoutX="14.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LastName:" AnchorPane.leftAnchor="5.0" />
-                                    <TextField fx:id="txtCustomerFName" layoutX="11.0" layoutY="69.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+                                    <TextField fx:id="txtCustomerEName" layoutX="22.0" layoutY="136.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
                                     <Text layoutX="12.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" AnchorPane.leftAnchor="5.0" />
                                     <TextField fx:id="txtCustomerAddress" layoutX="11.0" layoutY="204.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
                                     <Text layoutX="12.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone" wrappingWidth="42.50390625" AnchorPane.leftAnchor="5.0" />
@@ -117,52 +136,57 @@
          <center>
             <AnchorPane fx:id="mainAchorCenter" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: #5089a3;" BorderPane.alignment="CENTER">
                <children>
-                  <TabPane fx:id="mainTbPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <tabs>
-                      <Tab fx:id="tabBookList" text="Booking List">
-                           <content>
-                              <TableView fx:id="mainBookingList" prefHeight="200.0" prefWidth="200.0">
-                                <columns>
-                                  <TableColumn fx:id="tbBookingNr" text="BookingNr" />
-                                  <TableColumn fx:id="tbBookingRoomNr" text="RoomNr" />
-                                    <TableColumn fx:id="tbBookingCusterFNamne" prefWidth="100.0" text="First Name" />
-                                    <TableColumn fx:id="tbBookingCustomerLName" prefWidth="100.0" text="Last Name" />
-                                    <TableColumn fx:id="tbBookingStartDate" prefWidth="100.0" text="Checkin Date" />
-                                    <TableColumn fx:id="tbBookingEndDate" prefWidth="100.0" text="Depart Date" />
-                                    <TableColumn fx:id="tbBookingDesc" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="-1.0" text="Desc" />
-                                </columns>
-                              </TableView>
-                           </content>
-                        </Tab>
-                      <Tab text="Room List">
-                           <content>
-                              <TableView fx:id="mainRoomList" prefHeight="200.0" prefWidth="200.0">
-                                <columns>
-                                  <TableColumn fx:id="tbRoomNr" text="Room Nr" />
-                                    <TableColumn fx:id="tbRoomtype" text="Type" />
-                                  <TableColumn fx:id="tbRoomBookNr" text="Booking Nr" />
-                                    <TableColumn text="Column X" />
-                                    <TableColumn fx:id="tbRoomDesc" minWidth="200.0" prefWidth="-1.0" text="Desc" />
-                                </columns>
-                              </TableView>
-                           </content>
-                        </Tab>
-                        <Tab text="Customer List">
-                           <content>
-                              <TableView fx:id="mainCustomerList" prefHeight="200.0" prefWidth="200.0">
-                                 <columns>
-                                    <TableColumn fx:id="tbCustomerFName" prefWidth="100.0" text="First Name" />
-                                    <TableColumn fx:id="tbCustomerLName" prefWidth="100.0" text="Last Name" />
-                                    <TableColumn fx:id="tbCustomerAddress" prefWidth="150.0" text="Address" />
-                                    <TableColumn fx:id="tbCustomerEmail" prefWidth="150.0" text="Email" />
-                                    <TableColumn fx:id="tbCustomerPhone" prefWidth="100.0" text="Phone" />
-                                    <TableColumn fx:id="tbCustomerStatus" prefWidth="50.0" text="Aktive" />
-                                 </columns>
-                              </TableView>
-                           </content>
-                        </Tab>
-                    </tabs>
-                  </TabPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <TabPane fx:id="mainTbPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <tabs>
+                            <Tab fx:id="tabBookList" text="Booking List">
+                                 <content>
+                                    <TableView fx:id="mainBookingList" onMouseClicked="#getBookingItem" prefHeight="200.0" prefWidth="200.0">
+                                      <columns>
+                                        <TableColumn fx:id="tbBookingNr" text="BookingNr" />
+                                        <TableColumn fx:id="tbBookingRoomNr" text="RoomNr" />
+                                          <TableColumn fx:id="tbBookingCusterFNamne" prefWidth="100.0" text="First Name" />
+                                          <TableColumn fx:id="tbBookingCustomerLName" prefWidth="100.0" text="Last Name" />
+                                          <TableColumn fx:id="tbBookingStartDate" prefWidth="100.0" text="Checkin Date" />
+                                          <TableColumn fx:id="tbBookingEndDate" prefWidth="100.0" text="Depart Date" />
+                                          <TableColumn fx:id="tbBookingDesc" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="-1.0" text="Desc" />
+                                      </columns>
+                                    </TableView>
+                                 </content>
+                              </Tab>
+                            <Tab text="Room List">
+                                 <content>
+                                    <TableView fx:id="mainRoomList" onMouseClicked="#getRoomItem" prefHeight="200.0" prefWidth="200.0">
+                                      <columns>
+                                        <TableColumn fx:id="tbRoomNr" text="Room Nr" />
+                                          <TableColumn fx:id="tbRoomtype" text="Type" />
+                                        <TableColumn fx:id="tbRoomBookNr" text="Booking Nr" />
+                                          <TableColumn text="Column X" />
+                                          <TableColumn fx:id="tbRoomDesc" minWidth="200.0" prefWidth="-1.0" text="Desc" />
+                                      </columns>
+                                    </TableView>
+                                 </content>
+                              </Tab>
+                              <Tab text="Customer List">
+                                 <content>
+                                    <TableView fx:id="mainCustomerList" onMouseClicked="#getCustomerItem" prefHeight="200.0" prefWidth="200.0">
+                                       <columns>
+                                          <TableColumn fx:id="tbCustomerFName" prefWidth="100.0" text="First Name" />
+                                          <TableColumn fx:id="tbCustomerLName" prefWidth="100.0" text="Last Name" />
+                                          <TableColumn fx:id="tbCustomerAddress" prefWidth="150.0" text="Address" />
+                                          <TableColumn fx:id="tbCustomerEmail" prefWidth="150.0" text="Email" />
+                                          <TableColumn fx:id="tbCustomerPhone" prefWidth="100.0" text="Phone" />
+                                          <TableColumn fx:id="tbCustomerStatus" prefWidth="50.0" text="Aktive" />
+                                       </columns>
+                                    </TableView>
+                                 </content>
+                              </Tab>
+                          </tabs>
+                        </TabPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutY="453.0" prefHeight="196.0" prefWidth="1000.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="453.0" />
                </children></AnchorPane>
          </center>
          <bottom>

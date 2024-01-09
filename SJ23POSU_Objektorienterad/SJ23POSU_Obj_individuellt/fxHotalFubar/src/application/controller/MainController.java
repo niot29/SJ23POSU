@@ -2,6 +2,7 @@ package application.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Timer;
@@ -20,6 +21,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
@@ -27,8 +29,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
 
 public class MainController implements Initializable {
 
@@ -102,6 +106,32 @@ public class MainController implements Initializable {
 	@FXML
 	private TableColumn<Booking, String> tbBookingDesc;
 
+	@FXML
+	private Text txtBlRoomNr;
+	@FXML
+	private Text txtBlStayDay;
+	@FXML
+	private Text txtBlNr;
+	@FXML
+	private Text txtBlCustomer;
+	@FXML
+	private Text txtBlBookingDatas;
+
+	@FXML
+	private Button btRemoveBooking;
+
+	@FXML
+	private Button btSaveBooking;
+
+	@FXML
+	private DatePicker dpickEndtDay;
+
+	@FXML
+	private DatePicker dpickStartDay;
+	
+    @FXML
+    private TextArea txtBlDesc;
+
 	// Room
 
 	@FXML
@@ -157,6 +187,13 @@ public class MainController implements Initializable {
 	private String choice;
 
 	private String[] controllerList = { "Customer", "Room", "Booking" };
+	
+	int customerSelectId;
+	
+
+//	int roomSelectId =  mainRoomList.getSelectionModel().getSelectedIndex();
+//	int customerSelectId =  mainCustomerList.getSelectionModel().getSelectedIndex();
+//	int bookingSelectId = mainBookingList.getSelectionModel().getSelectedIndex();
 
 	ObservableList<Customer> customerList = FXCollections.observableArrayList();
 	ObservableList<Room> roomList = FXCollections.observableArrayList();
@@ -187,7 +224,109 @@ public class MainController implements Initializable {
 
 	}
 
-	
+	@FXML
+	void getBookingItem(MouseEvent event) {
+		int bookingSelectId = mainBookingList.getSelectionModel().getSelectedIndex();
+
+		if (bookingSelectId <= -1) {
+			return;
+
+		}
+
+//		String Customer = tbBookingCusterFNamne.getCellData(bookingSelectId).toString() + " " + tbBookingCustomerLName.getCellData(bookingSelectId).toString();
+
+		txtBlNr.setText(tbBookingNr.getCellData(bookingSelectId).toString());
+//		txtBlRoomNr.setText(tbBookingRoomNr.getCellData(bookingSelectId).toString());
+		txtBlStayDay.setText("xxx");
+//		txtBlCustomer.setText(Customer);
+
+	}
+
+	@FXML
+	void getRoomItem(MouseEvent event) {
+		int roomSelectId = mainRoomList.getSelectionModel().getSelectedIndex();
+
+		if (roomSelectId <= -1) {
+			return;
+
+		}
+		txtBlRoomNr.setText(tbRoomNr.getCellData(roomSelectId).toString());
+
+	}
+
+	@FXML
+	void getCustomerItem(MouseEvent event) {
+		customerSelectId = mainCustomerList.getSelectionModel().getSelectedIndex();
+
+		if (customerSelectId <= -1) {
+			return;
+
+		}
+
+		String Customer = tbCustomerFName.getCellData(customerSelectId).toString() + " "
+				+ tbCustomerLName.getCellData(customerSelectId).toString();
+		txtBlCustomer.setText(Customer);
+
+	}
+
+	@FXML
+	void getStartDay(ActionEvent event) {
+		System.out.println(dpickStartDay.getValue());
+		
+		LocalDate startDay = dpickStartDay.getValue();
+	}
+
+	@FXML
+	void getEndDay(ActionEvent event) {
+		System.out.println(dpickEndtDay.getValue());
+		
+		
+			try {
+				LocalDate startDay = dpickStartDay.getValue();
+				LocalDate EndDay = dpickEndtDay.getValue();
+				int days = bookingService.returnDayStay(startDay, EndDay);
+				txtBlStayDay.setText(Integer.toString(days));
+			} catch (Exception e) {
+				System.err.println("Some Date Pick value is not define");
+//				e.printStackTrace();
+			}
+		
+	}
+
+	@FXML
+	void btSaveBookingAction(ActionEvent event) {
+		System.out.println("btSaveBookingAction");
+		
+		Booking booking = new Booking();
+		booking.setBookingRoomNr(Integer.parseInt(txtBlRoomNr.getText()));
+		booking.setBookingStayDay(Integer.parseInt(txtBlStayDay.getText()));
+		booking.setBookingStartDate(dpickStartDay.getValue().toString());
+		booking.setBookingEndDate(dpickEndtDay.getValue().toString());
+		booking.setBookingDesc(txtBlDesc.getText());
+		booking.setCustomerId(customerSelectId);
+		
+		bookingService.addNewCustomer(booking);
+		
+		System.out.println(customerSelectId);
+		
+		
+		mainRoomList.getItems().get(booking.getRoomBookingNr()).setRoomCustomerNr(booking.getBookingCustomerId());;
+		System.out.println(" --- " + mainRoomList.getItems().get(booking.getRoomBookingNr()));
+	}
+
+	@FXML
+	void btRemoveBookingActions(ActionEvent event) {
+//		int selectID =  mainBookingList.getSelectionModel().getSelectedIndex();
+//		mainBookingList.getItems().remove(selectID);
+//
+//		bookingList = bookingService.getOListOfBooking(1);
+//
+//		bookingService.removeBooking(bookingList, selectID);
+//		mainBookingList.setItems(bookingList);
+//		mainBookingList.refresh();
+
+	}
+
 	@FXML
 	void btSaveCustomerAction(ActionEvent event) {
 		Customer customer = new Customer();
@@ -209,26 +348,27 @@ public class MainController implements Initializable {
 
 	@FXML
 	void btRemoveCustomerAction(ActionEvent event) {
+		System.out.println("btRemoveCustomerAction");
 		int selectID = mainCustomerList.getSelectionModel().getSelectedIndex();
 		mainCustomerList.getItems().remove(selectID);
-		
+
 		customerList = customerService.getOListOfCustomer(1);
 
 		customerService.removeCustome(customerList, selectID);
 		mainCustomerList.setItems(customerList);
 		mainCustomerList.refresh();
-		
+
 	}
 
 	@FXML
 	void tbRoomSaveAction(ActionEvent event) {
 		Room room = new Room();
-		room.setRoomBookingNr(Integer.parseInt(mainTxtRoomNr.getText()));
+//		room.setRoomBookingNr(Integer.parseInt(mainTxtRoomNr.getText()));
 		room.setRoomType(mainTxtRoomType.getText());
 		room.setRoomDesc(mainTxtARoomDesc.getText());
 		roomHandler.addNewRoom(room);
 
-		roomList = (ObservableList<Room>) roomHandler.getOListOfRoom(1);
+		roomList = roomHandler.getOListOfRoom(1);
 		tbRoomBookNr.setSortType(TableColumn.SortType.ASCENDING);
 		mainRoomList.getSortOrder().add(tbRoomBookNr);
 		mainRoomList.sort();
@@ -284,6 +424,9 @@ public class MainController implements Initializable {
 		tbRoomtype.setCellValueFactory(new PropertyValueFactory<Room, String>("roomType"));
 		mainRoomList.setItems(roomList);
 
+//		mainTxtRoomNr.setPromptText(Integer.toString(roomList.size() +1));
+		
+		
 		// init Customer Tabel
 		customerList = (ObservableList<Customer>) customerService.getOListOfCustomer(1);
 		tbCustomerFName.setCellValueFactory(new PropertyValueFactory<Customer, String>("customerFname"));
@@ -293,6 +436,8 @@ public class MainController implements Initializable {
 		tbCustomerPhone.setCellValueFactory(new PropertyValueFactory<Customer, String>("customerPhone"));
 		tbCustomerStatus.setCellValueFactory(new PropertyValueFactory<Customer, Integer>("status"));
 		mainCustomerList.setItems(customerList);
+
+//		System.out.println(bookingList.get(bookingSelectId));
 
 	}
 

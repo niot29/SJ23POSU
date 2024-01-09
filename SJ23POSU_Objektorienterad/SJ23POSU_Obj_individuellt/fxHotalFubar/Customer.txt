@@ -1,5 +1,3 @@
-Customer [customerId=2, customerFname=Fnamne, customerEnamne=Ename, customerAddress=Address, customerEmail=Email, customerPhone=phtone, status=1]
-Customer [customerId=4, customerFname=Fnamne, customerEnamne=Ename, customerAddress=Address, customerEmail=Email, customerPhone=phtone, status=1]
-Customer [customerId=8, customerFname=Fnamne, customerEnamne=Ename, customerAddress=Address, customerEmail=Email, customerPhone=phtone, status=1]
-Customer [customerId=16, customerFname=Fnamne, customerEnamne=Ename, customerAddress=Address, customerEmail=Email, customerPhone=phtone, status=1]
-Customer [customerId=5, customerFname=12, customerEnamne=12, customerAddress=12, customerEmail=12, customerPhone=12, status=1]
+Customer [customerId=3, customerFname=3, customerEnamne=3, customerAddress=3, customerEmail=3, customerPhone=3, status=1]
+Customer [customerId=4, customerFname=5, customerEnamne=5, customerAddress=5, customerEmail=5, customerPhone=5, status=1]
+Customer [customerId=5, customerFname=6, customerEnamne=6, customerAddress=6, customerEmail=6, customerPhone=6, status=1]

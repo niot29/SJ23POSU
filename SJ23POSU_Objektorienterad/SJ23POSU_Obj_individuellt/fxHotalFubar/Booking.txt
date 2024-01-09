@@ -1,1 +1,4 @@
-Booking [bookingId=1, bookingRoomNr=1, bookingCustomerId=1, bookingStayDay=3, bookingStartDate=2024-01-01, bookingEndDate=2024-01-04, bookingDesc=null, status=1]
+Booking [bookingId=1, bookingRoomNr=2, bookingCustomerId=0, bookingStayDay=2, bookingStartDate=2024-01-10, bookingEndDate=2024-01-12, bookingDesc=Ingen handuk, status=1]
+Booking [bookingId=2, bookingRoomNr=2, bookingCustomerId=0, bookingStayDay=7, bookingStartDate=2024-01-11, bookingEndDate=2024-01-18, bookingDesc=czcxzcx, status=1]
+Booking [bookingId=3, bookingRoomNr=1, bookingCustomerId=0, bookingStayDay=0, bookingStartDate=2024-01-11, bookingEndDate=2024-01-11, bookingDesc=asa, status=1]
+Booking [bookingId=4, bookingRoomNr=2, bookingCustomerId=0, bookingStayDay=21, bookingStartDate=2024-01-10, bookingEndDate=2024-01-31, bookingDesc=asa, status=1]

@@ -1,6 +1,7 @@
 package application.modell;
 
-public class Customer {
+
+public class Customer implements  Comparable<Customer>{
 	private int customerId;
 	private String customerFname;
 	private String customerEnamne;
@@ -88,7 +89,11 @@ public class Customer {
 				+ ", customerPhone=" + customerPhone + ", status=" + status + "]";
 	}
 
-	
+	@Override
+	public int compareTo(Customer p) {
+
+		return this.customerId - p.customerId;
+	}
 	
 }
 	

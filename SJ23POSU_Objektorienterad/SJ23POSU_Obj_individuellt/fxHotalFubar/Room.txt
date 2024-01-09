@@ -1,1 +1,3 @@
-Room [roomid=2, roomBookingNr=1, roomCustomerNr=0, roomType=1, roomBookingDate=null, roomDesc=1, status=1]
+Room [roomid=1, roomBookingNr=0, roomCustomerNr=0, roomType=1, roomBookingDate=null, roomDesc=1, status=1]
+Room [roomid=3, roomBookingNr=0, roomCustomerNr=0, roomType=3, roomBookingDate=null, roomDesc=3, status=1]
+Room [roomid=4, roomBookingNr=0, roomCustomerNr=0, roomType=4, roomBookingDate=null, roomDesc=4, status=1]

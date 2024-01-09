@@ -81,11 +81,17 @@ public class RoomHandler {
 		Room room = new Room();
 
 		List<Room> roomList = getListOfRoom();
-		newRoom.setRoomid(roomList.size() + 1);
+		
+		
+		if(roomList.size() == 0) {
+			newRoom.setRoomid(1);
+		}else {
+			newRoom.setRoomid(roomList.getLast().getRoomid() + 1);
+
+		}
+		
 		newRoom.setStatus(1);
 		roomList.add(newRoom);
-		System.out.println("addNewCustomer: " + roomList);
-
 
 		dataHandler.saveToFileList(roomList);
 
