@@ -68,8 +68,15 @@ public class CustomerServices {
 
 		dataHandler.saveToFileList(customerList);
 
-		return null;
+		return customerList;
 
+	}
+	
+	public void removeCustome(ObservableList<Customer> customerList, int rId) {
+		System.out.println(customerList);
+//		roomList.get(rId).setStatus(0);
+		customerList.remove(rId);
+		dataHandler.saveToFileList(customerList);
 	}
 
 }

@@ -70,18 +70,18 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <Button layoutX="74.0" layoutY="432.0" mnemonicParsing="false" text="Remove" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+                                    <Button fx:id="btRemoveCustomer" layoutX="74.0" layoutY="432.0" mnemonicParsing="false" onAction="#btRemoveCustomerAction" text="Remove" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
                                     <Text layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FirstName:" AnchorPane.leftAnchor="5.0" />
-                                    <TextField fx:id="mainTxtRoomNr1" layoutX="22.0" layoutY="136.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+                                    <TextField fx:id="txtCustomerEName" layoutX="22.0" layoutY="136.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
                                     <Text layoutX="14.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LastName:" AnchorPane.leftAnchor="5.0" />
-                                    <TextField fx:id="mainTxtRoomNr2" layoutX="11.0" layoutY="69.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+                                    <TextField fx:id="txtCustomerFName" layoutX="11.0" layoutY="69.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
                                     <Text layoutX="12.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" AnchorPane.leftAnchor="5.0" />
-                                    <TextField fx:id="mainTxtRoomNr3" layoutX="11.0" layoutY="204.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+                                    <TextField fx:id="txtCustomerAddress" layoutX="11.0" layoutY="204.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
                                     <Text layoutX="12.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone" wrappingWidth="42.50390625" AnchorPane.leftAnchor="5.0" />
-                                    <TextField fx:id="mainTxtRoomNr4" layoutX="22.0" layoutY="273.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+                                    <TextField fx:id="txtCustomerPhone" layoutX="22.0" layoutY="273.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
                                     <Text layoutX="12.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="42.50390625" AnchorPane.leftAnchor="5.0" />
-                                    <TextField fx:id="mainTxtRoomNr5" layoutX="22.0" layoutY="333.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
-                                    <Button layoutX="80.0" layoutY="391.0" mnemonicParsing="false" text="Save" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+                                    <TextField fx:id="txtCustomerEmail" layoutX="22.0" layoutY="333.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+                                    <Button fx:id="btSaveCustomer" layoutX="80.0" layoutY="391.0" mnemonicParsing="false" onAction="#btSaveCustomerAction" text="Save" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
                                  </children>
                               </AnchorPane>
                         </content>

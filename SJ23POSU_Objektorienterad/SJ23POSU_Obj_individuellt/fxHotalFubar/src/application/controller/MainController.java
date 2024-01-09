@@ -32,16 +32,11 @@ import javafx.scene.layout.BorderPane;
 
 public class MainController implements Initializable {
 
-	@FXML
-	private TableView<Booking> mainBookingList;
+// -- Customer tabel	
 
 	@FXML
 	private TableView<Customer> mainCustomerList;
 
-	@FXML
-	private TableView<Room> mainRoomList;
-
-// -- Customer tabel	
 	@FXML
 	private TableColumn<Customer, String> tbCustomerAddress;
 
@@ -59,6 +54,32 @@ public class MainController implements Initializable {
 
 	@FXML
 	private TableColumn<Customer, Integer> tbCustomerStatus;
+
+	@FXML
+	private TextField txtCustomerFName;
+
+	@FXML
+	private TextField txtCustomerEName;
+
+	@FXML
+	private TextField txtCustomerAddress;
+
+	@FXML
+	private TextField txtCustomerPhone;
+
+	@FXML
+	private TextField txtCustomerEmail;
+
+	@FXML
+	private Button btSaveCustomer;
+
+	@FXML
+	private Button btRemoveCustomer;
+
+	// Booking
+
+	@FXML
+	private TableView<Booking> mainBookingList;
 
 	@FXML
 	private TableColumn<Booking, Integer> tbBookingNr;
@@ -81,6 +102,11 @@ public class MainController implements Initializable {
 	@FXML
 	private TableColumn<Booking, String> tbBookingDesc;
 
+	// Room
+
+	@FXML
+	private TableView<Room> mainRoomList;
+
 	@FXML
 	private TableColumn<Room, Integer> tbRoomBookNr;
 
@@ -92,6 +118,12 @@ public class MainController implements Initializable {
 
 	@FXML
 	private TableColumn<Room, String> tbRoomtype;
+
+	@FXML
+	private Button btRoomSave;
+
+	@FXML
+	private Button btRoomRemove;
 
 	@FXML
 	private TabPane mainTbPane;
@@ -108,12 +140,6 @@ public class MainController implements Initializable {
 	@FXML
 	private BorderPane mainBoarder;
 
-	@FXML
-	private Button btRoomSave;
-	
-	@FXML
-	private Button btRoomRemove;
-	
 	@FXML
 	private TextArea mainTxtARoomDesc;
 
@@ -161,24 +187,56 @@ public class MainController implements Initializable {
 
 	}
 
+	
+	@FXML
+	void btSaveCustomerAction(ActionEvent event) {
+		Customer customer = new Customer();
+		customer.setCustomerFname(txtCustomerFName.getText());
+		customer.setCustomerEnamne(txtCustomerEName.getText());
+		customer.setCustomerAddress(txtCustomerAddress.getText());
+		customer.setCustomerPhone(txtCustomerPhone.getText());
+		customer.setCustomerEmail(txtCustomerEmail.getText());
+		customerService.addNewCustomer(customer);
+
+		customerList = customerService.getOListOfCustomer(1);
+		tbRoomBookNr.setSortType(TableColumn.SortType.ASCENDING);
+		mainCustomerList.getSortOrder().add(tbCustomerFName);
+		mainCustomerList.sort();
+
+		mainCustomerList.setItems(customerList);
+		mainCustomerList.refresh();
+	}
+
+	@FXML
+	void btRemoveCustomerAction(ActionEvent event) {
+		int selectID = mainCustomerList.getSelectionModel().getSelectedIndex();
+		mainCustomerList.getItems().remove(selectID);
+		
+		customerList = customerService.getOListOfCustomer(1);
+
+		customerService.removeCustome(customerList, selectID);
+		mainCustomerList.setItems(customerList);
+		mainCustomerList.refresh();
+		
+	}
+
 	@FXML
 	void tbRoomSaveAction(ActionEvent event) {
-		System.out.println(mainTxtARoomDesc.getText());
 		Room room = new Room();
 		room.setRoomBookingNr(Integer.parseInt(mainTxtRoomNr.getText()));
 		room.setRoomType(mainTxtRoomType.getText());
 		room.setRoomDesc(mainTxtARoomDesc.getText());
 		roomHandler.addNewRoom(room);
-		
+
 		roomList = (ObservableList<Room>) roomHandler.getOListOfRoom(1);
 		tbRoomBookNr.setSortType(TableColumn.SortType.ASCENDING);
 		mainRoomList.getSortOrder().add(tbRoomBookNr);
 		mainRoomList.sort();
-		
+
 		mainRoomList.setItems(roomList);
 		mainRoomList.refresh();
 	}
-	
+
 	@FXML
 	void tbRoomRemoveAction(ActionEvent event) {
 		int selectID = mainRoomList.getSelectionModel().getSelectedIndex();
@@ -195,8 +253,7 @@ public class MainController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("mainController");
-		
-		
+
 		pickController.getItems().addAll(controllerList);
 		pickController.setOnAction(arg0 -> {
 			try {
@@ -226,8 +283,6 @@ public class MainController implements Initializable {
 		tbRoomNr.setCellValueFactory(new PropertyValueFactory<Room, Integer>("roomid"));
 		tbRoomtype.setCellValueFactory(new PropertyValueFactory<Room, String>("roomType"));
 		mainRoomList.setItems(roomList);
-		
-		
 
 		// init Customer Tabel
 		customerList = (ObservableList<Customer>) customerService.getOListOfCustomer(1);
