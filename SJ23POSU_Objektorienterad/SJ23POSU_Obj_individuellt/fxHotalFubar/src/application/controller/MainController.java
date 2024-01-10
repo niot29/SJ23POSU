@@ -310,10 +310,13 @@ public class MainController implements Initializable {
 		booking.setBookingDesc(txtBlDesc.getText());
 		booking.setBookingCustomerId(mainCustomerList.getItems().get(customerSelectId).getCustomerId());
 
+		
+		resettxtFiled();
+		
 		bookingService.addNewBooking(booking);
 		bookingList = bookingService.getOListOfBooking(1);
 		mainBookingList.setItems(bookingList);
-		resettxtFiled();
+		mainBookingList.refresh();
 
 	}
 	
