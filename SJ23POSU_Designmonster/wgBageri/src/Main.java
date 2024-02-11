@@ -9,6 +9,16 @@ public class Main {
     public static void main(String[] args) {
 
 
+        /**
+         * Observer
+         */
+
+         Vd vd = new Vd();
+         OrderHandler orderHandler = new OrderHandler();
+         orderHandler.addPropertyChangeListener(vd);
+         orderHandler.setOrderStatus("Order is add");
+         //orderHandler.setOrderProcess("Oder is done");
+
 
         /**
          * Build Plan cakae
@@ -19,9 +29,16 @@ public class Main {
         director.buildPrincessCake(builder);
         builder.addCakId(1);
         Cake cake = builder.build();
+
+        /**
+         * Start Cake pipeline
+         */
         cake = director.pipelinePrincessCake(cake);
         System.out.println(cake);
         System.out.println("============================");
+        orderHandler.setOrderProcess("Oder is done");
+
+
 
        director.buildOperaCake(builder);
        builder.addCakId(2);
