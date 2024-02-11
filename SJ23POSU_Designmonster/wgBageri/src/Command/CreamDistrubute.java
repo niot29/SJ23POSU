@@ -1,19 +1,24 @@
 package Command;
 
 
+import BusinessObject.Cake;
+import CakeBuilder.Builder;
+
+import java.util.ArrayList;
+import java.util.List;
+
 // -- Fördela hårt vispad grädde på tårtan så den får en kupolform
 public class CreamDistrubute implements ProcessingCommand{
     @Override
-    public String process(String str) {
-
-        // Set color on next pipeline step
-        String s = "grön";
-
-        if(str.equals("red")){
-            s = "röd";
-        }
+    public Cake process(Cake cake) {
+        //System.out.println("CreamDistrubute -- " + cake);
         String result = "Command: Fördela hårt vispad grädde på tårtan så den får en kupolform";
+        List<String> list = new ArrayList<String>();
+        list.add(result);
+        cake.setDecoratedStep(list);
         System.out.println(result);
-        return s;
+        return cake;
+
+
     }
 }

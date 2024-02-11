@@ -19,16 +19,23 @@ public class Main {
         director.buildPrincessCake(builder);
         builder.addCakId(1);
         Cake cake = builder.build();
-
+        cake = director.pipelinePrincessCake(cake);
+        System.out.println(cake);
         System.out.println("============================");
 
        director.buildOperaCake(builder);
        builder.addCakId(2);
-        builder.build();
+       Cake cake2 = builder.build();
+       cake2 = director.pipelineOperaCake(cake2);
+       System.out.println(cake2);
 
        System.out.println("============================");
-        director.buildChocolateCake(builder);
-        builder.addCakId(3);
-        builder.build();
+       director.buildChocolateCake(builder);
+       builder.addCakId(3);
+       Cake cake3 = builder.build();
+       cake3 = director.pipelineChocolateCake(cake3);
+       System.out.println(cake3);
+
+
     }
 }

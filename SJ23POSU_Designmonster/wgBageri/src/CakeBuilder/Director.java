@@ -16,8 +16,7 @@ public class Director {
                 .build();
     }
 
-    public void buildPrincessCake(Builder builder){
-        String color = "green";
+    public void buildPrincessCake(Builder builder) {
         builder.addCakeName("PrincessCake")
                 .addCakeBottumLayer("Add BottomLayer")
                 .addCakeBottumCream("Add VanillaCream")
@@ -26,17 +25,25 @@ public class Director {
                 .addCakeTopLayer("Add TopLayser")
                 .build();
 
-        ProcessingPipeline processingPipeline = new ProcessingPipeline();
-        processingPipeline.addCommand(new CreamDistrubute());
-        processingPipeline.addCommand(new MarzipanCover());
-        processingPipeline.addCommand(new MarzipanGarnish());
-        processingPipeline.addCommand(new Powder());
-        processingPipeline.execute(color);
-
     }
+     public Cake pipelinePrincessCake(Cake cake)  {
+        // System.out.println(cake);
+
+         ProcessingPipeline processingPipeline = new ProcessingPipeline();
+         processingPipeline.addCommand(new CreamDistrubute());
+         processingPipeline.addCommand(new MarzipanCover());
+         processingPipeline.addCommand(new MarzipanGarnish());
+         processingPipeline.addCommand(new Powder());
+         cake = processingPipeline.execute(cake);
+
+         return cake;
+        }
+
+
+
+
 
     public void buildOperaCake(Builder builder){
-        String color = "red";
         builder.addCakeName("Opera Cake")
                 .addCakeBottumLayer("Add BottomLayer")
                 .addCakeBottumCream("Add VanillaCream")
@@ -45,16 +52,21 @@ public class Director {
                 .addCakeTopLayer("Add TopLayser")
                 .build();
 
+    }
+
+    public Cake pipelineOperaCake(Cake cake)  {
+
         ProcessingPipeline processingPipeline = new ProcessingPipeline();
         processingPipeline.addCommand(new CreamDistrubute());
         processingPipeline.addCommand(new MarzipanCover());
         processingPipeline.addCommand(new MarzipanGarnish());
         processingPipeline.addCommand(new Powder());
-        processingPipeline.execute(color);
+        processingPipeline.execute(cake);
+
+        return cake;
     }
 
     public void buildChocolateCake(Builder builder){
-        String color = "Chocolate";
         builder.addCakeName("Chocolate Cake")
                 .addCakeBottumLayer("Add Chocolate Bottom Layer")
                 .addCakeBottumCream("Add Raspberry mousse")
@@ -63,10 +75,18 @@ public class Director {
                 .addCakeTopLayer("Add Chocolate Top Layser")
                 .build();
 
+    }
+
+
+    public Cake pipelineChocolateCake(Cake cake)  {
+
         ProcessingPipeline processingPipeline = new ProcessingPipeline();
         processingPipeline.addCommand(new ChooclateCover());
         processingPipeline.addCommand(new PourCover());
         processingPipeline.addCommand(new FruitGarnish());
-        processingPipeline.execute(color);
+        processingPipeline.execute(cake);
+
+        return cake;
     }
+
 }

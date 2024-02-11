@@ -1,9 +1,10 @@
 package Command;
 
+import BusinessObject.Cake;
 import CakeBuilder.Builder;
 
 public interface ProcessingCommand {
-    String process(String str);
+    //String process(String str);
 
-    //Builder process(Builder cakeBuilder);
+    Cake process(Cake cake);
 }

@@ -1,5 +1,8 @@
 package Command;
 
+import BusinessObject.Cake;
+import CakeBuilder.Builder;
+
 import java.util.ArrayList;
 
 public class ProcessingPipeline {
@@ -9,11 +12,15 @@ public class ProcessingPipeline {
         pipeline.add(cmd);
     }
 
-    public String execute(String str){
-        String result = str;
+    public Cake execute(Cake cake){
+        //System.out.println("ProcessingPipeline");
+
+        //String result = str;
         for(ProcessingCommand cmd: pipeline){
-            result = cmd.process(result);
+            cake = cmd.process(cake);
         }
-        return result;
+
+
+        return cake;
     }
 }
