@@ -1,2 +1,3 @@
 Booking [bookingId=1, bookingRoomNr=3, bookingCustomerId=2, bookingCustomerFname=Kalle, bookingCustomerEnamne=Anka, bookingStayDay=4, bookingStartDate=2024-01-10, bookingEndDate=2024-01-14, bookingDesc=Ingen frukos, status=1]
 Booking [bookingId=2, bookingRoomNr=2, bookingCustomerId=3, bookingCustomerFname=Nalle, bookingCustomerEnamne=Puj, bookingStayDay=1, bookingStartDate=2024-01-10, bookingEndDate=2024-01-11, bookingDesc=asdas, status=1]
+Booking [bookingId=3, bookingRoomNr=3, bookingCustomerId=1, bookingCustomerFname=Nils, bookingCustomerEnamne=Ottosson, bookingStayDay=1, bookingStartDate=2024-01-10, bookingEndDate=2024-01-11, bookingDesc=utan frokus, status=1]
