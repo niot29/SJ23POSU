@@ -67,6 +67,14 @@ END;
 
 -- -------------------------------------
 -- -------------------------------------
+
+-- search 3tabel on placement,titale,artis name
+select pp.weeks,pp.placement,t.title,a.name from place_and_point as pp 
+    INNER JOIN title as t ON pp.title_id = t.title_id
+    INNER JOIN artist as a ON t.artist_id = a.artist_id
+   ORDER BY pp.weeks,pp.placement;
+
+
 select * from place_and_point where placement in (1,2,3);
 update place_and_point set place_point = 18 where placement = 3;
 -- 22:26:58	update place_and_point set place_point = 25 where placement = 1	Error Code: 1175. You are using safe update mode and you tried to update a table without a WHERE that uses a KEY column.  To disable safe mode, toggle the option in Preferences -> SQL Editor and reconnect.	0.000 sec
