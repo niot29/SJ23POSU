@@ -1,15 +1,3 @@
-SELECT * FROM Topswe.topimport LIMIT 10000;
-SELECT * FROM Topswe.artist LIMIT 10000;
-SELECT * FROM Topswe.title LIMIT 10000;
-SELECT * FROM Topswe.place_and_point LIMIT 10000;
-
-SELECT * FROM Topswe.title where title_id = 123;
-select * from topimport where artist like 'OLIVIA LOBATO';
-select * from topimport where weeks = 3;
-SELECT * FROM Topswe.place_and_point  where weeks = 52;
-
-
--- select artist from Topswe.topimport group by artist;
 
 -- group all artis from top tabel and import to artis tabel 
 -- insert into Topswe.artist (name) select artist from Topswe.topimport group by artist;
@@ -20,26 +8,26 @@ insert into title (title,artist_id)
 	SELECT t.title, a.artist_id 
 		FROM Topswe.topimport as t, Topswe.artist as a  
 		where t.artist like a.name;
-*/
-/*
+
+
 -- V2 get title ande artisID from topimport and artist tabel and import to title tabel
 insert into title (title,artist_id) 
 SELECT t.title, a.artist_id
 	FROM Topswe.topimport as t, Topswe.artist as a  
 	where t.artist like a.name 
     group by  t.title,a.artist_id ;
-*/
 
-/*
+
+
 -- Get weeks and placement from topimport and title_id from title. inport repose data to place_and_point
 insert into place_and_point (weeks,placement,title_id)
 	SELECT t.weeks, t.placement ,ti.title_id
 	FROM Topswe.topimport as t, Topswe.title as ti
     where t.title like ti.title ;
-*/
 
-/*
--- update poing on placement
+
+
+-- update place_and_point tabel with point info
 update place_and_point set place_point = CASE placement
 WHEN 1 then 25
 when 2 THEN 20
@@ -65,31 +53,69 @@ ELSE 0
 END;
 */
 
+-- --------------------------
 
--- Vilken artist har flest singlar på listan 
-/*
+
+
+-- Vilka singlar återfinns på placering 1-100, sorterade i ordning från lägst till högst(1-100)
+select * from (
+select  sum(pp.place_point) as  TotalP, t.title, a.name
+	from place_and_point as pp
+    INNER JOIN title as t ON pp.title_id = t.title_id
+    INNER JOIN artist as a ON t.artist_id = a.artist_id
+    group by pp.title_id
+    order by TotalP desc limit 100) as lista order by TotalP;
+
+-- Vilka singlar återfinns på placering 1-20 sorterade i ordning från lägst till högst (1-20) 
+select * from (
+select  sum(pp.place_point) as  TotalP, t.title, a.name
+	from place_and_point as pp
+    INNER JOIN title as t ON pp.title_id = t.title_id
+    INNER JOIN artist as a ON t.artist_id = a.artist_id
+    group by pp.title_id
+    order by TotalP desc limit 20) as lista order by TotalP;
+
+-- Vilken (antal 1st) artist har flest singlar på listan 
 select  a.name, count(a.name) as c
 from place_and_point as pp 
     INNER JOIN title as t ON pp.title_id = t.title_id
     INNER JOIN artist as a ON t.artist_id = a.artist_id
-    GROUP BY a.name ORDER BY c DESC;
-*/
+    GROUP BY a.name ORDER BY c DESC limit 1;
 
 
--- -------------------------------------
--- -------------------------------------
-
--- search 3tabel on placement,titale,artis name
-select pp.weeks,pp.placement,t.title,a.name from place_and_point as pp 
-    INNER JOIN title as t ON pp.title_id = t.title_id
-    INNER JOIN artist as a ON t.artist_id = a.artist_id
-   ORDER BY pp.weeks,pp.placement;
 
 
 select * from place_and_point where placement in (1,2,3);
 update place_and_point set place_point = 18 where placement = 3;
 -- 22:26:58	update place_and_point set place_point = 25 where placement = 1	Error Code: 1175. You are using safe update mode and you tried to update a table without a WHERE that uses a KEY column.  To disable safe mode, toggle the option in Preferences -> SQL Editor and reconnect.	0.000 sec
 
+
+-- Vilken artist har flest singlar på listan 
+
+select  a.name, count(a.name) as c
+from place_and_point as pp 
+    INNER JOIN title as t ON pp.title_id = t.title_id
+    INNER JOIN artist as a ON t.artist_id = a.artist_id
+    GROUP BY a.name ORDER BY c DESC;
+
+
+-- Vilken låt har flest veckor på listan 
+select  t.title , count(t.title) as c
+from place_and_point as pp 
+    INNER JOIN title as t ON pp.title_id = t.title_id
+    INNER JOIN artist as a ON t.artist_id = a.artist_id
+    GROUP BY t.title ORDER BY c DESC;
+
+
+
+
+
+
+
+select pp.weeks,pp.placement,t.title,a.name from place_and_point as pp 
+    INNER JOIN title as t ON pp.title_id = t.title_id
+    INNER JOIN artist as a ON t.artist_id = a.artist_id
+   ORDER BY pp.weeks,pp.placement;
 
 
 select count(*) from place_and_point where placement = 1 ;

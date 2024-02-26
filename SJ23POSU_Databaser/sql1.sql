@@ -1,11 +1,6 @@
 SHOW DATABASES;
-CREATE TABLE IF NOT EXISTS topimport (
-    ID INT PRIMARY KEY,
-    weeks VARCHAR(10),
-    placement int,
-    title VARCHAR(100),
-    artist VARCHAR(100)
-);
+create database Topswe;
+USE Topswe;
 
 CREATE TABLE  IF NOT EXISTS `topimport` (
   `ID` int NOT NULL  AUTO_INCREMENT,
@@ -43,14 +38,3 @@ CREATE TABLE  IF NOT EXISTS `place_and_point` (
   references title(title_id) on update cascade on delete restrict
 ) ;
 
-
--- insert into Topswe.artist (name) select artist from Topswe.topimport group by artist;
-
-
-
-
-
-commit;
-
-use Topswe;
-show tables;
