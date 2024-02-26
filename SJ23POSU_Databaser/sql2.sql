@@ -38,6 +38,32 @@ insert into place_and_point (weeks,placement,title_id)
     where t.title like ti.title ;
 */
 
+/*
+-- update poing on placement
+update place_and_point set place_point = CASE placement
+WHEN 1 then 25
+when 2 THEN 20
+WHEN 3 then 18
+WHEN 4 then 17
+WHEN 5 then 16
+WHEN 6 then 15
+when 7 THEN 14
+WHEN 8 then 13
+WHEN 9 then 12
+WHEN 10 then 11
+WHEN 11 then 10
+when 12 THEN 9
+WHEN 13 then 8
+WHEN 14 then 7
+WHEN 15 then 6
+WHEN 16 then 5
+when 17 THEN 4
+WHEN 18 then 3
+WHEN 19 then 2
+WHEN 20 then 1
+ELSE 0
+END;
+*/
 
 -- -------------------------------------
 -- -------------------------------------
