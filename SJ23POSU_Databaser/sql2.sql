@@ -65,6 +65,17 @@ ELSE 0
 END;
 */
 
+
+-- Vilken artist har flest singlar på listan 
+/*
+select  a.name, count(a.name) as c
+from place_and_point as pp 
+    INNER JOIN title as t ON pp.title_id = t.title_id
+    INNER JOIN artist as a ON t.artist_id = a.artist_id
+    GROUP BY a.name ORDER BY c DESC;
+*/
+
+
 -- -------------------------------------
 -- -------------------------------------
 
