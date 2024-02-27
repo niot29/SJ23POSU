@@ -32,6 +32,7 @@ CREATE TABLE  IF NOT EXISTS `place_and_point` (
 	placement int DEFAULT NULL,
     place_point int DEFAULT NULL,
 	title_id int NOT NULL,
+    artist_id int NOT NULL,
   INDEX `idx_title` (title_id),
   constraint `FK_place_and_point_title`
   foreign key (title_id)
