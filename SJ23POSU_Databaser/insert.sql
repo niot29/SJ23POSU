@@ -5219,11 +5219,20 @@ SELECT t.title, a.artist_id
 commit;
 
 -- Get weeks and placement from topimport and title_id from title. impot repose data to place_and_point
-insert into place_and_point (weeks,placement,title_id)
-	SELECT t.weeks, t.placement ,ti.title_id
+insert into place_and_point (weeks,placement,title_id,artis_id)
+	SELECT t.weeks, t.placement ,ti.title_id,ti.artist_id
+	FROM Topswe.topimport as t, Topswe.title as ti
+    INNER JOIN artist as a ON ti.artist_id = a.artist_id
+    where t.title like ti.title 
+    and t.artist like a.name;
+commit;
+/*
+insert into place_and_point (weeks,placement,title_id,artist_id)
+	SELECT t.weeks, t.placement ,ti.title_id,ti.artist_id
 	FROM Topswe.topimport as t, Topswe.title as ti
     where t.title like ti.title ;
 commit;
+*/
 
 -- update place_and_point tabel with point info
 update place_and_point set place_point = CASE placement
