@@ -1,11 +1,13 @@
-package org.example;
+package org.CustomerManager;
 
-import org.example.View.MainAdminView;
+import org.CustomerManager.View.MainAdminView;
 
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
+
         System.out.println("Hello world!");
         Scanner scanner = new Scanner(System.in);
         boolean isLoggedIn = false;
@@ -26,7 +28,7 @@ public class Main {
             } else if (inputPassword.equals(cutomerPassword)) {
                 System.out.println("Login succeeded as cutomer!!");
                 isLoggedIn = true;
-                choise = 1;
+                choise = 2;
                 break;
             } else {
                 System.out.println("Fel lösenord. Försök igen.");
@@ -36,7 +38,7 @@ public class Main {
         switch (choise) {
             case 1:
                 System.out.println("Redirect to Admin Menu ...");
-                String[] menu1= { "AAA", "MANAGER ROOM", "MANAGER CUTOMER", "Exit" };
+                String[] menu1= { "XXXXXXXX", "gkdjasöglfjfdö", "MANAGER CUTOMER", "Exit" };
                 mainAdminView.mainScreen(menu1);
                 System.exit(0);
                 // add some method for admin
@@ -52,7 +54,10 @@ public class Main {
                 System.out.println("Ogiltigt val. Försök igen.");
                 break;
         }
+
+
     }
+
 }
 
 

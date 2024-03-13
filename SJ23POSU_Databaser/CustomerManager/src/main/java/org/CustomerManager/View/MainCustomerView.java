@@ -1,4 +1,4 @@
-package org.example.View;
+package org.CustomerManager.View;
 
 public class MainCustomerView {
 }
