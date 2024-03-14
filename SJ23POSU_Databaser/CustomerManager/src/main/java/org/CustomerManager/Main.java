@@ -16,7 +16,7 @@ public class Main {
         boolean isLoggedIn = false;
         String adminPassword = "adminPassword";
         String cutomerPassword = "cutomerPassword";
-        AdminController mainView = new AdminController();
+        AdminController adminController = new AdminController();
 
         int choise;
 
@@ -89,15 +89,15 @@ public class Main {
             case 1:
                 System.out.println("Redirect to Admin Menu ...");
                 String[] menu1= { "Create Customer", "List All Customer","Create New Consert","List All Consert", "Exit" };
-                //mainView.mainScreen(menu1);
-                mainView.displayMainManu(menu1);
+                //adminController.mainScreen(menu1);
+                adminController.displayMainManu(menu1);
                 System.exit(0);
                 // add some method for admin
                 break;
             case 2:
                 System.out.println("Redirect to Cutomer Menu...");
                 String[] menu2 = { "BOOKING", "MANAGER ROOM", "MANAGER CUTOMER", "Exit" };
-                mainView.displayMainManu(menu2);
+                adminController.displayMainManu(menu2);
                 System.exit(0);
                 // add some method for Customer
                 break;

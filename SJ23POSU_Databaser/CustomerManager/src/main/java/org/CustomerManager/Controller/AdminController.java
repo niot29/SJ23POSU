@@ -21,7 +21,7 @@ public class AdminController {
             selection = Integer.parseInt(menuSelection);
         }
 
-        CustomerHandler customerHandler = new CustomerHandler();
+        CustomerController customerHandler = new CustomerController();
 
         switch (selection) {
             case 1:

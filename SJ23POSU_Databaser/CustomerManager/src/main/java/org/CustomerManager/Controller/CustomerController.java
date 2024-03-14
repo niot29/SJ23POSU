@@ -6,15 +6,12 @@ import org.CustomerManager.DBService.CustomerDBHandler;
 import org.CustomerManager.Model.Address;
 import org.CustomerManager.Model.Customer;
 import org.CustomerManager.View.MainCustomerView;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class CustomerHandler {
+public class CustomerController {
 
     public Customer createCustomer(){
         Scanner customerInput = new Scanner(System.in);
@@ -45,7 +42,7 @@ public class CustomerHandler {
         System.out.println("Input City: ");
         address.setCity(customerInput.next());
 
-        int addressId = addressDBHandler.create(address);
+        //int addressId = addressDBHandler.create(address);
         customer.setAddress(address);
         int customerId = customerDBHandler.create(customer);
 

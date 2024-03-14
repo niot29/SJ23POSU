@@ -1063,8 +1063,8 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </collation>
     <schema id="288" parent="1" name="gu">
       <Current>1</Current>
-      <IntrospectionTimestamp>2024-03-14.15:56:59</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2024-03-14.14:56:59</LocalIntrospectionTimestamp>
+      <IntrospectionTimestamp>2024-03-14.16:41:51</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2024-03-14.15:41:51</LocalIntrospectionTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="289" parent="1" name="information_schema">
@@ -1246,7 +1246,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="331" parent="302" name="id">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>2</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
