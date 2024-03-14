@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class CustomerController {
+public class CustomerController implements CustomerControllerInterface{
 
     public Customer createCustomer(){
         Scanner customerInput = new Scanner(System.in);
@@ -94,6 +94,16 @@ public class CustomerController {
             String[] menu= { "Create Customer", "List All Customer","Create New Consert","List All Consert", "Exit" };
             mainView.displayMainManu(menu);
         }
+
+    }
+
+    @Override
+    public Customer updateCustomer() {
+        return null;
+    }
+
+    @Override
+    public void deleteCustomer() {
 
     }
 

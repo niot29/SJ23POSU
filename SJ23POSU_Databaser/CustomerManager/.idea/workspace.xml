@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d7b4db9-20f2-4c05-99e6-aaed5d33a319" name="Changes" comment="project structure">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/becf896b-b40c-420e-a094-7a5449e1ab7e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/becf896b-b40c-420e-a094-7a5449e1ab7e.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/becf896b-b40c-420e-a094-7a5449e1ab7e/storage_v2/_src_/schema/gu.7gwAAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/becf896b-b40c-420e-a094-7a5449e1ab7e/storage_v2/_src_/schema/gu.7gwAAA.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/ConcertControllerInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/CustomerControllerInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/CustomerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/CustomerController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +18,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -106,7 +104,7 @@
       <workItem from="1710269648889" duration="1566000" />
       <workItem from="1710313553034" duration="4532000" />
       <workItem from="1710318191626" duration="44269000" />
-      <workItem from="1710430448900" duration="683000" />
+      <workItem from="1710430448900" duration="1840000" />
     </task>
     <task id="LOCAL−00001" summary="project structure">
       <option name="closed" value="true" />
