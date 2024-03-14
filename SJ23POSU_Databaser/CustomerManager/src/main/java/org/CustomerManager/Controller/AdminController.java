@@ -21,15 +21,16 @@ public class AdminController {
             selection = Integer.parseInt(menuSelection);
         }
 
+        CustomerHandler customerHandler = new CustomerHandler();
+
         switch (selection) {
             case 1:
                 System.out.println("Create Customer");
-                CustomerHandler customerHandler = new CustomerHandler();
                 customerHandler.createCustomer();
-
                 break;
             case 2:
-                System.out.println("Create New Consert");
+                System.out.println("List alla customer");
+                customerHandler.listAllCustomer();
                 break;
             default:
                 break;

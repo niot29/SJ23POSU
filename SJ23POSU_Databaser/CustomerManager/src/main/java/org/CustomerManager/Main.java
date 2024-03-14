@@ -88,7 +88,7 @@ public class Main {
         switch (choise) {
             case 1:
                 System.out.println("Redirect to Admin Menu ...");
-                String[] menu1= { "Create Customer", "Create New Consert", "Exit" };
+                String[] menu1= { "Create Customer", "List All Customer","Create New Consert","List All Consert", "Exit" };
                 //mainView.mainScreen(menu1);
                 mainView.displayMainManu(menu1);
                 System.exit(0);
