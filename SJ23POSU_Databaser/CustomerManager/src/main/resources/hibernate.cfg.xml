@@ -21,7 +21,7 @@
         <mapping class="org.CustomerManager.Model.Customer" />
         <mapping class="org.CustomerManager.Model.Address" />
         <mapping class="org.CustomerManager.Model.Arena" />
-        <mapping class="org.CustomerManager.Model.Consert" />
+        <mapping class="org.CustomerManager.Model.Concert" />
         <mapping class="org.CustomerManager.Model.Wc" />
     </session-factory>
 </hibernate-configuration>

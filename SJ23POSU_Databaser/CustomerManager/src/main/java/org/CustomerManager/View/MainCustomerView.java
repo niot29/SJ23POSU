@@ -34,11 +34,11 @@ public class MainCustomerView {
             System.out.print("-");
         }
         // System.out.print(out);
-        System.out.println("");
+        System.out.println();
 
         int row = 1;
         for (Customer customer : customerList) {
-            System.out.format(inline,row,customer.getForname(),customer.getEnamne(),customer.getBirthdate(),customer.getPhone());
+            System.out.format(inline,row,customer.getFirstName(),customer.getLastName(),customer.getBirthDate(),customer.getPhoneNumber());
             row++;
         }
         for (int i = 0; i <= num; ++i) {

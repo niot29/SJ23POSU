@@ -24,13 +24,13 @@ public class CustomerHandler {
         AddressDBHandler addressDBHandler = new AddressDBHandler();
 
         System.out.println("Input Cunstomer first name: ");
-        customer.setForname(customerInput.next());
+        customer.setFirstName(customerInput.next());
         System.out.println("Input Cunstomer last name: ");
-        customer.setEnamne(customerInput.next());
+        customer.setLastName(customerInput.next());
         System.out.println("Input Cunstomer Birth date: ");
-        customer.setBirthdate(customerInput.next());
+        customer.setBirthDate(customerInput.next());
         System.out.println("Input Cunstomer phone: ");
-        customer.setPhone(customerInput.next());
+        customer.setPhoneNumber(customerInput.next());
         System.out.println(customer);
 
         System.out.println("========================");
@@ -48,8 +48,11 @@ public class CustomerHandler {
         int addressId = addressDBHandler.create(address);
         customer.setAddress(address);
         int customerId = customerDBHandler.create(customer);
+
         System.out.println(customer);
         System.out.println(address);
+
+        listAllCustomer();
         return customer;
     }
 

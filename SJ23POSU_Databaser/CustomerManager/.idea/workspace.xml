@@ -5,11 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d7b4db9-20f2-4c05-99e6-aaed5d33a319" name="Changes" comment="project structure">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/ConcertDBHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/becf896b-b40c-420e-a094-7a5449e1ab7e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/becf896b-b40c-420e-a094-7a5449e1ab7e.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/becf896b-b40c-420e-a094-7a5449e1ab7e/storage_v2/_src_/schema/gu.7gwAAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/becf896b-b40c-420e-a094-7a5449e1ab7e/storage_v2/_src_/schema/gu.7gwAAA.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/CustomerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/CustomerHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Address.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/AddressDBHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/AddressDBHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/ConsertDBInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/ConsertDBInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/CustomerDBHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/CustomerDBHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Arena.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Arena.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Consert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Concert.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Wc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Wc.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/View/MainCustomerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/View/MainCustomerView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +113,7 @@
       <workItem from="1710262975037" duration="6639000" />
       <workItem from="1710269648889" duration="1566000" />
       <workItem from="1710313553034" duration="4532000" />
-      <workItem from="1710318191626" duration="36979000" />
+      <workItem from="1710318191626" duration="42611000" />
     </task>
     <task id="LOCAL−00001" summary="project structure">
       <option name="closed" value="true" />

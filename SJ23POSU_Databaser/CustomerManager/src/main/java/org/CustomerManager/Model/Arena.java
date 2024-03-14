@@ -2,22 +2,20 @@ package org.CustomerManager.Model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name= "ARENA")
 public class Arena {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
-
+    @Column(name="name")
     private String name;
-    private int address_id;
-
-    @OneToOne(mappedBy = "arena")
-    private Consert consert;
-
-    private boolean indoor = false;
-
-
+    @Column(name="address_id")
+    private String address;
+    @OneToMany(targetEntity = Concert.class, mappedBy = "arena", cascade=CascadeType.ALL)
+    private List<Concert> concert;
     public Arena() {
     }
 
@@ -37,20 +35,20 @@ public class Arena {
         this.name = name;
     }
 
-    public int getAddress_id() {
-        return address_id;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAddress_id(int address_id) {
-        this.address_id = address_id;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public boolean isIndoor() {
-        return indoor;
+    public List<Concert> getConcert() {
+        return concert;
     }
 
-    public void setIndoor(boolean indoor) {
-        this.indoor = indoor;
+    public void setConcert(List<Concert> concert) {
+        this.concert = concert;
     }
 
     @Override
@@ -58,8 +56,8 @@ public class Arena {
         return "Arena{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", address_id=" + address_id +
-                ", indoor=" + indoor +
+                ", address='" + address + '\'' +
+                ", concert=" + concert +
                 '}';
     }
 }

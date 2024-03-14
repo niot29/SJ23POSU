@@ -1,19 +1,18 @@
 package org.CustomerManager.DBService;
 
-import org.CustomerManager.Model.Arena;
-import org.CustomerManager.Model.Consert;
+import org.CustomerManager.Model.Concert;
 
 import java.util.List;
 
 public interface ConsertDBInterface {
 
-    public int create(Consert consert);
+    public int create(Concert consert);
 
-    public Consert getConsertById(int id);
+    public Concert getConsertById(int id);
 
-    public List<Consert> ListConsert();
+    public List<Concert> ListConsert();
 
-    public Consert updateConserta(Consert consert);
+    public Concert updateConserta(Concert consert);
 
     void deleteConsertById(int id);
 

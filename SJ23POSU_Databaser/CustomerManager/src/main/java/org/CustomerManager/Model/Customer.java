@@ -8,39 +8,52 @@ import org.hibernate.engine.internal.Cascade;
 @Table(name= "CUSTOMER")
 public class Customer {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
-    @Column(length=100)
-    private String forname;
-    @Column(length=100)
-    private String enamne;
-    @Column(length=10)
-    private String birthdate;
-    @Column(length=15)
-    private String phone;
+    @Column(name = "first_name", length = 100)
+    private String firstName;
+    @Column(name = "last_name",length = 100)
+    private String lastName;
+    @Column(name = "birth_date", length = 10)
+    private String birthDate;
+    @Column(name = "phone_number", length = 20)
+    private String phoneNumber;
 
-    @OneToOne(cascade={CascadeType.PERSIST})
-    @JoinColumn(name = "address_id")
+    @ManyToOne
+    @JoinColumn(name = "wc_id")
+    private Wc wc;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
     public Customer() {
     }
 
-    public Customer(int id, String forname, String enamne, String birthdate, String phone) {
+    public Customer(int id, String firstName, String lastName, String birthDate, String phoneNumber, Wc wc, Address address) {
         this.id = id;
-        this.forname = forname;
-        this.enamne = enamne;
-        this.birthdate = birthdate;
-        this.phone = phone;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.phoneNumber = phoneNumber;
+        this.wc = wc;
+        this.address = address;
     }
 
-    public Customer(int id, String forname, String enamne, String birthdate, String phone, Address address) {
+    public Customer(int id, String firstName, String lastName, String birthDate, String phoneNumber, Address address) {
         this.id = id;
-        this.forname = forname;
-        this.enamne = enamne;
-        this.birthdate = birthdate;
-        this.phone = phone;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.phoneNumber = phoneNumber;
         this.address = address;
+    }
+
+    public Customer(int id, String firstName, String lastName, String birthDate, String phoneNumber) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.phoneNumber = phoneNumber;
     }
 
     public int getId() {
@@ -51,36 +64,44 @@ public class Customer {
         this.id = id;
     }
 
-    public String getForname() {
-        return forname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setForname(String forname) {
-        this.forname = forname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getEnamne() {
-        return enamne;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setEnamne(String enamne) {
-        this.enamne = enamne;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getBirthdate() {
-        return birthdate;
+    public String getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirthdate(String birthdate) {
-        this.birthdate = birthdate;
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Wc getWc() {
+        return wc;
+    }
+
+    public void setWc(Wc wc) {
+        this.wc = wc;
     }
 
     public Address getAddress() {
@@ -95,10 +116,12 @@ public class Customer {
     public String toString() {
         return "Customer{" +
                 "id=" + id +
-                ", forname='" + forname + '\'' +
-                ", enamne='" + enamne + '\'' +
-                ", birthdate='" + birthdate + '\'' +
-                ", phone='" + phone + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthDate='" + birthDate + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", wc=" + wc +
+                ", address=" + address +
                 '}';
     }
 }
