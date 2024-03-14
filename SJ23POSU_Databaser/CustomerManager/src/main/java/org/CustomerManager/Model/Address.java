@@ -17,7 +17,17 @@ public class Address {
     //@Column(name="city",length=100)
     private String city;
 
+    @OneToOne(mappedBy = "address")
+    private Customer customer;
+
     public Address() {
+    }
+
+    public Address(String street, int streetnr, String postcode, String city) {
+        this.street = street;
+        this.streetnr = streetnr;
+        this.postcode = postcode;
+        this.city = city;
     }
 
     public int getId() {

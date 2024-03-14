@@ -5,9 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d7b4db9-20f2-4c05-99e6-aaed5d33a319" name="Changes" comment="project structure">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Arena.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Wc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/becf896b-b40c-420e-a094-7a5449e1ab7e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/becf896b-b40c-420e-a094-7a5449e1ab7e.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/becf896b-b40c-420e-a094-7a5449e1ab7e/storage_v2/_src_/schema/gu.7gwAAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/becf896b-b40c-420e-a094-7a5449e1ab7e/storage_v2/_src_/schema/gu.7gwAAA.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Address.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Arena.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Arena.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Consert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Consert.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,30 +45,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/#Devoloper/YRKA/SJ23POSU/SJ23POSU_Databaser/create.sql&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JPA.DatabaseSchemaImportDialog": "becf896b-b40c-420e-a094-7a5449e1ab7e",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/#Devoloper/YRKA/SJ23POSU/SJ23POSU_Databaser/create.sql",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propCompiler",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;,
-      &quot;mysql&quot;,
-      &quot;h2&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql",
+      "mysql",
+      "h2"
     ]
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="ImportMappingsDialog.RecentPackages">
+      <recent name="" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="CustomerManager" />
@@ -91,7 +105,7 @@
       <workItem from="1710262975037" duration="6639000" />
       <workItem from="1710269648889" duration="1566000" />
       <workItem from="1710313553034" duration="4532000" />
-      <workItem from="1710318191626" duration="1734000" />
+      <workItem from="1710318191626" duration="19015000" />
     </task>
     <task id="LOCAL−00001" summary="project structure">
       <option name="closed" value="true" />

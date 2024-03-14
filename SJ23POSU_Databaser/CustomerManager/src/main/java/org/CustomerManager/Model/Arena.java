@@ -3,7 +3,7 @@ package org.CustomerManager.Model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name= "WC")
+@Table(name= "ARENA")
 public class Arena {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -12,7 +12,11 @@ public class Arena {
     private String name;
     private int address_id;
 
+    @OneToOne(mappedBy = "arena")
+    private Consert consert;
+
     private boolean indoor = false;
+
 
     public Arena() {
     }

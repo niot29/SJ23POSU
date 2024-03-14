@@ -2,24 +2,26 @@ package org.CustomerManager.Model;
 
 
 import jakarta.persistence.*;
+import org.hibernate.engine.internal.Cascade;
 
 @Entity
-@Table(name= "CUSTOMER2")
+@Table(name= "CUSTOMER")
 public class Customer {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
-    @Column(name="forname",length=100)
+    @Column(length=100)
     private String forname;
-    @Column(name="enamne",length=100)
+    @Column(length=100)
     private String enamne;
-    @Column(name="birthdate",length=10)
+    @Column(length=10)
     private String birthdate;
-    @Column(name="phone",length=15)
+    @Column(length=15)
     private String phone;
 
-    @Column(name="address_id")
-    private int address;
+    @OneToOne(cascade={CascadeType.PERSIST})
+    @JoinColumn(name = "address_id")
+    private Address address;
 
     public Customer() {
     }
@@ -65,11 +67,11 @@ public class Customer {
         this.phone = phone;
     }
 
-    public int getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(int address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
@@ -81,7 +83,6 @@ public class Customer {
                 ", enamne='" + enamne + '\'' +
                 ", birthdate='" + birthdate + '\'' +
                 ", phone='" + phone + '\'' +
-                ", address=" + address +
                 '}';
     }
 }

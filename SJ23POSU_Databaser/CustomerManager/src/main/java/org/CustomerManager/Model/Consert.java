@@ -13,8 +13,9 @@ public class Consert {
     private String artistname;
     private String date;
     private int ticketprice;
-    @Column(name="arena_id")
-    private int arenaid;
+    @OneToOne()
+    @JoinColumn(name = "arena_id", referencedColumnName = "id")
+    private Arena arena;
     private int age;
 
 
@@ -53,12 +54,12 @@ public class Consert {
         this.ticketprice = ticketprice;
     }
 
-    public int getArenaid() {
-        return arenaid;
+    public Arena getArena() {
+        return arena;
     }
 
-    public void setArenaid(int arenaid) {
-        this.arenaid = arenaid;
+    public void setArena(Arena arena) {
+        this.arena = arena;
     }
 
     public int getAge() {
@@ -76,7 +77,7 @@ public class Consert {
                 ", artistname='" + artistname + '\'' +
                 ", date='" + date + '\'' +
                 ", ticketprice=" + ticketprice +
-                ", arenaid=" + arenaid +
+                ", arena=" + arena +
                 ", age=" + age +
                 '}';
     }
