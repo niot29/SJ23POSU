@@ -23,12 +23,23 @@ public class Address {
     public Address() {
     }
 
+
+    public Address(int id, String street, int streetnr, String postcode, String city) {
+        this.id = id;
+        this.street = street;
+        this.streetnr = streetnr;
+        this.postcode = postcode;
+        this.city = city;
+    }
+
     public Address(String street, int streetnr, String postcode, String city) {
         this.street = street;
         this.streetnr = streetnr;
         this.postcode = postcode;
         this.city = city;
     }
+
+
 
     public int getId() {
         return id;

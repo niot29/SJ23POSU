@@ -55,8 +55,9 @@ public class CustomerHandler {
 
     public void listAllCustomer(){
         // test data
-        Customer customer1 = new Customer(1,"Nils","Ottosson","750329","123456789");
-        Customer customer2 = new Customer(1,"Nisse","Ottosson","750329","123456789");
+        Address address = new Address(50,"Stockholm",23,"12344","killervägen1");
+        Customer customer1 = new Customer(100,"Nils","Ottosson","750329","123456789",address);
+        Customer customer2 = new Customer(200,"Nisse","Ottosson","750329","123456789");
 
         List<Customer> customerList = new ArrayList<Customer>();
         customerList.add(customer1);
@@ -67,18 +68,32 @@ public class CustomerHandler {
         CustomerDBHandler customerDBHandler = new CustomerDBHandler();
         AddressDBHandler addressDBHandler = new AddressDBHandler();
         //Customer customer = new Customer();
-        Address address = new Address();
+        //Address address = new Address();
         // Get this infor fram dbHandler
         // List<Customer> customerList = customerDBHandler.ListCustomer();
 
         // Send to View
         mainCustomerView.customerScreen(customerList);
 
-        System.out.println("Input customer id for customer address info (Input 'exit' for quit): ");
+        System.out.println("Input customer id for customer address info (Input 0 for quit): ");
         String choiseImput = customerInput.nextLine();
         int selection = Integer.parseInt(choiseImput);
 
+        AdminController mainView = new AdminController();
 
+        if( selection > 0 && selection <= customerList.size()){
+            // System.out.println("zzzz "  + customerList.get(selection - 1));
+            // System.out.println(customerList.get(selection - 1).getAddress().getId());
+
+            List<Address> addressList = new ArrayList<Address>();
+            addressList.add(customerList.get(selection - 1).getAddress());
+            mainCustomerView.addressScreen(addressList);
+
+
+        } else{
+            String[] menu= { "Create Customer", "List All Customer","Create New Consert","List All Consert", "Exit" };
+            mainView.displayMainManu(menu);
+        }
 
     }
 

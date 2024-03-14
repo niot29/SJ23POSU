@@ -34,6 +34,15 @@ public class Customer {
         this.phone = phone;
     }
 
+    public Customer(int id, String forname, String enamne, String birthdate, String phone, Address address) {
+        this.id = id;
+        this.forname = forname;
+        this.enamne = enamne;
+        this.birthdate = birthdate;
+        this.phone = phone;
+        this.address = address;
+    }
+
     public int getId() {
         return id;
     }
