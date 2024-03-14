@@ -1,8 +1,22 @@
 package org.CustomerManager.View;
 
-public class MainAdminView {
+import java.io.IOException;
+
+public class MainView {
+
+    private static void clearScreen() {
+        // clear sccen on win10
+        try {
+            if (System.getProperty("os.name").contains("Windows"))
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            else
+                Runtime.getRuntime().exec("clear");
+        } catch (IOException | InterruptedException ex) {
+        }
+    }
+
     public void mainScreen(String[] menu) {
-        // clearScreen();
+        clearScreen();
         String leftAlignFormat = "|   %-3d | %-25s |%n";
         System.out.println("");
         System.out.println("");

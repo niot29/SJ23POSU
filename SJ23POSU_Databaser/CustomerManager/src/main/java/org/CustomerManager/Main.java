@@ -1,11 +1,8 @@
 package org.CustomerManager;
 
-import org.CustomerManager.Model.Address;
-import org.CustomerManager.Model.Customer;
-import org.CustomerManager.View.MainAdminView;
+import org.CustomerManager.Controller.AdminController;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import java.util.Scanner;
@@ -19,7 +16,7 @@ public class Main {
         boolean isLoggedIn = false;
         String adminPassword = "adminPassword";
         String cutomerPassword = "cutomerPassword";
-        MainAdminView mainAdminView = new MainAdminView();
+        AdminController mainView = new AdminController();
 
         int choise;
 
@@ -28,7 +25,7 @@ public class Main {
         configuration.configure("hibernate.cfg.xml");
         SessionFactory sessionFactory = configuration.buildSessionFactory();
         Session session=sessionFactory.openSession();
-
+/*
         Transaction transaction = session.getTransaction();
         transaction.begin();
 
@@ -67,7 +64,7 @@ public class Main {
         session.persist(customer2);
 
         transaction.commit();
-
+*/
 
 
         while (true) {
@@ -91,15 +88,16 @@ public class Main {
         switch (choise) {
             case 1:
                 System.out.println("Redirect to Admin Menu ...");
-                String[] menu1= { "XXXXXXXX", "gkdjasöglfjfdö", "MANAGER CUTOMER", "Exit" };
-                mainAdminView.mainScreen(menu1);
+                String[] menu1= { "Create Customer", "Create New Consert", "Exit" };
+                //mainView.mainScreen(menu1);
+                mainView.displayMainManu(menu1);
                 System.exit(0);
                 // add some method for admin
                 break;
             case 2:
                 System.out.println("Redirect to Cutomer Menu...");
                 String[] menu2 = { "BOOKING", "MANAGER ROOM", "MANAGER CUTOMER", "Exit" };
-                mainAdminView.mainScreen(menu2);
+                mainView.displayMainManu(menu2);
                 System.exit(0);
                 // add some method for Customer
                 break;
