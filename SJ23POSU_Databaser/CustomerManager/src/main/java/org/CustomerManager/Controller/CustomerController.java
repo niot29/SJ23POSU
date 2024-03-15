@@ -92,12 +92,14 @@ public class CustomerController implements CustomerControllerInterface {
             String choiseInputIntMenu = customerInput.nextLine();
             int selectionInputIntMenu = Integer.parseInt(choiseInputIntMenu);
 
-            if (menu.length <= selection || selectionInputIntMenu == 3) {
+            if (selectionInputIntMenu >= menu.length || selectionInputIntMenu == 3) {
                 mainView.displayMainMenu(maniMenu);
-            } else if (selection == 1) {
+            } else if (selectionInputIntMenu == 1) {
+                // call func for update
                 updateCustomer(customerList.get(selection - 1));
-            } else if (selection == 2) {
-                deleteCustomer(customerList.get(selection - 1).getId());
+            } else if (selectionInputIntMenu == 2) {
+                // call func for delete
+                deleteCustomer(customerList.get(selection - 1));
             } else {
                 mainView.displayMainMenu(maniMenu);
             }
@@ -171,10 +173,14 @@ public class CustomerController implements CustomerControllerInterface {
     }
 
     @Override
-    public void deleteCustomer(int id) {
-        System.out.println("Delete id :" + id);
+    public void deleteCustomer(Customer customer) {
+        System.out.println("deleteCustomer");
+        System.out.println("====================================================");
+        System.out.println(" Remove the following  customer: " + customer.getFirstName() + " " + customer.getLastName());
+        System.out.println("====================================================");
+        CustomerDBHandler customerDBHandler = new CustomerDBHandler();
+        //customerDBHandler.deleteCustomerById(customer.getId);
         listAllCustomer();
-
     }
 
 

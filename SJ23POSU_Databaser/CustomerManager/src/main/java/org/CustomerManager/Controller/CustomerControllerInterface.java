@@ -13,5 +13,5 @@ public interface CustomerControllerInterface {
 
     void updateCustomer(Customer customer);
 
-    void deleteCustomer(int id);
+    void deleteCustomer(Customer customer);
 }
