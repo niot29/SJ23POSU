@@ -13,7 +13,7 @@ public class CustomerDBHandler implements  CustomerDBInterface{
 
 
     @Override
-    public int create(Customer customer) {
+    public void create(Customer customer) {
         // Open session to DB
         Configuration configuration = new Configuration();
         configuration.configure("hibernate.cfg.xml");
@@ -27,7 +27,6 @@ public class CustomerDBHandler implements  CustomerDBInterface{
         session.persist(customer);
         transaction.commit();
 
-        return 0;
     }
 
     @Override

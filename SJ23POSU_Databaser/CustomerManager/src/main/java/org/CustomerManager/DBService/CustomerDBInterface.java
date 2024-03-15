@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CustomerDBInterface {
 
-    public int create(Customer customer);
+    public void create(Customer customer);
 
     public Customer getCustomerById(int id);
 
