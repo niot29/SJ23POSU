@@ -11,8 +11,7 @@ public interface CustomerControllerInterface {
     public void listAllCustomer();
 
 
-
-    public Customer updateCustomer();
+    public Customer updateCustomer(Customer customer);
 
     void deleteCustomer();
 }

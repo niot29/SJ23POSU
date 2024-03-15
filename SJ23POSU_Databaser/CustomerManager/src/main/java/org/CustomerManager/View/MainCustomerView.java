@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class MainCustomerView {
-    private static void clearScreen() {
+    public static void clearScreen() {
         // clear sccen on win10
         try {
             if (System.getProperty("os.name").contains("Windows"))
@@ -19,7 +19,7 @@ public class MainCustomerView {
     }
 
     public void customerScreen(List<Customer> customerList) {
-        clearScreen();
+        //clearScreen();
 
         int num = 117;
         for (int i = 0; i <= num; ++i) {

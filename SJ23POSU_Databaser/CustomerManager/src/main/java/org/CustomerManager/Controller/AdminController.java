@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 
 public class AdminController {
-    public void displayMainManu(String[] menuItems){
+    public void displayMainMenu(String[] menuItems){
         String[] menu= {};
         MainView mainView = new MainView();
         mainView.mainScreen(menuItems);
@@ -32,9 +32,14 @@ public class AdminController {
                 System.out.println("List alla customer");
                 customerHandler.listAllCustomer();
                 break;
+            case 5:
+                System.exit(0);
+                break;
+
             default:
                 break;
 
         }
     }
+
 }

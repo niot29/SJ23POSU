@@ -6,14 +6,15 @@ import org.CustomerManager.DBService.CustomerDBHandler;
 import org.CustomerManager.Model.Address;
 import org.CustomerManager.Model.Customer;
 import org.CustomerManager.View.MainCustomerView;
+import org.CustomerManager.View.MainView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class CustomerController implements CustomerControllerInterface{
+public class CustomerController implements CustomerControllerInterface {
 
-    public Customer createCustomer(){
+    public Customer createCustomer() {
         Scanner customerInput = new Scanner(System.in);
         Customer customer = new Customer();
         Address address = new Address();
@@ -53,15 +54,8 @@ public class CustomerController implements CustomerControllerInterface{
         return customer;
     }
 
-    public void listAllCustomer(){
-        // test data
-        Address address = new Address(50,"Stockholm",23,"12344","killervägen1");
-        Customer customer1 = new Customer(100,"Nils","Ottosson","750329","123456789",address);
-        Customer customer2 = new Customer(200,"Nisse","Ottosson","750329","123456789");
+    public void listAllCustomer() {
 
-        List<Customer> customerList = new ArrayList<Customer>();
-        customerList.add(customer1);
-        customerList.add(customer2);
 
         Scanner customerInput = new Scanner(System.in);
         MainCustomerView mainCustomerView = new MainCustomerView();
@@ -70,7 +64,7 @@ public class CustomerController implements CustomerControllerInterface{
         //Customer customer = new Customer();
         //Address address = new Address();
         // Get this infor fram dbHandler
-        // List<Customer> customerList = customerDBHandler.ListCustomer();
+        List<Customer> customerList = customerDBHandler.ListCustomer();
 
         // Send to View
         mainCustomerView.customerScreen(customerList);
@@ -81,7 +75,7 @@ public class CustomerController implements CustomerControllerInterface{
 
         AdminController mainView = new AdminController();
 
-        if( selection > 0 && selection <= customerList.size()){
+        if (selection > 0 && selection <= customerList.size()) {
             // System.out.println("zzzz "  + customerList.get(selection - 1));
             // System.out.println(customerList.get(selection - 1).getAddress().getId());
 
@@ -89,16 +83,24 @@ public class CustomerController implements CustomerControllerInterface{
             addressList.add(customerList.get(selection - 1).getAddress());
             mainCustomerView.addressScreen(addressList);
 
+            String[] menu = {"Update Customer info", "Update Customer info", "Exit"};
+            MainView customerManageView = new MainView();
+            customerManageView.mainScreen(menu);
 
-        } else{
-            String[] menu= { "Create Customer", "List All Customer","Create New Consert","List All Consert", "Exit" };
-            mainView.displayMainManu(menu);
+        }else {
+            String[] menu = {"Create Customer", "List All Customer", "Create New Consert", "List All Consert", "Exit"};
+            mainView.displayMainMenu(menu);
         }
+
+
 
     }
 
     @Override
-    public Customer updateCustomer() {
+    public Customer updateCustomer(Customer customer) {
+        String[] menu = {"Update Customer info", "Update Customer info", "Exit"};
+        MainView mainView = new MainView();
+        mainView.mainScreen(menu);
         return null;
     }
 

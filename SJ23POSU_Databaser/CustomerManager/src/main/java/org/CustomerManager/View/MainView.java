@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class MainView {
 
-    private static void clearScreen() {
+    public static void clearScreen() {
         // clear sccen on win10
         try {
             if (System.getProperty("os.name").contains("Windows"))
@@ -16,7 +16,7 @@ public class MainView {
     }
 
     public void mainScreen(String[] menu) {
-        clearScreen();
+        //clearScreen();
         String leftAlignFormat = "|   %-3d | %-25s |%n";
         System.out.println("");
         System.out.println("");
