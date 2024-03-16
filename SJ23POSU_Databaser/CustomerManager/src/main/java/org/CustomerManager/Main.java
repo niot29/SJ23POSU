@@ -67,6 +67,8 @@ public class Main {
 */
 
 
+
+
         while (true) {
             System.out.println("Enter the password for the user you want to login as.:");
             String inputPassword = scanner.next();
@@ -89,16 +91,13 @@ public class Main {
             case 1:
                 System.out.println("Redirect to Admin Menu ...");
                 String[] menu1= { "Create Customer", "List All Customer","Create New Consert","List All Consert", "Exit" };
-                //adminController.mainScreen(menu1);
                 adminController.displayMainMenu(menu1);
-                System.exit(0);
-                // add some method for admin
+
                 break;
             case 2:
                 System.out.println("Redirect to Cutomer Menu...");
-                String[] menu2 = { "List Concert", "List Bookning", "Change Customer info", "Exit" };
-                adminController.displayMainMenu(menu2);
-                System.exit(0);
+                String[] menu2 = { "List Concert", "List My Bookning", "Change My info", "Exit" };
+                adminController.displayCustomerMainMenu(menu2);
                 // add some method for Customer
                 break;
             default:

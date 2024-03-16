@@ -56,6 +56,13 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
+    public Customer(String firstName, String lastName, String birthDate, String phoneNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.phoneNumber = phoneNumber;
+    }
+
     public int getId() {
         return id;
     }

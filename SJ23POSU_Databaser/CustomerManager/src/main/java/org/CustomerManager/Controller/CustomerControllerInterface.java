@@ -10,7 +10,7 @@ public interface CustomerControllerInterface {
 
     public void listAllCustomer();
 
-
+    public void listCustomer(Customer customer);
     void updateCustomer(Customer customer);
 
     void deleteCustomer(Customer customer);

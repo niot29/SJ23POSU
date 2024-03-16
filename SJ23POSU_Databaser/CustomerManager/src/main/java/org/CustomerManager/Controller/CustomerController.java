@@ -64,9 +64,7 @@ public class CustomerController implements CustomerControllerInterface {
         MainCustomerView mainCustomerView = new MainCustomerView();
         CustomerDBHandler customerDBHandler = new CustomerDBHandler();
         AddressDBHandler addressDBHandler = new AddressDBHandler();
-        //Customer customer = new Customer();
-        //Address address = new Address();
-        // Get this infor fram dbHandler
+
         List<Customer> customerList = customerDBHandler.ListCustomer();
 
         // Send to View
@@ -79,8 +77,6 @@ public class CustomerController implements CustomerControllerInterface {
         AdminController mainView = new AdminController();
 
         if (selection > 0 && selection <= customerList.size()) {
-            // System.out.println("zzzz "  + customerList.get(selection - 1));
-            // System.out.println(customerList.get(selection - 1).getAddress().getId());
 
             List<Address> addressList = new ArrayList<Address>();
             addressList.add(customerList.get(selection - 1).getAddress());
@@ -114,15 +110,26 @@ public class CustomerController implements CustomerControllerInterface {
     }
 
     @Override
+    public void listCustomer(Customer customer) {
+        MainCustomerView mainCustomerView = new MainCustomerView();
+        List<Customer> customerList = new ArrayList<Customer>();
+        customerList.add(customer);
+        // Send to View
+        mainCustomerView.customerScreen(customerList);
+    }
+
+    @Override
     public void updateCustomer(Customer customer) {
         AdminController adminMainView = new AdminController();
         CustomerDBHandler customerDBHandler = new CustomerDBHandler();
         AddressController addressController = new AddressController();
+        CustomerController customerController = new CustomerController();
         MainView mainView = new MainView();
 
         // Get Customer address by id
         Address address = addressController.getAddressById(customer.getAddress().getId());
-        System.out.println(address);
+
+
 
         while (true) {
             String[] menu = {"FirstName", "LastName", "BirthDay", "Phone", "Street","StreetNr","Postcode","City","Save and Exit"};
@@ -130,6 +137,7 @@ public class CustomerController implements CustomerControllerInterface {
             System.out.println("====================================================");
             System.out.println("Select the information that you would like to change");
             System.out.println("====================================================");
+            customerController.listCustomer(customer);
             mainView.mainScreen(menu);
 
             Scanner customerInput = new Scanner(System.in);
@@ -137,6 +145,8 @@ public class CustomerController implements CustomerControllerInterface {
 
             String choiseImput = customerInput.nextLine();
             int selection = Integer.parseInt(choiseImput); // TODO: Need check for insert is interger
+
+
 
             if (selection == 0 || selection > menu.length) {
                 adminMainView.displayMainMenu(maniMenu);
@@ -162,12 +172,29 @@ public class CustomerController implements CustomerControllerInterface {
                     choiseImput = customerChangeInput.next();
                     customer.setPhoneNumber(choiseImput);
                     break;
-                case 6:
+                case 5:
                     System.out.println("Change value on object: " + menu[selection - 1] + " '" + customer.getAddress().getStreet() + "'");
                     choiseImput = customerChangeInput.next();
+                    address.setStreet(choiseImput);
+                    break;
+                case 6:
+                    System.out.println("Change value on object: " + menu[selection - 1] + " '" + customer.getAddress().getStreetnr() + "'");
+                    choiseImput = customerChangeInput.next();
+                    address.setStreetnr(Integer.parseInt(choiseImput));
+                    break;
+                case 7:
+                    System.out.println("Change value on object: " + menu[selection - 1] + " '" + customer.getAddress().getPostcode()+ "'");
+                    choiseImput = customerChangeInput.next();
+                    address.setPostcode(choiseImput);
+                    break;
+                case 8:
+                    System.out.println("Change value on object: " + menu[selection - 1] + " '" + customer.getAddress().getCity() + "'");
+                    choiseImput = customerChangeInput.next();
+                    address.setCity(choiseImput);
+                    break;
                 case 9:
+                    customer.setAddress(address);
                     customerDBHandler.updateCustomer(customer);
-                    System.out.println(customer);
 
                     String[] menu1 = {"Create Customer", "List All Customer", "Create New Consert", "List All Consert", "Exit"};
                     adminMainView.displayMainMenu(menu1);
