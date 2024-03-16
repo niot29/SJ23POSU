@@ -165,7 +165,7 @@ public class CustomerController implements CustomerControllerInterface {
                 case 6:
                     System.out.println("Change value on object: " + menu[selection - 1] + " '" + customer.getAddress().getStreet() + "'");
                     choiseImput = customerChangeInput.next();
-                case 7:
+                case 9:
                     customerDBHandler.updateCustomer(customer);
                     System.out.println(customer);
 
