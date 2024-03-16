@@ -11,51 +11,73 @@ import java.util.List;
 
 public class CustomerDBHandler implements  CustomerDBInterface{
 
-
     @Override
     public void create(Customer customer) {
-        // Open session to DB
+        /*
         Configuration configuration = new Configuration();
         configuration.configure("hibernate.cfg.xml");
-
         SessionFactory sessionFactory = configuration.buildSessionFactory();
         Session session=sessionFactory.openSession();
+        */
 
-        Transaction transaction = session.getTransaction();
-        transaction.begin();
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = sessionFactory.openSession();
+
+        session.beginTransaction();
+        System.out.println(customer);
 
         session.persist(customer);
-        transaction.commit();
-
+        session.getTransaction().commit();
+        session.close();
     }
-
     @Override
     public Customer getCustomerById(int id) {
-        return null;
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        Customer customer=session.get(Customer.class,id);
+        session.getTransaction().commit();
+        session.close();
+        return customer;
     }
-
     @Override
     public List<Customer> ListCustomer() {
-
-        // test data
-        Address address = new Address(50,"Stockholm",23,"12344","killervägen1");
-        Customer customer1 = new Customer(100,"Nils","Ottosson","750329","123456789",address);
-        Customer customer2 = new Customer(200,"Nisse","Ottosson","750329","123456789");
-
-        List<Customer> customerList = new ArrayList<Customer>();
-        customerList.add(customer1);
-        customerList.add(customer2);
-
-        return customerList;
-    }
-
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        List<Customer> customers = session.createQuery("FROM Customer", Customer.class).getResultList();
+        return customers;    }
     @Override
     public Customer updateCustomer(Customer customer) {
-        return null;
-    }
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.update(customer);
+        session.getTransaction().commit();
+        session.close();
 
+        return customer;
+    }
     @Override
     public void deleteCustomerById(int id) {
-
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        Customer customer = session.get(Customer.class, id);
+        session.delete(customer);
+        session.getTransaction().commit();
+        //session.getTransaction().rollback();
+        session.close();
+    }
+    public int getCustomerIdByAddressId(int addressId) {
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        Integer customerId = session.createQuery("SELECT c.id FROM Customer c WHERE c.address.id = :addressId", Integer.class)
+                .setParameter("addressId", addressId)
+                .uniqueResult();
+        session.getTransaction().commit();
+        session.close();
+        return customerId;
     }
 }

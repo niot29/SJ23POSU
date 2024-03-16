@@ -8,6 +8,7 @@ import org.CustomerManager.Model.Customer;
 import org.CustomerManager.View.MainCustomerView;
 import org.CustomerManager.View.MainView;
 
+import java.sql.PseudoColumnUsage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -115,10 +116,16 @@ public class CustomerController implements CustomerControllerInterface {
     @Override
     public void updateCustomer(Customer customer) {
         AdminController adminMainView = new AdminController();
+        CustomerDBHandler customerDBHandler = new CustomerDBHandler();
+        AddressController addressController = new AddressController();
         MainView mainView = new MainView();
 
+        // Get Customer address by id
+        Address address = addressController.getAddressById(customer.getAddress().getId());
+        System.out.println(address);
+
         while (true) {
-            String[] menu = {"FirstName", "LastName", "BirthDay", "Phone", "Save and Exit"};
+            String[] menu = {"FirstName", "LastName", "BirthDay", "Phone", "Street","StreetNr","Postcode","City","Save and Exit"};
             String[] maniMenu = {"Create Customer", "List All Customer", "Create New Consert", "List All Consert", "Exit"};
             System.out.println("====================================================");
             System.out.println("Select the information that you would like to change");
@@ -128,11 +135,10 @@ public class CustomerController implements CustomerControllerInterface {
             Scanner customerInput = new Scanner(System.in);
             Scanner customerChangeInput = new Scanner(System.in);
 
-
             String choiseImput = customerInput.nextLine();
-            int selection = Integer.parseInt(choiseImput);
+            int selection = Integer.parseInt(choiseImput); // TODO: Need check for insert is interger
 
-            if (menu.length <= selection || selection == 5) {
+            if (selection == 0 || selection > menu.length) {
                 adminMainView.displayMainMenu(maniMenu);
             }
             switch (selection) {
@@ -156,9 +162,12 @@ public class CustomerController implements CustomerControllerInterface {
                     choiseImput = customerChangeInput.next();
                     customer.setPhoneNumber(choiseImput);
                     break;
-                case 5:
-                    CustomerDBHandler customerDBHandler = new CustomerDBHandler();
+                case 6:
+                    System.out.println("Change value on object: " + menu[selection - 1] + " '" + customer.getAddress().getStreet() + "'");
+                    choiseImput = customerChangeInput.next();
+                case 7:
                     customerDBHandler.updateCustomer(customer);
+                    System.out.println(customer);
 
                     String[] menu1 = {"Create Customer", "List All Customer", "Create New Consert", "List All Consert", "Exit"};
                     adminMainView.displayMainMenu(menu1);
@@ -179,7 +188,7 @@ public class CustomerController implements CustomerControllerInterface {
         System.out.println(" Remove the following  customer: " + customer.getFirstName() + " " + customer.getLastName());
         System.out.println("====================================================");
         CustomerDBHandler customerDBHandler = new CustomerDBHandler();
-        //customerDBHandler.deleteCustomerById(customer.getId);
+        customerDBHandler.deleteCustomerById(customer.getId());
         listAllCustomer();
     }
 

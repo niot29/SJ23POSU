@@ -7,14 +7,15 @@ import java.util.List;
 
 public interface AddressDBInterface {
 
-    public int create(Address address);
+    public void create(Address address);
 
     public Address getAddressById(int id);
 
     public List<Address> ListAddress();
 
-    public Address updateCustomer(Address address);
+    public Address updateAddress(Address address);
 
-    void deleteAddressById(int id);
+    void deleteAddressByCustomerId(int id);
+    void deleteAddressByArenaId(int id);
 
 }

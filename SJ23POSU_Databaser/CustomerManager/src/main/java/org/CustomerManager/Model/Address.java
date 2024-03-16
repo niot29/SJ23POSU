@@ -20,6 +20,9 @@ public class Address {
     @OneToOne(mappedBy = "address")
     private Customer customer;
 
+    @OneToOne(mappedBy = "address")
+    private Arena arena;
+
     public Address() {
     }
 

@@ -12,8 +12,9 @@ public class Arena {
     private int id;
     @Column(name="name")
     private String name;
-    @Column(name="address_id")
-    private String address;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
     @OneToMany(targetEntity = Concert.class, mappedBy = "arena", cascade=CascadeType.ALL)
     private List<Concert> concert;
     public Arena() {
@@ -35,11 +36,11 @@ public class Arena {
         this.name = name;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
