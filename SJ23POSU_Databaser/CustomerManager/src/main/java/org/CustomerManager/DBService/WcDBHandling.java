@@ -42,10 +42,11 @@ public class WcDBHandling implements WcDBInterface{
             SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
             Session session = sessionFactory.openSession();
             session.beginTransaction();
-            List<Wc> wcs = session.createQuery("FROM Wc w WHERE w.customer = :customerId", Wc.class)
+            List<Wc> wcs = session.createQuery("FROM Wc w WHERE w.customer.id = :customerId", Wc.class)
                     .setParameter("customerId", id)
                     .getResultList();
-            session.getTransaction().commit();
+
+            //session.getTransaction().commit();
             session.close();
             return wcs;
         }

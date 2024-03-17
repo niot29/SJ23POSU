@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="gu:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d7b4db9-20f2-4c05-99e6-aaed5d33a319" name="Changes" comment="project structure">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/becf896b-b40c-420e-a094-7a5449e1ab7e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/becf896b-b40c-420e-a094-7a5449e1ab7e.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/becf896b-b40c-420e-a094-7a5449e1ab7e/storage_v2/_src_/schema/gu.7gwAAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/becf896b-b40c-420e-a094-7a5449e1ab7e/storage_v2/_src_/schema/gu.7gwAAA.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/gu_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/ArenaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/ArenaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/ArenaControllerInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/ArenaControllerInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/ConcertController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/ConcertController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/ConcertControllerInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/ConcertControllerInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/CustomerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/WcController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/WcController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/WcControllerInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/WcControllerInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/CustomerDBHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/CustomerDBHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/WcDBHandling.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/WcDBHandling.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Concert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Concert.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/View/MainCustomerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/View/MainCustomerView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +60,7 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.pluginManager",
@@ -134,7 +133,7 @@
       <workItem from="1710318191626" duration="44269000" />
       <workItem from="1710430448900" duration="42875000" />
       <workItem from="1710591072688" duration="321000" />
-      <workItem from="1710594053369" duration="51556000" />
+      <workItem from="1710594053369" duration="54756000" />
     </task>
     <task id="LOCAL−00001" summary="project structure">
       <option name="closed" value="true" />
@@ -170,16 +169,5 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="project structure" />
     <option name="LAST_COMMIT_MESSAGE" value="project structure" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/WcDBHandling.java</url>
-          <line>49</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

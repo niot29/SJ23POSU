@@ -141,7 +141,7 @@ public class CustomerController implements CustomerControllerInterface {
             Scanner customerChangeInput = new Scanner(System.in);
 
             String choiseImput = customerInput.nextLine();
-            int selection = Integer.parseInt(choiseImput); // TODO: Need check for insert is interger
+            int selection = Integer.parseInt(choiseImput);
 
 
 

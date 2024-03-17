@@ -69,8 +69,8 @@ return null;
 
         WcDBHandling wcDBHandling = new WcDBHandling();
         List<Wc> wcList = wcDBHandling.ListWc();
+        //List<Wc> wcList = wcDBHandling.ListWcByCustomerId(customer.getId());  // TODO check list by user ID
 
-        //List<Wc> wcList = wcDBHandling.ListWcByCustomerId(1);  // TODO check list by user ID
         mainWcScreen.wcScreen(wcList);
         String[] menu = { "List Concert", "Book Concert","List My Bookning", "Change My info", "Exit" };
         adminController.displayCustomerMainMenu(menu);

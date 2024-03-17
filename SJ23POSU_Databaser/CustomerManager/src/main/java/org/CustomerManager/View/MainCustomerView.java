@@ -18,7 +18,7 @@ public class MainCustomerView {
     }
 
     public void customerScreen(List<Customer> customerList) {
-        //clearScreen();
+        clearScreen();
 
         int num = 117;
         for (int i = 0; i <= num; ++i) {
