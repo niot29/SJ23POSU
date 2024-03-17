@@ -93,7 +93,7 @@ public class CustomerController implements CustomerControllerInterface {
                 mainView.displayMainMenu(maniMenu);
             } else if (selectionInputIntMenu == 1) {
                 // call func for update
-                updateCustomer(customerList.get(selection - 1));
+                updateCustomer(customerList.get(selection - 1),0);
             } else if (selectionInputIntMenu == 2) {
                 // call func for delete
                 deleteCustomer(customerList.get(selection - 1));
@@ -119,7 +119,7 @@ public class CustomerController implements CustomerControllerInterface {
     }
 
     @Override
-    public void updateCustomer(Customer customer) {
+    public void updateCustomer(Customer customer,int roleType) {
         AdminController adminMainView = new AdminController();
         CustomerDBHandler customerDBHandler = new CustomerDBHandler();
         AddressController addressController = new AddressController();
@@ -195,7 +195,10 @@ public class CustomerController implements CustomerControllerInterface {
                 case 9:
                     customer.setAddress(address);
                     customerDBHandler.updateCustomer(customer);
-
+                    if(roleType > 0 ){
+                        String[] menu2 = { "List Concert", "List My Bookning", "Change My info", "Exit" };
+                        adminMainView.displayCustomerMainMenu(menu2);
+                    }
                     String[] menu1 = {"Create Customer", "List All Customer", "Create New Consert", "List All Consert", "Exit"};
                     adminMainView.displayMainMenu(menu1);
                     break;

@@ -81,7 +81,7 @@ public class AdminController {
             case 3:
                 System.out.println("Change My info");
                 //customerController.listCustomer(customer);
-                customerController.updateCustomer(customer);
+                customerController.updateCustomer(customer,1);
             case 5:
                 System.exit(0);
                 break;

@@ -27,8 +27,6 @@ public class Main {
         Session session=sessionFactory.openSession();
 
 
-
-
         while (true) {
             System.out.println("Enter the password for the user you want to login as.:");
             String inputPassword = scanner.next();
