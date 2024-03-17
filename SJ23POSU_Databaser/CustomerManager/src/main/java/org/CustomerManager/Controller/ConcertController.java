@@ -53,7 +53,7 @@ public class ConcertController implements ConcertControllerInterface{
             //System.out.println(arenaList.get(selection - 1));
             concert.setArena(arenaList.get(selection - 1));
             concertDBHandler.create(concert);
-            listAllConcert();
+            listConcertForAdmin();
         }else {
             System.out.println("Some thing is wrong cant save info");
         }
@@ -64,7 +64,7 @@ public class ConcertController implements ConcertControllerInterface{
     }
 
 
-    public void listAllConcert() {
+    public void listConcertForCustomer() {
         MainCustomerView mainConcertScreen = new MainCustomerView();
         AdminController adminController = new AdminController();
         ConcertDBHandler concertDBHandler = new ConcertDBHandler();
@@ -74,6 +74,18 @@ public class ConcertController implements ConcertControllerInterface{
         String[] menu2 = { "List Concert", "Book Concert","List My Bookning", "Change My info", "Exit" };
         adminController.displayCustomerMainMenu(menu2);
 
+    }
+
+    @Override
+    public void listConcertForAdmin() {
+        MainCustomerView mainConcertScreen = new MainCustomerView();
+        AdminController adminController = new AdminController();
+        ConcertDBHandler concertDBHandler = new ConcertDBHandler();
+        List<Concert> concertList =  concertDBHandler.ListConcert();
+        mainConcertScreen.concertScreen(concertList);
+
+        String[] menu1= { "Create Customer", "List All Customer","Create Arena","List All Arene","Create New Consert","List All Consert", "List Customer Order (WC)","Exit" };
+        adminController.displayMainMenu(menu1);
     }
 
     @Override

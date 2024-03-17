@@ -52,7 +52,8 @@ public class CustomerDBHandler implements  CustomerDBInterface{
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.update(customer);
+       //session.update(customer);
+        session.merge(customer);
         session.getTransaction().commit();
         session.close();
 

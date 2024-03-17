@@ -15,7 +15,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         boolean isLoggedIn = false;
         String adminPassword = "adminPassword";
-        String cutomerPassword = "cutomerPassword";
+        String cutomerPassword = "customerPassword";
         AdminController adminController = new AdminController();
 
         int choise;
@@ -32,8 +32,8 @@ public class Main {
 
         while (true) {
             System.out.println("Enter the password for the user you want to login as.:");
-            // String inputPassword = scanner.next();
-            String inputPassword = "adminPassword";   // Remove later
+            String inputPassword = scanner.next();
+
             if (inputPassword.equals(adminPassword)) {
                 System.out.println("Login succeeded as admin!");
                 isLoggedIn = true;

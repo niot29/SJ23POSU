@@ -55,7 +55,7 @@ public class CustomerController implements CustomerControllerInterface {
 
     public void listAllCustomer() {
 
-        String[] maniMenu = {"Create Customer", "List All Customer", "Create New Consert", "List All Consert", "Exit"};
+        String[] maniMenu =  { "Create Customer", "List All Customer","Create Arena","List All Arene","Create New Consert","List All Consert", "List Customer Order (WC)","Exit" };
 
         Scanner customerInput = new Scanner(System.in);
         MainCustomerView mainCustomerView = new MainCustomerView();

@@ -4,7 +4,7 @@ import org.CustomerManager.Model.Arena;
 import org.CustomerManager.Model.Customer;
 
 public interface ArenaControllerInterface {
-    public Arena createArena();
+    public void createArena();
 
     public void listAllArena();
 

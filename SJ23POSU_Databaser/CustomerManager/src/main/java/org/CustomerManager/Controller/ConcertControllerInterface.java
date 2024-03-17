@@ -7,7 +7,8 @@ import org.CustomerManager.Model.Customer;
 public interface ConcertControllerInterface {
     public Concert createConcert();
 
-    public void listAllConcert();
+    public void listConcertForCustomer();
+    public void listConcertForAdmin();
 
 
     void deleteConcert();

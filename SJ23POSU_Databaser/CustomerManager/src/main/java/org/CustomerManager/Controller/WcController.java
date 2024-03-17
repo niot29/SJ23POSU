@@ -63,7 +63,7 @@ return null;
     }
 
     @Override
-    public void listAllBooking(Customer customer) {
+    public void listAllBookingByCustomer(Customer customer) {
         MainCustomerView mainWcScreen = new MainCustomerView();
         AdminController adminController = new AdminController();
 
@@ -74,6 +74,20 @@ return null;
         mainWcScreen.wcScreen(wcList);
         String[] menu = { "List Concert", "Book Concert","List My Bookning", "Change My info", "Exit" };
         adminController.displayCustomerMainMenu(menu);
+
+    }
+
+    @Override
+    public void listAllBooking() {
+        MainCustomerView mainWcScreen = new MainCustomerView();
+        AdminController adminController = new AdminController();
+
+        WcDBHandling wcDBHandling = new WcDBHandling();
+        List<Wc> wcList = wcDBHandling.ListWc();
+
+        mainWcScreen.wcScreen(wcList);
+        String[] menu1= { "Create Customer", "List All Customer","Create Arena","List All Arene","Create New Consert","List All Consert", "List Customer Order (WC)","Exit" };
+        adminController.displayMainMenu(menu1);
 
     }
 

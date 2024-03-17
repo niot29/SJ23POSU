@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class ArenaController implements ArenaControllerInterface{
     @Override
-    public Arena createArena() {
+    public void createArena() {
         Scanner arenaInput = new Scanner(System.in);
         Scanner customerInput = new Scanner(System.in);
         Address address = new Address();
@@ -42,7 +42,10 @@ public class ArenaController implements ArenaControllerInterface{
         arenaDBHandler.create(arena);
 
         listAllArena();
-        return null;
+        AdminController adminController = new AdminController();
+        String[] menu1= { "Create Customer", "List All Customer","Create Arena","List All Arene","Create New Consert","List All Consert", "List Customer Order (WC)","Exit" };
+        adminController.displayMainMenu(menu1);
+
     }
 
     @Override
@@ -50,6 +53,10 @@ public class ArenaController implements ArenaControllerInterface{
         MainCustomerView mainArenaScreen = new MainCustomerView();
         ArenaDBHandler arenaDBHandler = new ArenaDBHandler();
         mainArenaScreen.arenaScreen(arenaDBHandler.ListArena());
+
+        AdminController adminController = new AdminController();
+        String[] menu1= { "Create Customer", "List All Customer","Create Arena","List All Arene","Create New Consert","List All Consert", "List Customer Order (WC)","Exit" };
+        adminController.displayMainMenu(menu1);
 
     }
 

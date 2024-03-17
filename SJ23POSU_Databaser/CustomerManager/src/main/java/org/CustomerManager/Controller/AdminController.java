@@ -28,6 +28,7 @@ public class AdminController {
         CustomerController customerHandler = new CustomerController();
         ConcertController concertController = new ConcertController();
         ArenaController arenaController = new ArenaController();
+        WcController wcController = new WcController();
 
 
         switch (selection) {
@@ -53,10 +54,11 @@ public class AdminController {
                 break;
             case 6:
                 System.out.println("List All Consert");
-                concertController.listAllConcert();
+                concertController.listConcertForAdmin();
                 break;
             case 7:
                 System.out.println("List Customer Order (WC)");
+                wcController.listAllBooking();
                 break;
             case 8:
                 System.exit(0);
@@ -97,14 +99,14 @@ public class AdminController {
         switch (selection) {
             case 1:
                 System.out.println("List all Concert");
-                concertController.listAllConcert();
+                concertController.listConcertForCustomer();
                 break;
             case 2:
                 System.out.println("Book Concert");
                 wcController.createBooking(customer);
             case 3:
                 System.out.println("List my Booking");
-                wcController.listAllBooking(customer);
+                wcController.listAllBookingByCustomer(customer);
                 break;
             case 4:
                 System.out.println("Change My info");
