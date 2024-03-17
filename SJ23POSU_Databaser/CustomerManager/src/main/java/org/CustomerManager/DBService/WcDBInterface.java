@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface WcDBInterface {
 
-    public int create(Wc wc);
+    public void  create(Wc wc);
 
     public Wc getWcById(int id);
 
