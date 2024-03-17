@@ -32,7 +32,8 @@ public class Main {
 
         while (true) {
             System.out.println("Enter the password for the user you want to login as.:");
-            String inputPassword = scanner.next();
+            // String inputPassword = scanner.next();
+            String inputPassword = "cutomerPassword";   // Remove later
             if (inputPassword.equals(adminPassword)) {
                 System.out.println("Login succeeded as admin!");
                 isLoggedIn = true;
@@ -51,13 +52,13 @@ public class Main {
         switch (choise) {
             case 1:
                 System.out.println("Redirect to Admin Menu ...");
-                String[] menu1= { "Create Customer", "List All Customer","Create New Consert","List All Consert", "List Customer Order (WC)","Exit" };
+                String[] menu1= { "Create Customer", "List All Customer","Create Arena","List All Arene","Create New Consert","List All Consert", "List Customer Order (WC)","Exit" };
                 adminController.displayMainMenu(menu1);
 
                 break;
             case 2:
                 System.out.println("Redirect to Cutomer Menu...");
-                String[] menu2 = { "List Concert", "List My Bookning", "Change My info", "Exit" };
+                String[] menu2 = { "List Concert", "Book Concert","List My Bookning", "Change My info", "Exit" };
                 adminController.displayCustomerMainMenu(menu2);
                 // add some method for Customer
                 break;

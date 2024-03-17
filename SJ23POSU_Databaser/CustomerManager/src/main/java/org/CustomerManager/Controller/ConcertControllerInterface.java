@@ -10,7 +10,5 @@ public interface ConcertControllerInterface {
     public void listAllConcert();
 
 
-    public Concert  updateCustomer(Customer customer,String[] menu);
-
     void deleteConcert();
 }

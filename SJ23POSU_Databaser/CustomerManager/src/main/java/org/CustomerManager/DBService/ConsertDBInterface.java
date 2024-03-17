@@ -6,14 +6,14 @@ import java.util.List;
 
 public interface ConsertDBInterface {
 
-    public int create(Concert consert);
+    public void create(Concert concert);
 
-    public Concert getConsertById(int id);
+    public Concert getConcertById(int id);
 
-    public List<Concert> ListConsert();
+    public List<Concert> ListConcert();
 
-    public Concert updateConserta(Concert consert);
+    public Concert updateConcert(Concert concert);
 
-    void deleteConsertById(int id);
+    void deleteConcertById(int id);
 
 }

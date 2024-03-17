@@ -1,9 +1,6 @@
 package org.CustomerManager.Model;
-
 import jakarta.persistence.*;
-
 import java.util.List;
-
 @Entity
 @Table(name= "WC")
 public class Wc {
@@ -11,52 +8,72 @@ public class Wc {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
     @Column(name = "name")
-    private String name;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "wc_id")
-    private List<Concert> concerts;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "wc_id")
-    private List<Customer> customers;
+    private String name = "Thomas Tha Man";
+
+    //@OneToMany(mappedBy = "wc")
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="concert_id")
+    private Concert concert;
+
+    @ManyToOne (fetch=FetchType.LAZY)
+    @JoinColumn(name="customer_id")
+    private Customer customer;
+
+
     public Wc() {
     }
-    public Wc(int id, String name, List<Concert> concerts, List<Customer> customers) {
+
+    public Wc(String name, Concert concert, Customer customer) {
+        this.name = name;
+        this.concert = concert;
+        this.customer = customer;
+    }
+
+    public Wc(int id, String name) {
         this.id = id;
         this.name = name;
-        this.concerts = concerts;
-        this.customers = customers;
     }
+
+
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
+
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
-    public List<Concert> getConcerts() {
-        return concerts;
+
+    public Concert getConcert() {
+        return concert;
     }
-    public void setConcerts(List<Concert> concerts) {
-        this.concerts = concerts;
+
+    public void setConcert(Concert concert) {
+        this.concert = concert;
     }
-    public List<Customer> getCustomers() {
-        return customers;
+
+    public Customer getCustomer() {
+        return customer;
     }
-    public void setCustomers(List<Customer> customers) {
-        this.customers = customers;
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
+
     @Override
     public String toString() {
         return "Wc{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", concerts=" + concerts +
-                ", customers=" + customers +
+                ", concert=" + concert +
+                ", customer=" + customer +
                 '}';
     }
 }

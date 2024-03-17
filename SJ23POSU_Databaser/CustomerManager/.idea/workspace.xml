@@ -5,13 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d7b4db9-20f2-4c05-99e6-aaed5d33a319" name="Changes" comment="project structure">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/ArenaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/ArenaControllerInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/WcController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/WcControllerInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CustomerManager.zip" beforeDir="false" afterPath="$PROJECT_DIR$/../CustomerManager.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/becf896b-b40c-420e-a094-7a5449e1ab7e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/becf896b-b40c-420e-a094-7a5449e1ab7e.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/becf896b-b40c-420e-a094-7a5449e1ab7e/storage_v2/_src_/schema/gu.7gwAAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/becf896b-b40c-420e-a094-7a5449e1ab7e/storage_v2/_src_/schema/gu.7gwAAA.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/AdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/ConcertController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/ConcertController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/ConcertControllerInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/ConcertControllerInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/CustomerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/CustomerControllerInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Controller/CustomerControllerInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/ArenaDBHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/ArenaDBHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/ArenaDBInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/ArenaDBInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/ConcertDBHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/ConcertDBHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/ConsertDBInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/ConsertDBInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/WcDBHandling.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/WcDBHandling.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/WcDBInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/WcDBInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Address.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Arena.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Arena.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Concert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Concert.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Wc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Wc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/View/MainCustomerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/View/MainCustomerView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +69,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/#Devoloper/YRKA/SJ23POSU/SJ23POSU_Databaser",
+    "last_opened_file_path": "D:/#Devoloper/YRKA/SJ23POSU/SJ23POSU_Databaser/CustomerManager.zip",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -58,7 +77,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propCompiler",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -74,11 +93,24 @@
       <recent name="" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="org.CustomerManager.DBService" />
       <recent name="org.CustomerManager.Controller" />
+      <recent name="org.CustomerManager.DBService" />
     </key>
   </component>
   <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.CustomerManager.Main" />
+      <module name="gu" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.CustomerManager.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="CustomerManager" />
       <method v="2">
@@ -92,6 +124,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -110,7 +147,7 @@
       <workItem from="1710318191626" duration="44269000" />
       <workItem from="1710430448900" duration="42875000" />
       <workItem from="1710591072688" duration="321000" />
-      <workItem from="1710594053369" duration="18151000" />
+      <workItem from="1710594053369" duration="46816000" />
     </task>
     <task id="LOCAL−00001" summary="project structure">
       <option name="closed" value="true" />

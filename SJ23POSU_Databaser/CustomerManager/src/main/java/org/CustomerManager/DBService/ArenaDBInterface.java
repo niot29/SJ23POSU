@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ArenaDBInterface {
 
-    public int create(Arena arena);
+    public void create(Arena arena);
 
     public Arena getArenaById(int id);
 

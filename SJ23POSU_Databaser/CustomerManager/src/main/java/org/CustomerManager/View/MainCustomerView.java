@@ -1,7 +1,6 @@
 package org.CustomerManager.View;
 
-import org.CustomerManager.Model.Address;
-import org.CustomerManager.Model.Customer;
+import org.CustomerManager.Model.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -67,6 +66,91 @@ public class MainCustomerView {
 
         for (Address address : addressList) {
             System.out.format(inline, address.getId(),address.getStreet(),address.getStreetnr(),address.getPostcode(),address.getCity());
+        }
+        for (int i = 0; i <= num; ++i) {
+            System.out.print("-");
+        }
+        System.out.println("");
+    }
+    public void arenaScreen(List<Arena> arenaList) {
+        clearScreen();
+
+        int num = 117;
+        for (int i = 0; i <= num; ++i) {
+            System.out.print("-");
+        }
+        System.out.println();
+        System.out.printf("| %-10s | %-25s | %-16s | %n", "ARENA NO","ARENA NAME", "ARENA ADRESS");
+        String inline = "| %-10s | %-25s |%-12s | %n";
+
+        for (int i = 0; i <= num; ++i) {
+            System.out.print("-");
+        }
+        // System.out.print(out);
+        System.out.println();
+
+        int row = 1;
+        for (Arena arena : arenaList) {
+            System.out.format(inline, row, arena.getName(), arena.getAddress());
+            row++;
+        }
+        for (int i = 0; i <= num; ++i) {
+            System.out.print("-");
+        }
+        System.out.println("");
+    }
+    public void concertScreen(List<Concert> concertList) {
+        clearScreen();
+
+        int num = 117;
+        for (int i = 0; i <= num; ++i) {
+            System.out.print("-");
+        }
+        System.out.println();
+        System.out.printf("| %-10s | %-25s |  %-25s  | %-16s | %n", "ARTIST NAME", "DATE",
+                "PRICE", "AGE");
+        String inline = "| %-10s | %-25s |  %-25s |  %-12s | %n";
+
+        for (int i = 0; i <= num; ++i) {
+            System.out.print("-");
+        }
+        // System.out.print(out);
+        System.out.println();
+
+        int row = 1;
+        for (Concert concert : concertList) {
+            System.out.format(inline, row, concert.getArtistName(), concert.getDate(), concert.getTicketPrice(), concert.getAgeLimit());
+            row++;
+        }
+        for (int i = 0; i <= num; ++i) {
+            System.out.print("-");
+        }
+        System.out.println("");
+    }
+
+    public void wcScreen(List<Wc> wcList) {
+        clearScreen();
+
+        int num = 117;
+        for (int i = 0; i <= num; ++i) {
+            System.out.print("-");
+        }
+        System.out.println();
+        System.out.printf("| %-10s | %-25s |  %-25s | %-25s | %-16s | %n", "ORDER.NO", "WC NAME",
+                "NAME", "CONCERT", "ARENA");
+        String inline = "| %-10s | %-25s |  %-25s | %-25s |  %-12s | %n";
+
+
+        for (int i = 0; i <= num; ++i) {
+            System.out.print("-");
+        }
+        // System.out.print(out);
+        System.out.println();
+
+        int row = 1;
+        for (Wc wc : wcList) {
+            System.out.format(inline, wc.getId(),wc.getName(),wc.getCustomer().getFirstName() + " " + wc.getCustomer().getLastName(),wc.getConcert().getArtistName(),wc.getConcert().getArena().getName());
+            row++;
         }
         for (int i = 0; i <= num; ++i) {
             System.out.print("-");

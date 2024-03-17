@@ -11,9 +11,7 @@ public interface CustomerControllerInterface {
     public void listAllCustomer();
 
     public void listCustomer(Customer customer);
-
-    // Hardcode role value 1=customer 0=admin
-    void updateCustomer(Customer customer,int roleType);
+    void updateCustomer(Customer customer);
 
     void deleteCustomer(Customer customer);
 }

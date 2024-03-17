@@ -1,6 +1,8 @@
 package org.CustomerManager.Controller;
 
+import org.CustomerManager.DBService.ConcertDBHandler;
 import org.CustomerManager.DBService.CustomerDBHandler;
+import org.CustomerManager.Model.Arena;
 import org.CustomerManager.Model.Customer;
 import org.CustomerManager.View.MainView;
 
@@ -24,6 +26,9 @@ public class AdminController {
         }
 
         CustomerController customerHandler = new CustomerController();
+        ConcertController concertController = new ConcertController();
+        ArenaController arenaController = new ArenaController();
+
 
         switch (selection) {
             case 1:
@@ -35,15 +40,25 @@ public class AdminController {
                 customerHandler.listAllCustomer();
                 break;
             case 3:
-                System.out.println("Create New Consert");
+                System.out.println("Create Arena");
+                arenaController.createArena();
                 break;
             case 4:
-                System.out.println("List All Consert");
+                System.out.println("List All Arene ");
+                arenaController.listAllArena();
                 break;
             case 5:
-                System.out.println("List Customer Order (WC)");
+                System.out.println("Create New Consert");
+                concertController.createConcert();
                 break;
             case 6:
+                System.out.println("List All Consert");
+                concertController.listAllConcert();
+                break;
+            case 7:
+                System.out.println("List Customer Order (WC)");
+                break;
+            case 8:
                 System.exit(0);
                 break;
 
@@ -69,12 +84,13 @@ public class AdminController {
 
         ConcertController concertController = new ConcertController();
         CustomerController customerController = new CustomerController();
+        WcController wcController = new WcController();
 
 
         // -- Test data
         CustomerDBHandler customerDBHandler = new CustomerDBHandler();
         Customer customer = new Customer();
-        customer = customerDBHandler.getCustomerById(7);
+        customer = customerDBHandler.getCustomerById(1);
         // ----
 
 
@@ -84,14 +100,17 @@ public class AdminController {
                 concertController.listAllConcert();
                 break;
             case 2:
-                System.out.println("List my Booking");
-                //TODO process for handling Order (list my wc)
-                break;
+                System.out.println("Book Concert");
+                wcController.createBooking(customer);
             case 3:
+                System.out.println("List my Booking");
+                wcController.listAllBooking();
+                break;
+            case 4:
                 System.out.println("Change My info");
                 //customerController.listCustomer(customer);
-                customerController.updateCustomer(customer,1);
-            case 4:
+                customerController.updateCustomer(customer);
+            case 5:
                 System.exit(0);
                 break;
 

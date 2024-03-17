@@ -1,24 +1,27 @@
 package org.CustomerManager.Controller;
-
 import org.CustomerManager.DBService.AddressDBHandler;
+import org.CustomerManager.DBService.ArenaDBHandler;
 import org.CustomerManager.DBService.ConcertDBHandler;
-import org.CustomerManager.DBService.ConsertDBInterface;
+import org.CustomerManager.Model.Address;
 import org.CustomerManager.Model.Arena;
 import org.CustomerManager.Model.Concert;
 import org.CustomerManager.Model.Customer;
 import org.CustomerManager.View.MainCustomerView;
+import org.CustomerManager.View.MainView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class ConcertController implements ConcertControllerInterface{
-    @Override
-    public Concert createConcert() {
+
+    public Concert createConcert(){
         Scanner concertInput = new Scanner(System.in);
         Concert concert = new Concert();
         Arena arena = new Arena();
         ConcertDBHandler concertDBHandler = new ConcertDBHandler();
+        ArenaDBHandler arenaDBHandler = new ArenaDBHandler();
+        Address address = new Address();
 
         System.out.println("Input Artist name");
         concert.setArtistName(concertInput.next());
@@ -29,45 +32,54 @@ public class ConcertController implements ConcertControllerInterface{
         System.out.println("Input age limit");
         concert.setAgeLimit(concertInput.nextInt());
         System.out.println(concert);
-
-        /*
-        System.out.println("========================");
-        System.out.println("Input arena information");
-        arena.setAddress(concertInput.next());
-        System.out.println("Input arena name");
-        arena.setName(concertInput.next());
-        System.out.println("Input arena adress");
-        arena.setAddress(concertInput.next());
-        */
-
-        concert.setArena(arena);
-        int ConsertId = concertDBHandler.create(concert);
-        System.out.println(concert);
         System.out.println(arena);
-        listAllConcert();
+
+        // List all Arena
+        MainCustomerView mainArenaScreen = new MainCustomerView();
+        List<Arena> arenaList = arenaDBHandler.ListArena();
+        mainArenaScreen.arenaScreen(arenaList);
+
+
+        System.out.println("Select Arena for this Consert (Input 0 for quit): ");
+        Scanner arenaSelection = new Scanner(System.in);
+        AdminController mainView = new AdminController();
+        String[] menu1= { "Create Customer", "List All Customer","Create Arena","List All Arene","Create New Consert","List All Consert", "List Customer Order (WC)","Exit" };
+
+        String arenaSelect = arenaSelection.nextLine();
+        int selection = Integer.parseInt(arenaSelect);
+        System.out.println(selection);
+
+        if(selection <= arenaList.size()){
+            //System.out.println(arenaList.get(selection - 1));
+            concert.setArena(arenaList.get(selection - 1));
+            concertDBHandler.create(concert);
+            listAllConcert();
+        }else {
+            System.out.println("Some thing is wrong cant save info");
+        }
+
+        mainView.displayMainMenu(menu1);
+
         return concert;
     }
 
-    @Override
+
     public void listAllConcert() {
-        String[] cutomerMenu = {"Book a Concert", "Exit"};
+        MainCustomerView mainConcertScreen = new MainCustomerView();
+        MainView mainView = new MainView();
+
+
         ConcertDBHandler concertDBHandler = new ConcertDBHandler();
-        //Test data
-        List<Concert> concertList = concertDBHandler.ListConsert();
-        // TODO Get list data from dB
+        List<Concert> concertList =  concertDBHandler.ListConcert();
+        mainConcertScreen.concertScreen(concertList);
 
 
 
-
-    }
-
-    @Override
-    public Concert updateCustomer(Customer customer, String[] menu) {
-        return null;
     }
 
     @Override
     public void deleteConcert() {
 
     }
+
 }

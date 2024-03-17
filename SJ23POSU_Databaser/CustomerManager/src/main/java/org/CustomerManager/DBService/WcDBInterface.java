@@ -15,7 +15,7 @@ public interface WcDBInterface {
 
     public List<Wc> ListWcByCustomerId();
 
-    public Wc updateCustomer(Wc wc);
+    public Wc updateWc(Wc wc);
 
     void deleteWcById(int id);
 
