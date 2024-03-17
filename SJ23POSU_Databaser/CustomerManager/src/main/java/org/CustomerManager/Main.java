@@ -33,7 +33,7 @@ public class Main {
         while (true) {
             System.out.println("Enter the password for the user you want to login as.:");
             // String inputPassword = scanner.next();
-            String inputPassword = "cutomerPassword";   // Remove later
+            String inputPassword = "adminPassword";   // Remove later
             if (inputPassword.equals(adminPassword)) {
                 System.out.println("Login succeeded as admin!");
                 isLoggedIn = true;

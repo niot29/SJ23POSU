@@ -1063,8 +1063,8 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </collation>
     <schema id="288" parent="1" name="gu">
       <Current>1</Current>
-      <IntrospectionTimestamp>2024-03-17.20:06:36</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2024-03-17.19:06:36</LocalIntrospectionTimestamp>
+      <IntrospectionTimestamp>2024-03-17.21:00:10</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2024-03-17.20:00:10</LocalIntrospectionTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="289" parent="1" name="information_schema">
@@ -1316,21 +1316,34 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <DasType>varchar(255)|0s</DasType>
       <Position>3</Position>
     </column>
-    <foreign-key id="347" parent="303" name="FK173jwhxfjd6c1rgfkdr5s03xk">
+    <column id="347" parent="303" name="customer_id">
+      <DasType>int|0s</DasType>
+      <Position>4</Position>
+    </column>
+    <foreign-key id="348" parent="303" name="FK173jwhxfjd6c1rgfkdr5s03xk">
       <ColNames>concert_id</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>CONSERT</RefTableName>
     </foreign-key>
-    <index id="348" parent="303" name="PRIMARY">
+    <foreign-key id="349" parent="303" name="FK8c4ne9xufqp3yc5frsiu5sjro">
+      <ColNames>customer_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>CUSTOMER</RefTableName>
+    </foreign-key>
+    <index id="350" parent="303" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="349" parent="303" name="FK173jwhxfjd6c1rgfkdr5s03xk">
+    <index id="351" parent="303" name="FK173jwhxfjd6c1rgfkdr5s03xk">
       <ColNames>concert_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="350" parent="303" name="PRIMARY">
+    <index id="352" parent="303" name="FK8c4ne9xufqp3yc5frsiu5sjro">
+      <ColNames>customer_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="353" parent="303" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

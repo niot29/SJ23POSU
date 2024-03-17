@@ -8,7 +8,7 @@ import org.CustomerManager.Model.Wc;
 public interface WcControllerInterface {
     public Wc createBooking(Customer customer);
 
-    public void listAllBooking();
+    public void listAllBooking(Customer customer);
 
 
 }

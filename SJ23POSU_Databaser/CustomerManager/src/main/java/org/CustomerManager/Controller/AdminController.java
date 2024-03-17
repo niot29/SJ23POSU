@@ -104,7 +104,7 @@ public class AdminController {
                 wcController.createBooking(customer);
             case 3:
                 System.out.println("List my Booking");
-                wcController.listAllBooking();
+                wcController.listAllBooking(customer);
                 break;
             case 4:
                 System.out.println("Change My info");

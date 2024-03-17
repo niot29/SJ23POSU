@@ -107,7 +107,7 @@ public class MainCustomerView {
             System.out.print("-");
         }
         System.out.println();
-        System.out.printf("| %-10s | %-25s |  %-25s  | %-16s | %n", "ARTIST NAME", "DATE",
+        System.out.printf("| %-10s | %-25s |  %-25s  | %-16s | %n", "CONCERT ID","ARTIST NAME", "DATE",
                 "PRICE", "AGE");
         String inline = "| %-10s | %-25s |  %-25s |  %-12s | %n";
 

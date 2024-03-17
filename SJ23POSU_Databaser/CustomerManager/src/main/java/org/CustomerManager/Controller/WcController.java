@@ -47,31 +47,33 @@ public class WcController implements  WcControllerInterface{
             System.out.println("Would tou like too book this concert (Y/N Input 0 for quit): ");
             String bookingSelection = wcInputBooking.nextLine();
 
-            if(bookingSelection.equals('N') || bookingSelection.equals('n')){
-                String[] customerMenu = { "List Concert", "Book Concert","List My Bookning", "Change My info", "Exit" };
-                mainCustomerMenu.displayCustomerMainMenu(customerMenu);
+            if(bookingSelection.equals("Y") || bookingSelection.equals("y")){
+
+                wcBooking.setConcert(concert);
+                wcBooking.setCustomer(customer);
+                wcDBHandling.create(wcBooking);
+
             }
 
-
-            wcBooking.setConcert(concert);
-            wcBooking.setCustomer(customer);
-
-            System.out.println(wcBooking);
-            wcDBHandling.create(wcBooking);
-
+            String[] customerMenu = { "List Concert", "Book Concert","List My Bookning", "Change My info", "Exit" };
+            mainCustomerMenu.displayCustomerMainMenu(customerMenu);
 
         }
 return null;
     }
 
     @Override
-    public void listAllBooking() {
+    public void listAllBooking(Customer customer) {
         MainCustomerView mainWcScreen = new MainCustomerView();
-        MainView mainView = new MainView();
+        AdminController adminController = new AdminController();
 
         WcDBHandling wcDBHandling = new WcDBHandling();
         List<Wc> wcList = wcDBHandling.ListWc();
+
+        //List<Wc> wcList = wcDBHandling.ListWcByCustomerId(1);  // TODO check list by user ID
         mainWcScreen.wcScreen(wcList);
+        String[] menu = { "List Concert", "Book Concert","List My Bookning", "Change My info", "Exit" };
+        adminController.displayCustomerMainMenu(menu);
 
     }
 

@@ -38,15 +38,12 @@ public class WcDBHandling implements WcDBInterface{
             return wcs;
         }
         @Override
-        public List<Wc> ListWcByCustomerId() {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Please write the customer ID you want to list all WCs from:");
-            int customerId = scanner.nextInt();
+        public List<Wc> ListWcByCustomerId(int id) {
             SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
             Session session = sessionFactory.openSession();
             session.beginTransaction();
-            List<Wc> wcs = session.createQuery("SELECT c.wc FROM Customer c WHERE c.id = :customerId", Wc.class)
-                    .setParameter("customerId", customerId)
+            List<Wc> wcs = session.createQuery("FROM Wc w WHERE w.customer = :customerId", Wc.class)
+                    .setParameter("customerId", id)
                     .getResultList();
             session.getTransaction().commit();
             session.close();
@@ -73,6 +70,7 @@ public class WcDBHandling implements WcDBInterface{
             session.getTransaction().commit();
             session.close();
         }
+        /*
         public int getWcIdByConcertId(int concertId) {
             SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
             Session session = sessionFactory.openSession();
@@ -95,4 +93,6 @@ public class WcDBHandling implements WcDBInterface{
             session.close();
             return wcId;
         }
+        */
+
     }

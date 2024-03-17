@@ -13,7 +13,7 @@ public interface WcDBInterface {
 
     public List<Wc> ListWc();
 
-    public List<Wc> ListWcByCustomerId();
+    public List<Wc> ListWcByCustomerId(int id);
 
     public Wc updateWc(Wc wc);
 

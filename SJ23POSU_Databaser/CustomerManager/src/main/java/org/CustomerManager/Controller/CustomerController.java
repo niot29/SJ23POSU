@@ -49,9 +49,6 @@ public class CustomerController implements CustomerControllerInterface {
         //int customerId = customerDBHandler.create(customer);
         customerDBHandler.create(customer);
 
-        System.out.println(customer);
-        System.out.println(address);
-
         listAllCustomer();
         return customer;
     }

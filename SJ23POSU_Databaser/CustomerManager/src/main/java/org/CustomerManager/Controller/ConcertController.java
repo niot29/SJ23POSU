@@ -66,14 +66,13 @@ public class ConcertController implements ConcertControllerInterface{
 
     public void listAllConcert() {
         MainCustomerView mainConcertScreen = new MainCustomerView();
-        MainView mainView = new MainView();
-
-
+        AdminController adminController = new AdminController();
         ConcertDBHandler concertDBHandler = new ConcertDBHandler();
         List<Concert> concertList =  concertDBHandler.ListConcert();
         mainConcertScreen.concertScreen(concertList);
 
-
+        String[] menu2 = { "List Concert", "Book Concert","List My Bookning", "Change My info", "Exit" };
+        adminController.displayCustomerMainMenu(menu2);
 
     }
 
