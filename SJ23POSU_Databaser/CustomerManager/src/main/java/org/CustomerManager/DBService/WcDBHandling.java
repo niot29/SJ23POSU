@@ -27,7 +27,8 @@ public class WcDBHandling implements WcDBInterface{
         Wc wc=session.get(Wc.class,id);
         session.getTransaction().commit();
         session.close();
-        return wc;    }
+        return wc;
+    }
     @Override
     public List<Wc> ListWc() {
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();

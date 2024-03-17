@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d7b4db9-20f2-4c05-99e6-aaed5d33a319" name="Changes" comment="project structure">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/WcDBHandling.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/WcDBInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/WcDBInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/WcDBHandling.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/DBService/WcDBHandling.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CustomerManager/Model/Customer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +106,7 @@
       <workItem from="1710318191626" duration="44269000" />
       <workItem from="1710430448900" duration="42875000" />
       <workItem from="1710591072688" duration="321000" />
-      <workItem from="1710594053369" duration="9452000" />
+      <workItem from="1710594053369" duration="10065000" />
     </task>
     <task id="LOCAL−00001" summary="project structure">
       <option name="closed" value="true" />

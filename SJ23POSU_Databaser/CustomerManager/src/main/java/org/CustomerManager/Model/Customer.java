@@ -18,6 +18,9 @@ public class Customer {
     private String birthDate;
     @Column(name = "phone_number", length = 20)
     private String phoneNumber;
+    @Column(name = "role")
+    private int role = 1;
+
 
     @ManyToOne
     @JoinColumn(name = "wc_id")
@@ -63,6 +66,7 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
+
     public int getId() {
         return id;
     }
@@ -103,6 +107,10 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
+    public int getRole() {
+        return role;
+    }
+
     public Wc getWc() {
         return wc;
     }
@@ -127,6 +135,7 @@ public class Customer {
                 ", lastName='" + lastName + '\'' +
                 ", birthDate='" + birthDate + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", role='" + role + '\'' +
                 ", wc=" + wc +
                 ", address=" + address +
                 '}';
