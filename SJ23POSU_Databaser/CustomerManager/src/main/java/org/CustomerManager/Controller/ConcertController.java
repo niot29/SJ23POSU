@@ -19,6 +19,27 @@ public class ConcertController implements ConcertControllerInterface{
         Concert concert = new Concert();
         Arena arena = new Arena();
         ConcertDBHandler concertDBHandler = new ConcertDBHandler();
+
+        System.out.println("Input Artist name");
+        concert.setArtistName(concertInput.next());
+        System.out.println("Input Concert date");
+        concert.setDate(concertInput.next());
+        System.out.println("Input ticket price");
+        concert.setTicketPrice(Integer.parseInt(concertInput.next()));
+        System.out.println("Input age limit");
+        concert.setAgeLimit(concertInput.nextInt());
+        System.out.println(concert);
+
+        /*
+        System.out.println("========================");
+        System.out.println("Input arena information");
+        arena.setAddress(concertInput.next());
+        System.out.println("Input arena name");
+        arena.setName(concertInput.next());
+        System.out.println("Input arena adress");
+        arena.setAddress(concertInput.next());
+        */
+
         concert.setArena(arena);
         int ConsertId = concertDBHandler.create(concert);
         System.out.println(concert);

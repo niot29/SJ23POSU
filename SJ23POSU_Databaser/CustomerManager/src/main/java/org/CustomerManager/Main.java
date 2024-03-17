@@ -21,10 +21,13 @@ public class Main {
         int choise;
 
         // Open session to DB -- just for Nils Project have problem for fynding config file
-        Configuration configuration = new Configuration();
-        configuration.configure("hibernate.cfg.xml");
-        SessionFactory sessionFactory = configuration.buildSessionFactory();
-        Session session=sessionFactory.openSession();
+        //Configuration configuration = new Configuration();
+        //configuration.configure("hibernate.cfg.xml");
+        //SessionFactory sessionFactory = configuration.buildSessionFactory();
+        //Session session=sessionFactory.openSession();
+
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = sessionFactory.openSession();
 
 
         while (true) {
@@ -48,7 +51,7 @@ public class Main {
         switch (choise) {
             case 1:
                 System.out.println("Redirect to Admin Menu ...");
-                String[] menu1= { "Create Customer", "List All Customer","Create New Consert","List All Consert", "Exit" };
+                String[] menu1= { "Create Customer", "List All Customer","Create New Consert","List All Consert", "List Customer Order (WC)","Exit" };
                 adminController.displayMainMenu(menu1);
 
                 break;
@@ -63,7 +66,7 @@ public class Main {
                 break;
         }
 
-
+        session.close();
     }
 
 }

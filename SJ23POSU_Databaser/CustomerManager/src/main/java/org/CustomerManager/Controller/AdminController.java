@@ -34,7 +34,16 @@ public class AdminController {
                 System.out.println("List alla customer");
                 customerHandler.listAllCustomer();
                 break;
+            case 3:
+                System.out.println("Create New Consert");
+                break;
+            case 4:
+                System.out.println("List All Consert");
+                break;
             case 5:
+                System.out.println("List Customer Order (WC)");
+                break;
+            case 6:
                 System.exit(0);
                 break;
 
@@ -82,7 +91,7 @@ public class AdminController {
                 System.out.println("Change My info");
                 //customerController.listCustomer(customer);
                 customerController.updateCustomer(customer,1);
-            case 5:
+            case 4:
                 System.exit(0);
                 break;
 
