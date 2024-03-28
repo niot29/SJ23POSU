@@ -91,7 +91,7 @@ public class MainCustomerView {
 
         int row = 1;
         for (Arena arena : arenaList) {
-            System.out.format(inline, row, arena.getName(), arena.getAddress());
+            System.out.format(inline, row, arena.getName(), arena.getAddress().getStreet() + " " + arena.getAddress().getStreetnr() + " , " +arena.getAddress().getCity());
             row++;
         }
         for (int i = 0; i <= num; ++i) {
