@@ -9,7 +9,7 @@ import java.sql.Time;
 public class LanguageEntity {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name="language_id")
     private int id;
     @Column(name="name",length=20)
