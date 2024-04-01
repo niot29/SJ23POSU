@@ -1,6 +1,7 @@
 package se.sakilagui.Service;
 
 import se.sakilagui.Model.FilmEntity;
+import se.sakilagui.Model.LanguageEntity;
 
 import java.sql.Date;
 import java.util.List;
@@ -11,11 +12,11 @@ public interface FilmDBServiceInterface {
 
     List<FilmEntity> listAllFilm();
 
-    List<FilmEntity> listAllByRating(String rateting);
+    List<FilmEntity> listAllByRating(String rating);
 
     List<FilmEntity> listAllByReleaseYear(Date releaseYear);
 
-    List<FilmEntity> listAllByLanguageId(int languageId);
+    List<FilmEntity> listAllByLanguage(LanguageEntity language);
 
     FilmEntity getFilmById(int id);
 

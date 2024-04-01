@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.text.DecimalFormat;
-import java.util.Calendar;
 
 @Entity
 @Table(name = "film")
@@ -13,18 +11,19 @@ public class FilmEntity {
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     @Column(name = "film_id")
-    private int filmId;
+    private short filmId;
 
     private String title;
     private String description;
     @Column(name = "release_year")
     private Date releaseYear;
 
-    @Column(name = "language_id")
-    private long languageId;
+    @ManyToOne
+    @JoinColumn(name = "language_id")
+    private LanguageEntity language;
 
     @Column(name = "original_language_id")
-    private long orgLanguageId;
+    private Byte orgLanguageId;
 
     @Column(name = "rental_duration")
     private int rentalDuration = 3;
@@ -44,13 +43,33 @@ public class FilmEntity {
     @Column(name = "last_update")
     private Timestamp lastUpdate;
 
+    public FilmEntity() {
+    }
 
-    public long getId() {
+    public FilmEntity(String title, String description, Date releaseYear, LanguageEntity languageId, Byte orgLanguageId, int rentalDuration, double rentalRate, int length, double replacementCost, String rating, String specialFeatures, Timestamp lastUpdate) {
+        this.title = title;
+        this.description = description;
+        this.releaseYear = releaseYear;
+        this.language = languageId;
+        this.orgLanguageId = orgLanguageId;
+        this.rentalDuration = rentalDuration;
+        this.rentalRate = rentalRate;
+        this.length = length;
+        this.replacementCost = replacementCost;
+        this.rating = rating;
+        this.specialFeatures = specialFeatures;
+        this.lastUpdate = lastUpdate;
+    }
+
+    public FilmEntity(FilmEntity filmById) {
+    }
+
+    public int getFilmId() {
         return filmId;
     }
 
-    public void setId(int id) {
-        this.filmId = id;
+    public void setFilmId(Short filmId) {
+        this.filmId = filmId;
     }
 
     public String getTitle() {
@@ -77,19 +96,19 @@ public class FilmEntity {
         this.releaseYear = releaseYear;
     }
 
-    public long getLanguageId() {
-        return languageId;
+    public LanguageEntity getLanguage() {
+        return language;
     }
 
-    public void setLanguageId(long languageId) {
-        this.languageId = languageId;
+    public void setLanguage(LanguageEntity languageId) {
+        this.language = languageId;
     }
 
-    public long getOrgLanguageId() {
+    public Byte getOrgLanguageId() {
         return orgLanguageId;
     }
 
-    public void setOrgLanguageId(long orgLanguageId) {
+    public void setOrgLanguageId(Byte orgLanguageId) {
         this.orgLanguageId = orgLanguageId;
     }
 
@@ -106,9 +125,6 @@ public class FilmEntity {
     }
 
     public void setRentalRate(double rentalRate) {
-        DecimalFormat df = new DecimalFormat("####.##");
-        String roundedNumber = df.format(rentalRate);
-        rentalRate = Double.valueOf(roundedNumber);
         this.rentalRate = rentalRate;
     }
 
@@ -125,9 +141,6 @@ public class FilmEntity {
     }
 
     public void setReplacementCost(double replacementCost) {
-        DecimalFormat df = new DecimalFormat("#####.##");
-        String roundedNumber = df.format(replacementCost);
-        replacementCost = Double.valueOf(roundedNumber);
         this.replacementCost = replacementCost;
     }
 
@@ -151,8 +164,26 @@ public class FilmEntity {
         return lastUpdate;
     }
 
-    public void setLastUpdate() {
+    public void setLastUpdate(Timestamp lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
 
-        this.lastUpdate = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());
+    @Override
+    public String toString() {
+        return "FilmEntity{" +
+                "filmId=" + filmId +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", releaseYear=" + releaseYear +
+                ", languageId=" + language +
+                ", orgLanguageId=" + orgLanguageId +
+                ", rentalDuration=" + rentalDuration +
+                ", rentalRate=" + rentalRate +
+                ", length=" + length +
+                ", replacementCost=" + replacementCost +
+                ", rating='" + rating + '\'' +
+                ", specialFeatures='" + specialFeatures + '\'' +
+                ", lastUpdate=" + lastUpdate +
+                '}';
     }
 }

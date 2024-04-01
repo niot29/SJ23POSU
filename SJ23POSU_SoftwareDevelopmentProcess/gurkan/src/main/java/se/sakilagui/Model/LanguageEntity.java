@@ -7,32 +7,32 @@ import java.sql.Time;
 @Entity
 @Table(name= "language")
 public class LanguageEntity {
-
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column(name="language_id")
-    private int id;
+    //@OneToMany(fetch = FetchType.LAZY, mappedBy = "language")
+    private Byte language_id;
     @Column(name="name",length=20)
     private String name;
     @Column(name="last_update")
     private Time last_update;
 
-    public LanguageEntity(int id, String name, Time last_update) {
-        this.id = id;
-        this.name = name;
-        this.last_update = last_update;
-    }
 
     public LanguageEntity() {
 
     }
 
-    public int getId() {
-        return id;
+    public LanguageEntity(Byte language_id, String name, Time last_update) {
+        this.language_id = language_id;
+        this.name = name;
+        this.last_update = last_update;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public byte getLanguage_id() {
+        return language_id;
+    }
+
+    public void setLanguage_id(Byte language_id) {
+        this.language_id = language_id;
     }
 
     public String getName() {
@@ -54,7 +54,7 @@ public class LanguageEntity {
     @Override
     public String toString() {
         return "LanguageEntity{" +
-                "id=" + id +
+                "language_id=" + language_id +
                 ", name='" + name + '\'' +
                 ", last_update=" + last_update +
                 '}';

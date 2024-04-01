@@ -14,16 +14,17 @@
         <property name="connection.pool_size">3</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <!--property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property-->
-        <property name="hibernate.show_sql">false</property>
-        <property name="hibernate.format_sql">false</property>
-        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">validate</property>
 
         <mapping class="se.sakilagui.Model.FilmEntity" />
-        <mapping class="se.sakilagui.Model.FilmActorEntity" />
+        <mapping class="se.sakilagui.Model.LanguageEntity" />
+        <!--mapping class="se.sakilagui.Model.FilmActorEntity" />
         <mapping class="se.sakilagui.Model.FilmCategoryEntity" />
         <mapping class="se.sakilagui.Model.InventoryEntity" />
-        <mapping class="se.sakilagui.Model.ActorEntity" />
-        <mapping class="se.sakilagui.Model.LanguageEntity" />
+        <mapping class="se.sakilagui.Model.ActorEntity" /-->
+
 
     </session-factory>
 </hibernate-configuration>
