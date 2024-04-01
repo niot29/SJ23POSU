@@ -17,7 +17,9 @@ public interface FilmControllerInterface {
 
     FilmEntity getFilmById(int id);
 
-    FilmEntity getFilmByTitel(String titel);
+    List<FilmEntity> getFilmByTitel(String titel);
+
+    FilmEntity createFilm(FilmEntity film);
 
     void deleteFilmById(int id);
 }

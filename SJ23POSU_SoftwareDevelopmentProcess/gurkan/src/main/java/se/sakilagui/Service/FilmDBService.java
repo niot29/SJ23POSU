@@ -89,8 +89,17 @@ public class FilmDBService implements FilmDBServiceInterface {
     }
 
     @Override
-    public FilmEntity getFilmByTitel(String titel) {
-        return null;
+    public List<FilmEntity> getFilmByTitel(String titel) {
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        List<FilmEntity> filmEntitiesList = session.createQuery("FROM FilmEntity f WHERE f.title like :titel", FilmEntity.class)
+                .setParameter("titel", titel)
+                .getResultList();
+
+        session.close();
+        // System.out.println(filmEntitiesList);
+        return filmEntitiesList;
     }
 
     @Override

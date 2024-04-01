@@ -4,16 +4,18 @@ import jakarta.persistence.*;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 @Entity
 @Table(name = "film")
 public class FilmEntity {
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "film_id")
     private short filmId;
 
     private String title;
+    @Column(length = 250)
     private String description;
     @Column(name = "release_year")
     private Date releaseYear;
@@ -46,11 +48,11 @@ public class FilmEntity {
     public FilmEntity() {
     }
 
-    public FilmEntity(String title, String description, Date releaseYear, LanguageEntity languageId, Byte orgLanguageId, int rentalDuration, double rentalRate, int length, double replacementCost, String rating, String specialFeatures, Timestamp lastUpdate) {
+    public FilmEntity(String title, String description, Date releaseYear, LanguageEntity language, Byte orgLanguageId, int rentalDuration, double rentalRate, int length, double replacementCost, String rating, String specialFeatures) {
         this.title = title;
         this.description = description;
         this.releaseYear = releaseYear;
-        this.language = languageId;
+        this.language = language;
         this.orgLanguageId = orgLanguageId;
         this.rentalDuration = rentalDuration;
         this.rentalRate = rentalRate;
@@ -58,7 +60,6 @@ public class FilmEntity {
         this.replacementCost = replacementCost;
         this.rating = rating;
         this.specialFeatures = specialFeatures;
-        this.lastUpdate = lastUpdate;
     }
 
     public FilmEntity(FilmEntity filmById) {

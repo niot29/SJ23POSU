@@ -25,21 +25,6 @@ public class FilmController implements FilmControllerInterface{
         FilmDBService filmDBService = new FilmDBService();
         ConvertTools convertTools = new ConvertTools();
         java.sql.Date sqlDate = convertTools.ConvertStrToSqlDate("yyyy",releaseYear);
-        /*
-        Date year = null;
-        DateFormat df = new SimpleDateFormat("yyyy");
-        java.sql.Date sqlDate;
-
-        try {
-            year = (Date) df.parse(releaseYear);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-        sqlDate = new java.sql.Date(year.getTime());
-        System.out.println(sqlDate);
-
-        */
-
         return filmDBService.listAllByReleaseYear(sqlDate);
     }
 
@@ -64,13 +49,20 @@ public class FilmController implements FilmControllerInterface{
     }
 
     @Override
-    public FilmEntity getFilmByTitel(String titel) {
-        return null;
+    public List<FilmEntity> getFilmByTitel(String titel) {
+        FilmDBService filmDBService = new FilmDBService();
+        return filmDBService.getFilmByTitel(titel);
+    }
+
+    @Override
+    public FilmEntity createFilm(FilmEntity film) {
+        return new FilmDBService().createFilm(film);
     }
 
     @Override
     public void deleteFilmById(int id) {
-
+        FilmDBService filmDBService = new FilmDBService();
+        filmDBService.deleteFilmById(id);
     }
 
 

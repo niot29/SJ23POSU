@@ -20,7 +20,7 @@ public interface FilmDBServiceInterface {
 
     FilmEntity getFilmById(int id);
 
-    FilmEntity getFilmByTitel(String titel);
+    List<FilmEntity> getFilmByTitel(String titel);
 
     void deleteFilmById(int id);
 }
