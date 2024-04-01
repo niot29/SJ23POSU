@@ -31,16 +31,18 @@ public class Main {
         //for(FilmEntity filmEntity: filmController.listAllByReleaseYear("2006")){
 
         LanguageEntity language = languageController.getLanguageByName("German");
-
+        /*
         FilmEntity entity = new FilmEntity();
         entity.setTitle("0002 ACADEMY DINOSAUR XXX");
         entity.setDescription("TestFilm");
         entity.setLanguage(language);
         entity.setLastUpdate(Timestamp.valueOf(convertTools.getlastUpdate()));
-
         filmController.createFilm(entity);
+        */
+        filmController.deleteFilmById(1003);
+
         // 'XXXX ACADEMY DINOSAUR XXX', 'A Epic Drama of a Feminist And a Mad Scientist who must Battle a Teacher in The Canadian Rockies', 2006, 1, null, 6, 0.99, 86, 20.99, 'PG', 'Deleted Scenes,Behind the Scenes', '2006-02-15 05:03:42', 0);
-        for(FilmEntity filmEntity: filmController.getFilmByTitel("0001 ACADEMY DINOSAUR XXX")){
+        for(FilmEntity filmEntity: filmController.getFilmByTitel("0002 ACADEMY DINOSAUR XXX")){
             System.out.println("FilmObbejtList: " + filmEntity);
         }
 

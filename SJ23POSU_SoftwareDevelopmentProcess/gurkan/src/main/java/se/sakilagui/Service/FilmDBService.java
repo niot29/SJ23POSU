@@ -104,6 +104,12 @@ public class FilmDBService implements FilmDBServiceInterface {
 
     @Override
     public void deleteFilmById(int id) {
-
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        FilmEntity filmEntity = session.get(FilmEntity.class, id);
+        session.delete(filmEntity);
+        session.getTransaction().commit();
+        session.close();
     }
 }
