@@ -2,9 +2,9 @@ package se.sakilagui.Controller;
 
 import se.sakilagui.Model.FilmEntity;
 import se.sakilagui.Model.LanguageEntity;
+import se.sakilagui.Service.ConvertTools;
 import se.sakilagui.Service.FilmDBService;
 
-import java.sql.Date;
 import java.util.List;
 
 public class FilmController implements FilmControllerInterface{
@@ -21,8 +21,26 @@ public class FilmController implements FilmControllerInterface{
     }
 
     @Override
-    public List<FilmEntity> listAllByReleaseYear(Date releaseYear) {
-        return null;
+    public List<FilmEntity> listAllByReleaseYear(String releaseYear) {
+        FilmDBService filmDBService = new FilmDBService();
+        ConvertTools convertTools = new ConvertTools();
+        java.sql.Date sqlDate = convertTools.ConvertStrToSqlDate("yyyy",releaseYear);
+        /*
+        Date year = null;
+        DateFormat df = new SimpleDateFormat("yyyy");
+        java.sql.Date sqlDate;
+
+        try {
+            year = (Date) df.parse(releaseYear);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        sqlDate = new java.sql.Date(year.getTime());
+        System.out.println(sqlDate);
+
+        */
+
+        return filmDBService.listAllByReleaseYear(sqlDate);
     }
 
     @Override

@@ -22,7 +22,8 @@ public class Main {
         //System.out.println("GetLanguageByName : " + languageController.getLanguageByName("German"));
 
         //for(FilmEntity filmEntity: filmController.listAllByRating("G")){
-        for(FilmEntity filmEntity: filmController.listAllByLanguage("German")){
+        //for(FilmEntity filmEntity: filmController.listAllByLanguage("German")){
+        for(FilmEntity filmEntity: filmController.listAllByReleaseYear("2006")){
             System.out.println("FilmObbejtList: " + filmEntity);
 
         }

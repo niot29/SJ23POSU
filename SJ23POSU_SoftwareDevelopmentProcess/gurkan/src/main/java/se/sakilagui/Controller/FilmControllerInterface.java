@@ -11,7 +11,7 @@ public interface FilmControllerInterface {
 
     List<FilmEntity> listAllByRating(String rateting);
 
-    List<FilmEntity> listAllByReleaseYear(Date releaseYear);
+    List<FilmEntity> listAllByReleaseYear(String releaseYear);
 
     List<FilmEntity> listAllByLanguage(String language);
 

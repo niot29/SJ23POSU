@@ -48,7 +48,7 @@ public class FilmDBService implements FilmDBServiceInterface {
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List<FilmEntity> filmEntitiesList = session.createQuery("FROM FilmEntity f WHERE f.rating = :release", FilmEntity.class)  //releaseYear
+        List<FilmEntity> filmEntitiesList = session.createQuery("FROM FilmEntity f WHERE f.releaseYear = :release", FilmEntity.class)  //releaseYear
                 .setParameter("release", releaseYear)
                 .getResultList();
 
