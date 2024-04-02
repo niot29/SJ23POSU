@@ -39,7 +39,7 @@ public class Main {
         entity.setLastUpdate(Timestamp.valueOf(convertTools.getlastUpdate()));
         filmController.createFilm(entity);
         */
-        filmController.deleteFilmById(1003);
+        // filmController.deleteFilmById(1003);
 
         // 'XXXX ACADEMY DINOSAUR XXX', 'A Epic Drama of a Feminist And a Mad Scientist who must Battle a Teacher in The Canadian Rockies', 2006, 1, null, 6, 0.99, 86, 20.99, 'PG', 'Deleted Scenes,Behind the Scenes', '2006-02-15 05:03:42', 0);
         for(FilmEntity filmEntity: filmController.getFilmByTitel("0002 ACADEMY DINOSAUR XXX")){
