@@ -1,8 +1,9 @@
 package se.sakilagui.Controller;
 
+
+
 import se.sakilagui.Model.FilmEntity;
 
-import java.sql.Date;
 import java.util.List;
 
 public interface FilmControllerInterface {

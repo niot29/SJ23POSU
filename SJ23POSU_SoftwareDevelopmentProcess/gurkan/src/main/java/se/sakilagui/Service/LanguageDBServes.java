@@ -3,10 +3,7 @@ package se.sakilagui.Service;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import se.sakilagui.Model.FilmEntity;
 import se.sakilagui.Model.LanguageEntity;
-
-import java.util.List;
 
 public class LanguageDBServes implements LanguageDBServeInterface {
     @Override
