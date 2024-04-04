@@ -1,26 +1,28 @@
 package se.sakilagui.Service;
 
-import se.sakilagui.Model.FilmEntity;
 import se.sakilagui.Model.LanguageEntity;
+import se.sakilagui.jpa.model.Category;
 
 import java.sql.Date;
 import java.util.List;
 
 public interface FilmDBServiceInterface {
 
-    FilmEntity createFilm(FilmEntity film);
+    Category.FilmEntity createFilm(Category.FilmEntity film);
 
-    List<FilmEntity> listAllFilm();
+    List<Category.FilmEntity> listAllFilm();
 
-    List<FilmEntity> listAllByRating(String rating);
+    List<Category.FilmEntity> listAllByRating(String rating);
 
-    List<FilmEntity> listAllByReleaseYear(Date releaseYear);
+    List<Category.FilmEntity> listAllByReleaseYear(Date releaseYear);
 
-    List<FilmEntity> listAllByLanguage(LanguageEntity language);
+    List<Category.FilmEntity> listAllByLanguage(LanguageEntity language);
 
-    FilmEntity getFilmById(int id);
+    List<Category.FilmEntity> listAllByCategory(String category);
 
-    List<FilmEntity> getFilmByTitel(String titel);
+    Category.FilmEntity getFilmById(int id);
+
+    List<Category.FilmEntity> getFilmByTitel(String titel);
 
     void deleteFilmById(int id);
 }

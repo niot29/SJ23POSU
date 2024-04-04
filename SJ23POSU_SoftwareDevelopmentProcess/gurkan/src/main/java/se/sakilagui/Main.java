@@ -5,9 +5,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import se.sakilagui.Controller.FilmController;
 import se.sakilagui.Controller.LanguageController;
-import se.sakilagui.Model.FilmEntity;
 import se.sakilagui.Model.LanguageEntity;
 import se.sakilagui.Service.ConvertTools;
+import se.sakilagui.jpa.model.Category;
 
 public class Main {
     public static void main(String[] args) {
@@ -39,7 +39,7 @@ public class Main {
         // filmController.deleteFilmById(1003);
 
         // 'XXXX ACADEMY DINOSAUR XXX', 'A Epic Drama of a Feminist And a Mad Scientist who must Battle a Teacher in The Canadian Rockies', 2006, 1, null, 6, 0.99, 86, 20.99, 'PG', 'Deleted Scenes,Behind the Scenes', '2006-02-15 05:03:42', 0);
-        for(FilmEntity filmEntity: filmController.getFilmByTitel("0001 ACADEMY DINOSAUR XXX")){
+        for(Category.FilmEntity filmEntity: filmController.getFilmByTitel("0001 ACADEMY DINOSAUR XXX")){
             System.out.println("FilmObbejtList: " + filmEntity);
         }
 

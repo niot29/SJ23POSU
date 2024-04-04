@@ -1,16 +1,12 @@
-package se.sakilagui.Model;
+package se.sakilagui.jpa.model;
 
 import jakarta.persistence.*;
-import se.sakilagui.jpa.model.Actor;
-import se.sakilagui.jpa.model.Film;
-import se.sakilagui.jpa.model.FilmActorId;
 
-import java.sql.Timestamp;
 import java.time.Instant;
 
 @Entity
-@Table(name = "film_actor")
-public class FilmActorEntity {
+@Table(name = "film_actor", schema = "sakila")
+public class FilmActor {
     @EmbeddedId
     private FilmActorId id;
 
@@ -58,6 +54,5 @@ public class FilmActorEntity {
     public void setLastUpdate(Instant lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
-
 
 }

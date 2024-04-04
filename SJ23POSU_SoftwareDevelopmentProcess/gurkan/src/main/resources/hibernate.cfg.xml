@@ -18,7 +18,7 @@
         <property name="hibernate.format_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">validate</property>
 
-        <mapping class="se.sakilagui.Model.FilmEntity" />
+        <mapping class="se.sakilagui.jpa.model.Category$FilmEntity" />
         <mapping class="se.sakilagui.Model.LanguageEntity" />
         <mapping class="se.sakilagui.Model.CategoryEntity" />
         <mapping class="se.sakilagui.Model.FilmCategoryEntity" />

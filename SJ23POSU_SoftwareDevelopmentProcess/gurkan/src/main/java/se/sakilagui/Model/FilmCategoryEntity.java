@@ -2,38 +2,59 @@ package se.sakilagui.Model;
 
 import jakarta.persistence.*;
 
-import java.sql.Timestamp;
 
-/*
-select f.title,f.description,c.name from film_category fc inner  join film f on fc.film_id = f.film_id
-    inner join category c  on fc.category_id = c.category_id;
- */
+
+import java.time.Instant;
+
 @Entity
-@Table(name = "film_category")
+@Table(name = "film_category", schema = "sakila")
 public class FilmCategoryEntity {
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "film_id")
+    @EmbeddedId
+    private FilmCategoryEntityId id;
+
+    @MapsId("filmId")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "film_id", nullable = false)
     private FilmEntity film;
 
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "category_id")
+    @MapsId("categoryId")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "category_id", nullable = false)
     private CategoryEntity category;
 
-    @Column(name = "last_update")
-    private Timestamp lastUpdate;
+    @Column(name = "last_update", nullable = false)
+    private Instant lastUpdate;
 
-
-    public FilmCategoryEntity() {
+    public FilmCategoryEntityId getId() {
+        return id;
     }
 
-    @Override
-    public String toString() {
-        return "FilmCategoryEntity{" +
-                "film=" + film +
-                ", category=" + category +
-                ", lastUpdate=" + lastUpdate +
-                '}';
+    public void setId(FilmCategoryEntityId id) {
+        this.id = id;
     }
+
+    public FilmEntity getFilm() {
+        return film;
+    }
+
+    public void setFilm(FilmEntity film) {
+        this.film = film;
+    }
+
+    public CategoryEntity getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryEntity category) {
+        this.category = category;
+    }
+
+    public Instant getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(Instant lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
 }

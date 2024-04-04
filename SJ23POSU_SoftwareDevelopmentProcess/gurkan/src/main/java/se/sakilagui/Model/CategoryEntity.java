@@ -9,13 +9,13 @@ import java.sql.Timestamp;
 public class CategoryEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "category_id")
+    @Column(name = "category_id", columnDefinition = "tinyint UNSIGNED not null")
     private Byte categoryId;
 
+    @Column(name = "name", nullable = false, length = 25)
     private String name;
 
-    @Column(name = "last_update")
+    @Column(name = "last_update", nullable = false)
     private Timestamp lastUpdate;
 
     public CategoryEntity(String name, Timestamp lastUpdate) {
