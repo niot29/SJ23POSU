@@ -22,10 +22,14 @@
         <mapping class="se.sakilagui.Model.LanguageEntity" />
         <mapping class="se.sakilagui.Model.CategoryEntity" />
         <mapping class="se.sakilagui.Model.FilmCategoryEntity" />
-        <!--mapping class="se.sakilagui.Model.FilmActorEntity" />
-        <mapping class="se.sakilagui.Model.FilmCategoryEntity" />
+        <mapping class="se.sakilagui.Model.FilmActorEntity" />
         <mapping class="se.sakilagui.Model.InventoryEntity" />
-        <mapping class="se.sakilagui.Model.ActorEntity" /-->
+        <mapping class="se.sakilagui.Model.StoreEntity" />
+        <mapping class="se.sakilagui.Model.ActorEntity" />
+        <mapping class="se.sakilagui.Model.AddressEntity" />
+        <mapping class="se.sakilagui.Model.StaffEntity" />
+        <mapping class="se.sakilagui.Model.CityEntity" />
+        <mapping class="se.sakilagui.Model.CountryEntity" />
 
 
     </session-factory>
