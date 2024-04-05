@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 public class ActorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "actor_id", columnDefinition = "smallint UNSIGNED not null")
+    @Column(name = "actor_id", nullable = false,columnDefinition = "smallint UNSIGNED")
     private int id;
     @Column(name = "first_name", nullable = false, length = 45)
     private String first_name;

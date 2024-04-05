@@ -16,7 +16,7 @@ public class PaymentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "payment_id", columnDefinition = "smallint UNSIGNED not null")
+    @Column(name = "payment_id",  nullable = false,columnDefinition = "smallint UNSIGNED")
     private int paymentId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -24,7 +24,7 @@ public class PaymentEntity {
     private CustomerEntity customerId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "staff_id", nullable = false)
+    @JoinColumn(name = "staff_id", nullable = false,columnDefinition = "tinyint UNSIGNED")
     private StaffEntity staff;
 
     @ManyToOne(fetch = FetchType.LAZY)

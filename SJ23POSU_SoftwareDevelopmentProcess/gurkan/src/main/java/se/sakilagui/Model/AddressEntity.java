@@ -8,8 +8,8 @@ import java.sql.Timestamp;
 @Table(name = "address")
 public class AddressEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "address_id",columnDefinition = "smallint UNSIGNED not null")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "address_id",nullable = false,columnDefinition = "smallint UNSIGNED")
     private int id;
     @Column(name = "address", length = 50, nullable = false)
     private String address;
@@ -17,8 +17,8 @@ public class AddressEntity {
     private String address2;
     @Column(name = "district", length = 20)
     private String district;
-    @ManyToOne
-    @JoinColumn(name = "city_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "city_id", nullable = false,columnDefinition = "smallint UNSIGNED")
     private CityEntity city;
     @Column(name = "postal_code", length = 10)
     private String postalCode;

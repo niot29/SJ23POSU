@@ -6,7 +6,8 @@ import jakarta.persistence.*;
 @Table(name = "film_text")
 public class FilmTextEntity {
     @Id
-    @Column(name = "film_id", columnDefinition = "smallint UNSIGNED not null")
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Column(name = "film_id", nullable = false, columnDefinition = "smallint UNSIGNED")
     private int id;
 
     @Column(name = "title", nullable = false)

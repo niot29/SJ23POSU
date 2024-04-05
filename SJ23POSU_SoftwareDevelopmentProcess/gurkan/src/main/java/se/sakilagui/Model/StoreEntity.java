@@ -10,14 +10,14 @@ import java.sql.Timestamp;
 public class StoreEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "store_id", columnDefinition = "tinyint UNSIGNED not null")
+    @Column(name = "store_id", nullable = false, columnDefinition = "tinyint UNSIGNED")
     private Short id;
     @OneToOne()
-    @JoinColumn(name = "manager_staff_id", nullable = false)
+    @JoinColumn(name = "manager_staff_id", nullable = false, columnDefinition = "tinyint UNSIGNED")
     private StaffEntity managerStaff;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "address_id", nullable = false)
+    @JoinColumn(name = "address_id", nullable = false, columnDefinition = "smallint UNSIGNED")
     private AddressEntity address;
 
     @Column(name = "last_update", nullable = false, columnDefinition = "timestamp")

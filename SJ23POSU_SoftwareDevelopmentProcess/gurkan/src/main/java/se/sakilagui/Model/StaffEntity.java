@@ -9,7 +9,8 @@ import java.time.Instant;
 @Table(name = "staff")
 public class StaffEntity {
     @Id
-    @Column(name = "staff_id", columnDefinition = "tinyint UNSIGNED not null")
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Column(name = "staff_id", nullable = false,columnDefinition = "tinyint UNSIGNED")
     private Short id;
 
     @Column(name = "first_name", nullable = false, length = 45)
@@ -19,7 +20,7 @@ public class StaffEntity {
     private String lastName;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "address_id", nullable = false)
+    @JoinColumn(name = "address_id", nullable = false,columnDefinition = "smallint UNSIGNED")
     private AddressEntity address;
 
     @Column(name = "picture")
@@ -29,7 +30,7 @@ public class StaffEntity {
     private String email;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "store_id", nullable = false)
+    @JoinColumn(name = "store_id", nullable = false,columnDefinition = "tinyint UNSIGNED")
     private StoreEntity store;
 
     @Column(name = "active", nullable = false)

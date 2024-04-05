@@ -9,11 +9,11 @@ import java.time.Instant;
 @Table(name = "customer")
 public class CustomerEntity {
     @Id
-    @Column(name = "customer_id", columnDefinition = "smallint UNSIGNED not null")
+    @Column(name = "customer_id", nullable = false,columnDefinition = "smallint UNSIGNED")
     private int id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "store_id", nullable = false)
+    @JoinColumn(name = "store_id", nullable = false,columnDefinition = "tinyint UNSIGNED")
     private StoreEntity store;
 
     @Column(name = "first_name", nullable = false, length = 45)
