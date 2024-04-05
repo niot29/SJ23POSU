@@ -14,12 +14,12 @@ public class FilmCategoryEntity {
 
     @MapsId("filmId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "film_id", nullable = false)
+    @JoinColumn(name = "film_id", nullable = false,columnDefinition = "smallint UNSIGNED")
     private FilmEntity film;
 
     @MapsId("categoryId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "category_id", nullable = false)
+    @JoinColumn(name = "category_id", nullable = false,columnDefinition = "tinyint UNSIGNED")
     private CategoryEntity category;
 
     @Column(name = "last_update", nullable = false)
@@ -57,4 +57,14 @@ public class FilmCategoryEntity {
         this.lastUpdate = lastUpdate;
     }
 
+
+    @Override
+    public String toString() {
+        return "FilmCategoryEntity{" +
+                "id=" + id +
+                ", film=" + film +
+                ", category=" + category +
+                ", lastUpdate=" + lastUpdate +
+                '}';
+    }
 }
