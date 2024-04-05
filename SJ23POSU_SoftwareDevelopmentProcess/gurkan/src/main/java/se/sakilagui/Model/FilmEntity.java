@@ -41,9 +41,8 @@ public class FilmEntity {
 
     @Column(name = "rating")
     @Enumerated(EnumType.STRING)
-    private Rating rating;
+    private RatingEnum rating;
 
-    // TODO fiset cul mappig
     @Column(name = "special_features",columnDefinition = "SET('Trailers','Commentaries','Deleted Scenes','Behind the Scenes')")
     private String specialFeatures;
 
@@ -133,11 +132,11 @@ public class FilmEntity {
         this.replacementCost = replacementCost;
     }
 
-    public Rating getRating() {
+    public RatingEnum getRating() {
         return rating;
     }
 
-    public void setRating(Rating rating) {
+    public void setRating(RatingEnum rating) {
         this.rating = rating;
     }
 

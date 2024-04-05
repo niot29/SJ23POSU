@@ -1,6 +1,6 @@
 package se.sakilagui.Model;
 
-public enum Rating {
+public enum RatingEnum {
     UNRATED,
     G,
     PG,

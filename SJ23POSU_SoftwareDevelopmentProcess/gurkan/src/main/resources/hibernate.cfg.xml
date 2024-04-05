@@ -30,6 +30,10 @@
         <mapping class="se.sakilagui.Model.StaffEntity" />
         <mapping class="se.sakilagui.Model.CityEntity" />
         <mapping class="se.sakilagui.Model.CountryEntity" />
+        <mapping class="se.sakilagui.Model.FilmTextEntity" />
+        <mapping class="se.sakilagui.Model.RentalEntity" />
+        <mapping class="se.sakilagui.Model.CustomerEntity" />
+        <mapping class="se.sakilagui.Model.PaymentEntity" />
 
 
     </session-factory>

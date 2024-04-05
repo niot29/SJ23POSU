@@ -1,6 +1,8 @@
 package se.sakilagui.Model;
 import jakarta.persistence.*;
 import java.sql.Time;
+import java.sql.Timestamp;
+
 @Entity
 @Table(name= "actor")
 public class ActorEntity {
@@ -12,16 +14,8 @@ public class ActorEntity {
     private String first_name;
     @Column(name = "last_name", nullable = false, length = 45)
     private String last_name;
-    @Column(name = "last_update", nullable = false)
-    private Time last_update;
-
-
-    public ActorEntity(int id, String name, String last_name, Time last_update) {
-        this.id = id;
-        this.first_name = name;
-        this.last_name = last_name;
-        this.last_update = last_update;
-    }
+    @Column(name = "last_update", nullable = false, columnDefinition = "timestamp")
+    private Timestamp lastUpdate;
 
     public ActorEntity() {
     }
@@ -50,12 +44,12 @@ public class ActorEntity {
         this.last_name = last_name;
     }
 
-    public Time getLast_update() {
-        return last_update;
+    public Timestamp getLastUpdate() {
+        return lastUpdate;
     }
 
-    public void setLast_update(Time last_update) {
-        this.last_update = last_update;
+    public void setLastUpdate(Timestamp lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 
     @Override
@@ -64,7 +58,7 @@ public class ActorEntity {
                 "id=" + id +
                 ", first_name='" + first_name + '\'' +
                 ", last_name='" + last_name + '\'' +
-                ", last_update=" + last_update +
+                ", lastUpdate=" + lastUpdate +
                 '}';
     }
 }
