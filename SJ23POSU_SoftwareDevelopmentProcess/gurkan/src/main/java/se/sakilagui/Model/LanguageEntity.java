@@ -12,23 +12,17 @@ public class LanguageEntity {
     @Id
     @Column(name = "language_id", columnDefinition = "tinyint UNSIGNED not null")
     private Byte language_id;
-    @Column(name="name",length=20)
+    @Column(name="name", nullable = false,length = 20,columnDefinition = "char")
     private String name;
-    @Column(name="last_update")
-    private LocalTime last_update;
+    @Column(name = "last_update", nullable = false, columnDefinition = "timestamp")
+    private Timestamp lastUpdate;
 
 
     public LanguageEntity() {
 
     }
 
-    public LanguageEntity(Byte language_id, String name, LocalTime last_update) {
-        this.language_id = language_id;
-        this.name = name;
-        this.last_update = last_update;
-    }
-
-    public byte getLanguage_id() {
+    public Byte getLanguage_id() {
         return language_id;
     }
 
@@ -44,12 +38,12 @@ public class LanguageEntity {
         this.name = name;
     }
 
-    public LocalTime getLast_update() {
-        return last_update;
+    public Timestamp getLastUpdate() {
+        return lastUpdate;
     }
 
-    public void setLast_update(LocalTime last_update) {
-        this.last_update = last_update;
+    public void setLastUpdate(Timestamp lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 
     @Override
@@ -57,7 +51,7 @@ public class LanguageEntity {
         return "LanguageEntity{" +
                 "language_id=" + language_id +
                 ", name='" + name + '\'' +
-                ", last_update=" + last_update +
+                ", lastUpdate=" + lastUpdate +
                 '}';
     }
 }

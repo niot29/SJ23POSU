@@ -2,8 +2,10 @@ package se.sakilagui.Model;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Timestamp;
+
 
 @Entity
 @Table(name = "film")
@@ -27,49 +29,35 @@ public class FilmEntity {
     @JoinColumn(name = "original_language_id")
     private LanguageEntity orgLanguage;
 
-    @Column(name = "rental_duration")
+    @Column(name = "rental_duration", columnDefinition = "tinyint UNSIGNED")
     private int rentalDuration = 3;
 
     @Column(name = "rental_rate")
-    private double rentalRate = 4.99;  //decimal(4,2)
+    private BigDecimal rentalRate = BigDecimal.valueOf(4.99);  //decimal(4,2)
     @Column(name = "length", columnDefinition = "smallint UNSIGNED",nullable = false)
     private int length;
     @Column(name = "replacement_cost")
-    private double replacementCost = 19.99; //decimal(5,2)
+    private BigDecimal replacementCost = BigDecimal.valueOf(19.99); //decimal(5,2)
 
-    private String rating = "G";
+    @Column(name = "rating")
+    @Enumerated(EnumType.STRING)
+    private Rating rating;
 
-    @Column(name = "special_features")
+    // TODO fiset cul mappig
+    @Column(name = "special_features",columnDefinition = "SET('Trailers','Commentaries','Deleted Scenes','Behind the Scenes')")
     private String specialFeatures;
 
-    @Column(name = "last_update")
+    @Column(name = "last_update", nullable = false, columnDefinition = "timestamp")
     private Timestamp lastUpdate;
 
     public FilmEntity() {
     }
 
-    public FilmEntity(String title, String description, Date releaseYear, LanguageEntity language, LanguageEntity orgLanguage, int rentalDuration, double rentalRate, int length, double replacementCost, String rating, String specialFeatures) {
-        this.title = title;
-        this.description = description;
-        this.releaseYear = releaseYear;
-        this.language = language;
-        this.orgLanguage = orgLanguage;
-        this.rentalDuration = rentalDuration;
-        this.rentalRate = rentalRate;
-        this.length = length;
-        this.replacementCost = replacementCost;
-        this.rating = rating;
-        this.specialFeatures = specialFeatures;
-    }
-
-    public FilmEntity(FilmEntity filmById) {
-    }
-
-    public int getFilmId() {
+    public short getFilmId() {
         return filmId;
     }
 
-    public void setFilmId(Short filmId) {
+    public void setFilmId(short filmId) {
         this.filmId = filmId;
     }
 
@@ -101,8 +89,8 @@ public class FilmEntity {
         return language;
     }
 
-    public void setLanguage(LanguageEntity languageId) {
-        this.language = languageId;
+    public void setLanguage(LanguageEntity language) {
+        this.language = language;
     }
 
     public LanguageEntity getOrgLanguage() {
@@ -121,11 +109,11 @@ public class FilmEntity {
         this.rentalDuration = rentalDuration;
     }
 
-    public double getRentalRate() {
+    public BigDecimal getRentalRate() {
         return rentalRate;
     }
 
-    public void setRentalRate(double rentalRate) {
+    public void setRentalRate(BigDecimal rentalRate) {
         this.rentalRate = rentalRate;
     }
 
@@ -137,19 +125,19 @@ public class FilmEntity {
         this.length = length;
     }
 
-    public double getReplacementCost() {
+    public BigDecimal getReplacementCost() {
         return replacementCost;
     }
 
-    public void setReplacementCost(double replacementCost) {
+    public void setReplacementCost(BigDecimal replacementCost) {
         this.replacementCost = replacementCost;
     }
 
-    public String getRating() {
+    public Rating getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(Rating rating) {
         this.rating = rating;
     }
 
@@ -176,13 +164,13 @@ public class FilmEntity {
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", releaseYear=" + releaseYear +
-                ", languageId=" + language +
-                ", orgLanguageId=" + orgLanguage +
+                ", language=" + language +
+                ", orgLanguage=" + orgLanguage +
                 ", rentalDuration=" + rentalDuration +
                 ", rentalRate=" + rentalRate +
                 ", length=" + length +
                 ", replacementCost=" + replacementCost +
-                ", rating='" + rating + '\'' +
+                ", rating=" + rating +
                 ", specialFeatures='" + specialFeatures + '\'' +
                 ", lastUpdate=" + lastUpdate +
                 '}';
