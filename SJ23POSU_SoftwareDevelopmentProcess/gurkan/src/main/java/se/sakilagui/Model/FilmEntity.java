@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 
 @Entity
 @Table(name = "film")
@@ -26,14 +25,14 @@ public class FilmEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "original_language_id")
-    private Byte orgLanguageId;
+    private LanguageEntity orgLanguage;
 
     @Column(name = "rental_duration")
     private int rentalDuration = 3;
 
     @Column(name = "rental_rate")
     private double rentalRate = 4.99;  //decimal(4,2)
-
+    @Column(name = "length", columnDefinition = "smallint UNSIGNED",nullable = false)
     private int length;
     @Column(name = "replacement_cost")
     private double replacementCost = 19.99; //decimal(5,2)
@@ -49,12 +48,12 @@ public class FilmEntity {
     public FilmEntity() {
     }
 
-    public FilmEntity(String title, String description, Date releaseYear, LanguageEntity language, Byte orgLanguageId, int rentalDuration, double rentalRate, int length, double replacementCost, String rating, String specialFeatures) {
+    public FilmEntity(String title, String description, Date releaseYear, LanguageEntity language, LanguageEntity orgLanguage, int rentalDuration, double rentalRate, int length, double replacementCost, String rating, String specialFeatures) {
         this.title = title;
         this.description = description;
         this.releaseYear = releaseYear;
         this.language = language;
-        this.orgLanguageId = orgLanguageId;
+        this.orgLanguage = orgLanguage;
         this.rentalDuration = rentalDuration;
         this.rentalRate = rentalRate;
         this.length = length;
@@ -106,12 +105,12 @@ public class FilmEntity {
         this.language = languageId;
     }
 
-    public Byte getOrgLanguageId() {
-        return orgLanguageId;
+    public LanguageEntity getOrgLanguage() {
+        return orgLanguage;
     }
 
-    public void setOrgLanguageId(Byte orgLanguageId) {
-        this.orgLanguageId = orgLanguageId;
+    public void setOrgLanguage(LanguageEntity orgLanguage) {
+        this.orgLanguage = orgLanguage;
     }
 
     public int getRentalDuration() {
@@ -178,7 +177,7 @@ public class FilmEntity {
                 ", description='" + description + '\'' +
                 ", releaseYear=" + releaseYear +
                 ", languageId=" + language +
-                ", orgLanguageId=" + orgLanguageId +
+                ", orgLanguageId=" + orgLanguage +
                 ", rentalDuration=" + rentalDuration +
                 ", rentalRate=" + rentalRate +
                 ", length=" + length +
