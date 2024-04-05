@@ -26,6 +26,37 @@ public class CountryEntity {
     public CountryEntity() {
     }
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public Timestamp getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(Timestamp lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
+    @Override
+    public String toString() {
+        return "CountryEntity{" +
+                "id=" + id +
+                ", country='" + country + '\'' +
+                ", lastUpdate=" + lastUpdate +
+                '}';
+    }
 }
 

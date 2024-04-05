@@ -45,4 +45,72 @@ public class PaymentEntity {
     public PaymentEntity() {
     }
 
+    public int getPaymentId() {
+        return paymentId;
+    }
+
+    public void setPaymentId(int paymentId) {
+        this.paymentId = paymentId;
+    }
+
+    public CustomerEntity getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(CustomerEntity customerId) {
+        this.customerId = customerId;
+    }
+
+    public StaffEntity getStaff() {
+        return staff;
+    }
+
+    public void setStaff(StaffEntity staff) {
+        this.staff = staff;
+    }
+
+    public RentalEntity getRental() {
+        return rental;
+    }
+
+    public void setRental(RentalEntity rental) {
+        this.rental = rental;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public Timestamp getPaymentDate() {
+        return paymentDate;
+    }
+
+    public void setPaymentDate(Timestamp paymentDate) {
+        this.paymentDate = paymentDate;
+    }
+
+    public Timestamp getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(Timestamp lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
+    @Override
+    public String toString() {
+        return "PaymentEntity{" +
+                "paymentId=" + paymentId +
+                ", customerId=" + customerId +
+                ", staff=" + staff +
+                ", rental=" + rental +
+                ", amount=" + amount +
+                ", paymentDate=" + paymentDate +
+                ", lastUpdate=" + lastUpdate +
+                '}';
+    }
 }

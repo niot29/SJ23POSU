@@ -30,4 +30,45 @@ public class FilmActorEntity {
     public FilmActorEntity() {
     }
 
+    public FilmActorId getId() {
+        return id;
+    }
+
+    public void setId(FilmActorId id) {
+        this.id = id;
+    }
+
+    public ActorEntity getActor() {
+        return actor;
+    }
+
+    public void setActor(ActorEntity actor) {
+        this.actor = actor;
+    }
+
+    public FilmEntity getFilm() {
+        return film;
+    }
+
+    public void setFilm(FilmEntity film) {
+        this.film = film;
+    }
+
+    public Timestamp getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(Timestamp lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
+    @Override
+    public String toString() {
+        return "FilmActorEntity{" +
+                "id=" + id +
+                ", actor=" + actor +
+                ", film=" + film +
+                ", lastUpdate=" + lastUpdate +
+                '}';
+    }
 }

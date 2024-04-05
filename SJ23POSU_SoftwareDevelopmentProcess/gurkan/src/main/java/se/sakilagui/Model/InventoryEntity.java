@@ -23,4 +23,39 @@ public class InventoryEntity {
     @JoinColumn(name = "store_id", nullable = false, columnDefinition = "tinyint UNSIGNED")
     private StoreEntity store;
 
+    public InventoryEntity() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public FilmEntity getFilm() {
+        return film;
+    }
+
+    public void setFilm(FilmEntity film) {
+        this.film = film;
+    }
+
+    public StoreEntity getStore() {
+        return store;
+    }
+
+    public void setStore(StoreEntity store) {
+        this.store = store;
+    }
+
+    @Override
+    public String toString() {
+        return "InventoryEntity{" +
+                "id=" + id +
+                ", film=" + film +
+                ", store=" + store +
+                '}';
+    }
 }

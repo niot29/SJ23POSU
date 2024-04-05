@@ -3,15 +3,15 @@ package se.sakilagui.Service;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import se.sakilagui.Model.FilmEntity;
 import se.sakilagui.Model.LanguageEntity;
-import se.sakilagui.jpa.model.Category;
 
 import java.sql.Date;
 import java.util.List;
 
 public class FilmDBService implements FilmDBServiceInterface {
     @Override
-    public Category.FilmEntity createFilm(Category.FilmEntity film) {
+    public FilmEntity createFilm(FilmEntity film) {
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
@@ -22,20 +22,20 @@ public class FilmDBService implements FilmDBServiceInterface {
     }
 
     @Override
-    public List<Category.FilmEntity> listAllFilm() {
+    public List<FilmEntity> listAllFilm() {
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List<Category.FilmEntity> filmList = session.createQuery("FROM FilmEntity", Category.FilmEntity.class).getResultList();
+        List<FilmEntity> filmList = session.createQuery("FROM FilmEntity", FilmEntity.class).getResultList();
         return filmList;
     }
 
     @Override
-    public List<Category.FilmEntity> listAllByRating(String rating) {
+    public List<FilmEntity> listAllByRating(String rating) {
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List<Category.FilmEntity> filmEntitiesList = session.createQuery("FROM FilmEntity f WHERE f.rating = :filmrating", Category.FilmEntity.class)  //rating
+        List<FilmEntity> filmEntitiesList = session.createQuery("FROM FilmEntity f WHERE f.rating = :filmrating", FilmEntity.class)  //rating
                 .setParameter("filmrating", rating)
                 .getResultList();
 
@@ -44,11 +44,11 @@ public class FilmDBService implements FilmDBServiceInterface {
     }
 
     @Override
-    public List<Category.FilmEntity> listAllByReleaseYear(Date releaseYear) {
+    public List<FilmEntity>listAllByReleaseYear(Date releaseYear) {
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List<Category.FilmEntity> filmEntitiesList = session.createQuery("FROM FilmEntity f WHERE f.releaseYear = :release", Category.FilmEntity.class)  //releaseYear
+        List<FilmEntity> filmEntitiesList = session.createQuery("FROM FilmEntity f WHERE f.releaseYear = :release", FilmEntity.class)  //releaseYear
                 .setParameter("release", releaseYear)
                 .getResultList();
 
@@ -57,12 +57,12 @@ public class FilmDBService implements FilmDBServiceInterface {
     }
 
     @Override
-    public List<Category.FilmEntity>listAllByLanguage(LanguageEntity language) {
+    public List<FilmEntity>listAllByLanguage(LanguageEntity language) {
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         // select * from film f where f.language_id = 6;
-        List<Category.FilmEntity> filmEntitiesList = session.createQuery("FROM FilmEntity f WHERE f.language.language_id = :id", Category.FilmEntity.class)
+        List<FilmEntity>filmEntitiesList = session.createQuery("FROM FilmEntity f WHERE f.language.language_id = :id", FilmEntity.class)
                 .setParameter("id", language.getLanguage_id())
                 .getResultList();
 
@@ -72,7 +72,7 @@ public class FilmDBService implements FilmDBServiceInterface {
     }
 
     @Override
-    public List<Category.FilmEntity> listAllByCategory(String category) {
+    public List<FilmEntity> listAllByCategory(String category) {
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
@@ -85,7 +85,7 @@ public class FilmDBService implements FilmDBServiceInterface {
         //    where c.name like 'Comedy';
 
         //TODO  -- define sql for list by category
-        List<Category.FilmEntity> filmEntitiesList = session.createQuery("", Category.FilmEntity.class)  //rating
+        List<FilmEntity>filmEntitiesList = session.createQuery("", FilmEntity.class)  //rating
                 .setParameter("filmcategory", category)
                 .getResultList();
 
@@ -94,13 +94,13 @@ public class FilmDBService implements FilmDBServiceInterface {
     }
 
     @Override
-    public Category.FilmEntity getFilmById(int id) {
+    public FilmEntity getFilmById(int id) {
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        Category.FilmEntity filmEntity = new Category.FilmEntity();
+        FilmEntity filmEntity = new FilmEntity();
         try {
-            filmEntity = session.get(Category.FilmEntity.class, id);
+            filmEntity = session.get(FilmEntity.class, id);
         } catch (NullPointerException e) {
             throw new RuntimeException(e);
 
@@ -111,11 +111,11 @@ public class FilmDBService implements FilmDBServiceInterface {
     }
 
     @Override
-    public List<Category.FilmEntity> getFilmByTitel(String titel) {
+    public List<FilmEntity>getFilmByTitel(String titel) {
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List<Category.FilmEntity> filmEntitiesList = session.createQuery("FROM FilmEntity f WHERE f.title like :titel", Category.FilmEntity.class)
+        List<FilmEntity> filmEntitiesList = session.createQuery("FROM FilmEntity f WHERE f.title like :titel", FilmEntity.class)
                 .setParameter("titel", titel)
                 .getResultList();
 
@@ -129,7 +129,7 @@ public class FilmDBService implements FilmDBServiceInterface {
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        Category.FilmEntity filmEntity = session.get(Category.FilmEntity.class, id);
+        FilmEntity filmEntity = session.get(FilmEntity.class, id);
         session.delete(filmEntity);
         session.getTransaction().commit();
         session.close();

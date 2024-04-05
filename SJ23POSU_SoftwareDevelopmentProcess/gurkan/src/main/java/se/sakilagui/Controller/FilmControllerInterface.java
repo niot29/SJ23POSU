@@ -2,25 +2,27 @@ package se.sakilagui.Controller;
 
 
 
-import se.sakilagui.jpa.model.Category;
+
+
+import se.sakilagui.Model.FilmEntity;
 
 import java.util.List;
 
 public interface FilmControllerInterface {
 
-    List<Category.FilmEntity> listAllFilm();
+    List<FilmEntity> listAllFilm();
 
-    List<Category.FilmEntity> listAllByRating(String rateting);
+    List<FilmEntity> listAllByRating(String rateting);
 
-    List<Category.FilmEntity> listAllByReleaseYear(String releaseYear);
+    List<FilmEntity> listAllByReleaseYear(String releaseYear);
 
-    List<Category.FilmEntity> listAllByLanguage(String language);
+    List<FilmEntity> listAllByLanguage(String language);
 
-    Category.FilmEntity getFilmById(int id);
+    FilmEntity getFilmById(int id);
 
-    List<Category.FilmEntity> getFilmByTitel(String titel);
+    List<FilmEntity> getFilmByTitel(String titel);
 
-    Category.FilmEntity createFilm(Category.FilmEntity film);
+    FilmEntity createFilm(FilmEntity film);
 
     void deleteFilmById(int id);
 }
