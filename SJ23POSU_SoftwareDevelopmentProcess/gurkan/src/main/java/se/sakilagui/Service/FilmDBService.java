@@ -116,7 +116,7 @@ public class FilmDBService implements FilmDBServiceInterface {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         List<FilmEntity> filmEntitiesList = session.createQuery("FROM FilmEntity f WHERE f.title like :titel", FilmEntity.class)
-                .setParameter("titel", titel)
+                .setParameter("titel", "%" + titel + "%")
                 .getResultList();
 
         session.close();

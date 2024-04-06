@@ -4,11 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import se.sakilagui.Controller.FilmController;
-import se.sakilagui.Controller.FilmTextController;
 import se.sakilagui.Controller.LanguageController;
-import se.sakilagui.Model.FilmEntity;
-import se.sakilagui.Model.FilmTextEntity;
-import se.sakilagui.Model.LanguageEntity;
 import se.sakilagui.Service.ConvertTools;
 
 public class Main {
@@ -18,9 +14,6 @@ public class Main {
 
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
-        LanguageController languageController = new LanguageController();
-        FilmController filmController = new FilmController();
-        ConvertTools convertTools = new ConvertTools();
 
 
         //
@@ -36,9 +29,27 @@ public class Main {
 
         //
         // -- Test Film
+        // TODO -- have not test
+        Test_Film testFilm = new Test_Film();
+        //testFilm.Test_listAllFilm();
+        //testFilm.Test_listAllByRating();
+        //testFilm.Test_listAllByReleaseYear();
+        //testFilm.Test_listAllByLanguage();
+        //testFilm.Test_getFilmById();
+        //testFilm.Test_getFilmByTitel();
+        //testFilm.Test_createFilm();
+        //testFilm.Test_deleteFilmById(int id);
+
+
+
         //
-
-
-
+        // -- Test Actor
+        //
+        Test_Actor testActor = new Test_Actor();
+        //testActor.listActors();
+        //testActor.create();
+        //testActor.updateActor();
+        //testActor.getActorById();
+        //testActor.deleteActorById();
     }
 }

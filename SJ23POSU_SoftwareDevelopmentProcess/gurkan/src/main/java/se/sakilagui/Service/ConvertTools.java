@@ -5,6 +5,8 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class ConvertTools {
     public Date ConvertStrToSqlDate(String patten,String str){
@@ -23,9 +25,15 @@ public class ConvertTools {
         return sqlDate;
     }
 
-    public String getlastUpdate(){
-       SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-       Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-       return df.format(timestamp);
+    public Timestamp getlastUpdate(){
+       //SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+       //Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+       DateTimeFormatter CUSTOM_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+       LocalDateTime now = LocalDateTime.now();
+       //String formattedString = now.format(CUSTOM_FORMATTER);
+        Timestamp sqlNow = Timestamp.valueOf(now.format(CUSTOM_FORMATTER));
+
+
+       return sqlNow;
     }
 }
