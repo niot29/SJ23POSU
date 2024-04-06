@@ -120,7 +120,7 @@ public class FilmDBService implements FilmDBServiceInterface {
                 .getResultList();
 
         session.close();
-        // System.out.println(filmEntitiesList);
+        // System.out.println(filmEntitiesList);w
         return filmEntitiesList;
     }
 
