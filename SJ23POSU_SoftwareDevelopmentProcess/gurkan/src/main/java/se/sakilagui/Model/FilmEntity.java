@@ -41,6 +41,7 @@ public class FilmEntity {
 
     @Column(name = "rating",columnDefinition = "ENUM('G','R','PG','PG-13','NC-17')" ,nullable = false)
     @Convert(converter = RatingAttributeConverter.class)
+    //@Enumerated(EnumType.STRING)
     private RatingEnum rating;
 
     @Column(name = "special_features",columnDefinition = "SET('Trailers','Commentaries','Deleted Scenes','Behind the Scenes')")

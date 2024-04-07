@@ -22,7 +22,7 @@ public class Test_Film {
     }
 
     void Test_listAllByRating(){
-        for(FilmEntity filmEntity: filmController.listAllByRating("G")){
+        for(FilmEntity filmEntity: filmController.listAllByRating("PG13")){
             System.out.println("FilmObject: " + filmEntity);
         }
     }
@@ -34,9 +34,16 @@ public class Test_Film {
     }
 
     void Test_listAllByLanguage(){
-        for(FilmEntity filmEntity: filmController.listAllByLanguage("German")){
+        for(FilmEntity filmEntity: filmController.listAllByLanguage("English")){
             System.out.println("FilmObject: " + filmEntity);
         }
+    }
+
+    void  Test_listAllByCategory(){
+        for(FilmEntity filmEntity: filmController.listAllByCategory("Comedy")){
+            System.out.println("FilmObject: " + filmEntity);
+        }
+
     }
 
     void Test_getFilmById(){
@@ -50,17 +57,17 @@ public class Test_Film {
     }
 
     void Test_createFilm(){
-        LanguageEntity language = languageController.getLanguageByName("German");
-        FilmEntity entity = new FilmEntity();
-        entity.setTitle("0002 ACADEMY DINOSAUR XXX");
-        entity.setDescription("TestFilm");
-        entity.setLanguage(language);
-        entity.setLastUpdate(convertTools.getlastUpdate());
-        filmController.createFilm(entity);
+        LanguageEntity language = languageController.getLanguageByName("English");
+        FilmEntity filmEntity = new FilmEntity();
+        filmEntity.setTitle("0002 ACADEMY DINOSAUR XXX");
+        filmEntity.setDescription("TestFilm");
+        filmEntity.setLanguage(language);
+        System.out.println(filmEntity);
+        filmController.createFilm(filmEntity);
     }
 
     void Test_deleteFilmById(int id){
-
+        filmController.deleteFilmById(id);
     }
 
 

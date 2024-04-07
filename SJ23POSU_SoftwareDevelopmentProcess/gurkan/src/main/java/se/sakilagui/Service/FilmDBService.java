@@ -3,8 +3,10 @@ package se.sakilagui.Service;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import se.sakilagui.Model.CategoryEntity;
 import se.sakilagui.Model.FilmEntity;
 import se.sakilagui.Model.LanguageEntity;
+import se.sakilagui.Model.RatingEnum;
 
 import java.sql.Date;
 import java.util.List;
@@ -32,11 +34,12 @@ public class FilmDBService implements FilmDBServiceInterface {
 
     @Override
     public List<FilmEntity> listAllByRating(String rating) {
+        RatingEnum ratingEnum = RatingEnum.valueOf(rating);
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         List<FilmEntity> filmEntitiesList = session.createQuery("FROM FilmEntity f WHERE f.rating = :filmrating", FilmEntity.class)  //rating
-                .setParameter("filmrating", rating)
+                .setParameter("filmrating", ratingEnum)
                 .getResultList();
 
         session.close();
@@ -45,6 +48,7 @@ public class FilmDBService implements FilmDBServiceInterface {
 
     @Override
     public List<FilmEntity>listAllByReleaseYear(Date releaseYear) {
+        System.out.println(releaseYear);
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
@@ -67,7 +71,6 @@ public class FilmDBService implements FilmDBServiceInterface {
                 .getResultList();
 
         session.close();
-       // System.out.println(filmEntitiesList);
         return filmEntitiesList;
     }
 
@@ -76,16 +79,9 @@ public class FilmDBService implements FilmDBServiceInterface {
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        // select f.*,c.name FROM film_category fc INNER  join film f on fc.film_id = f.film_id
-        //    inner join category c  on fc.category_id = c.category_id
-        //    where c.name like 'Comedy';
 
-        //select f.*,c.name FROM film f INNER  join film_category fc on  f.film_id = fc.film_id
-        //    inner join category c  on fc.category_id = c.category_id
-        //    where c.name like 'Comedy';
-
-        //TODO  -- define sql for list by category
-        List<FilmEntity>filmEntitiesList = session.createQuery("", FilmEntity.class)  //rating
+        List<FilmEntity> filmEntitiesList = session.createQuery("FROM FilmEntity f INNER JOIN FilmCategoryEntity  fc ON f.filmId = fc.film.filmId" +
+                        " INNER JOIN CategoryEntity c on fc.category.id = c.id where c.name like :filmcategory", FilmEntity.class)  //rating
                 .setParameter("filmcategory", category)
                 .getResultList();
 
@@ -120,7 +116,6 @@ public class FilmDBService implements FilmDBServiceInterface {
                 .getResultList();
 
         session.close();
-        // System.out.println(filmEntitiesList);w
         return filmEntitiesList;
     }
 

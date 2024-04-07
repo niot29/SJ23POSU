@@ -3,6 +3,7 @@ package se.sakilagui.Controller;
 
 import se.sakilagui.Model.FilmEntity;
 import se.sakilagui.Model.LanguageEntity;
+import se.sakilagui.Model.RatingEnum;
 import se.sakilagui.Service.ConvertTools;
 import se.sakilagui.Service.FilmDBService;
 
@@ -41,10 +42,14 @@ public class FilmController implements FilmControllerInterface{
     }
 
     @Override
+    public List<FilmEntity> listAllByCategory(String category) {
+        return new FilmDBService().listAllByCategory(category);
+    }
+
+    @Override
     public FilmEntity getFilmById(int id) {
         FilmDBService filmDBService = new FilmDBService();
         FilmEntity filmEntity = filmDBService.getFilmById((short)id);
-        System.out.println("From-Controller" + filmEntity);
 
         return filmEntity;
     }
@@ -57,6 +62,13 @@ public class FilmController implements FilmControllerInterface{
 
     @Override
     public FilmEntity createFilm(FilmEntity film) {
+        ConvertTools convertTools = new ConvertTools();
+        RatingEnum ratingEnum = null;
+        if(film.getRating() == (null)){
+            film.setRating(RatingEnum.G);
+        }
+        film.setLastUpdate(convertTools.getlastUpdate());
+        System.out.println(film);
         return new FilmDBService().createFilm(film);
     }
 

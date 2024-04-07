@@ -28,15 +28,15 @@ public class Main {
         // -- Test Film
         // TODO -- have not test
         Test_Film testFilm = new Test_Film();
-        testFilm.Test_listAllFilm();
-        //testFilm.Test_listAllByRating();
-        //testFilm.Test_listAllByReleaseYear();
-        //testFilm.Test_listAllByLanguage();
-        //testFilm.Test_getFilmById();
-        //testFilm.Test_getFilmByTitel();
-        //testFilm.Test_createFilm();
-        //testFilm.Test_deleteFilmById(int id);
-
+        //Ok testFilm.Test_listAllFilm();
+        //Ok testFilm.Test_listAllByRating();
+        //Ok testFilm.Test_listAllByReleaseYear();
+        //Ok testFilm.Test_listAllByLanguage();
+        //Ok testFilm.Test_getFilmById();
+        //Ok testFilm.Test_getFilmByTitel();
+        //Ok testFilm.Test_createFilm();
+        //Ok testFilm.Test_deleteFilmById(1001);
+        testFilm.Test_listAllByCategory();
 
 
         //
