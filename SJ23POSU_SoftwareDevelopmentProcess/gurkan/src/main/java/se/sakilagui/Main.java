@@ -61,11 +61,11 @@ public class Main {
         //
         Test_City testCity = new Test_City();
         testCity.listCity();
-        //testCity.getCityById();
-        //testCity.createCity();
-        // testCity.createCity(); TODO Need Country
-        // testCity.updateCity();
-        //testCity.deleteCityById();
+        //OK testCity.getCityById();
+        //OK testCity.createCity();
+        //OK testCity.createCity();
+        //OK testCity.updateCity();
+        //Ok testCity.deleteCityById(601);
 
 
         //
