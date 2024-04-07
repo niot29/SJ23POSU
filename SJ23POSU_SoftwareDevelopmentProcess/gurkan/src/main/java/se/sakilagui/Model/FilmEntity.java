@@ -39,8 +39,8 @@ public class FilmEntity {
     @Column(name = "replacement_cost")
     private BigDecimal replacementCost = BigDecimal.valueOf(19.99); //decimal(5,2)
 
-    @Column(name = "rating")
-    @Enumerated(EnumType.STRING)
+    @Column(name = "rating",columnDefinition = "ENUM('G','R','PG','PG-13','NC-17')" ,nullable = false)
+    @Convert(converter = RatingAttributeConverter.class)
     private RatingEnum rating;
 
     @Column(name = "special_features",columnDefinition = "SET('Trailers','Commentaries','Deleted Scenes','Behind the Scenes')")

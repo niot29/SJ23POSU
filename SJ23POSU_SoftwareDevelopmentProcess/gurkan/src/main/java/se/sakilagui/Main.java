@@ -28,7 +28,7 @@ public class Main {
         // -- Test Film
         // TODO -- have not test
         Test_Film testFilm = new Test_Film();
-        //testFilm.Test_listAllFilm();
+        testFilm.Test_listAllFilm();
         //testFilm.Test_listAllByRating();
         //testFilm.Test_listAllByReleaseYear();
         //testFilm.Test_listAllByLanguage();

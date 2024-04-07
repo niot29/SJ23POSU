@@ -1,6 +1,10 @@
 package se.sakilagui.Model;
 
 public enum RatingEnum {
+
+    G,R,PG,PG13,NC17;
+
+    /*
     RATING_UNRATED("UNRATED"),
     RATING_G("G"),
     RATING_PG("PG"),
@@ -16,4 +20,6 @@ public enum RatingEnum {
     public String getRating() {
         return rating;
     }
+    */
+
 }
