@@ -6,6 +6,7 @@ import org.hibernate.cfg.Configuration;
 import se.sakilagui.Controller.FilmController;
 import se.sakilagui.Controller.LanguageController;
 import se.sakilagui.Service.ConvertTools;
+import se.sakilagui.Views.Test_City;
 
 public class Main {
     public static void main(String[] args) {
@@ -51,5 +52,27 @@ public class Main {
         //testActor.updateActor();
         //testActor.getActorById();
         //testActor.deleteActorById();
+
+
+        //
+        // -- Test Store
+        // TODO -- have not test
+        Test_Store testStore = new Test_Store();
+        //testStore.Test_getStoreById();
+
+        //
+        // -- Test City
+        //
+        Test_City testCity = new Test_City();
+        testCity.listCity();
+        //testCity.getCityById();
+        //testCity.createCity();
+        // testCity.createCity(); TODO Need Country
+        // testCity.updateCity();
+        //testCity.deleteCityById();
+
     }
+
+
+
 }

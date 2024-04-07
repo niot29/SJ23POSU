@@ -21,7 +21,6 @@ public class ActorDBHandling implements ActorDBInterface {
             Session session = sessionFactory.openSession();
             session.beginTransaction();
             ActorEntity actor = session.get(ActorEntity.class, id);
-            session.getTransaction().commit();
             session.close();
             return actor;
         }

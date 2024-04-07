@@ -31,7 +31,7 @@ public class StaffEntity {
     @Column(name = "email", length = 50)
     private String email;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne()
     @JoinColumn(name = "store_id", nullable = false,columnDefinition = "tinyint UNSIGNED")
     private StoreEntity store;
 
@@ -137,6 +137,7 @@ public class StaffEntity {
     public void setLastUpdate(Timestamp lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
+
 
     @Override
     public String toString() {

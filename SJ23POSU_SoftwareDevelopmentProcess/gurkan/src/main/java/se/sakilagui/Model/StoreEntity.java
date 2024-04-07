@@ -16,7 +16,7 @@ public class StoreEntity {
     @JoinColumn(name = "manager_staff_id", nullable = false, columnDefinition = "tinyint UNSIGNED")
     private StaffEntity managerStaff;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "address_id", nullable = false, columnDefinition = "smallint UNSIGNED")
     private AddressEntity address;
 
