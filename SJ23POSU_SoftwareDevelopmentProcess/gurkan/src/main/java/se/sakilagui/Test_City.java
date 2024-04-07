@@ -1,4 +1,4 @@
-package se.sakilagui.Views;
+package se.sakilagui;
 
 import se.sakilagui.Controller.CityController;
 import se.sakilagui.Model.ActorEntity;

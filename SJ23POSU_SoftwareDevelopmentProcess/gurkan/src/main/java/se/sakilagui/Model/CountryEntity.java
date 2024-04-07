@@ -26,6 +26,10 @@ public class CountryEntity {
     public CountryEntity() {
     }
 
+    public CountryEntity(String country) {
+        this.country = country;
+    }
+
     public int getId() {
         return id;
     }

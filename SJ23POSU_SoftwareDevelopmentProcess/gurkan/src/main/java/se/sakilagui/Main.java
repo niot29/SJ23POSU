@@ -3,10 +3,6 @@ package se.sakilagui;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import se.sakilagui.Controller.FilmController;
-import se.sakilagui.Controller.LanguageController;
-import se.sakilagui.Service.ConvertTools;
-import se.sakilagui.Views.Test_City;
 
 public class Main {
     public static void main(String[] args) {
@@ -71,6 +67,16 @@ public class Main {
         // testCity.updateCity();
         //testCity.deleteCityById();
 
+
+        //
+        // -- Test Country
+        //
+        Test_Country testCountry = new Test_Country();
+        //OK testCountry.getCountryById();
+        //Ok testCountry.createCountry();
+        //OK testCountry.updateCountry();
+        //OK testCountry.deleteCountryById();
+        //OK testCountry.listCountry();
     }
 
 

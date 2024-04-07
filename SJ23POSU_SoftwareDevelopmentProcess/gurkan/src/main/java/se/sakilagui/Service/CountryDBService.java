@@ -14,7 +14,7 @@ public class CountryDBService implements CountryDBInterface{
     private static SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 
     @Override
-    public void createCity(CountryEntity country) {
+    public void createCountry(CountryEntity country) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
             session.persist(country);
@@ -64,6 +64,15 @@ public class CountryDBService implements CountryDBInterface{
 
     @Override
     public void deleteCountryById(int id) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            CountryEntity country = session.get(CountryEntity.class, id);
+            session.delete(country);
+            transaction.commit();
+        }catch (Exception e){
+            System.out.println(e);
+            System.out.println("Something went wrong. in Create StoreDBServices");
+        }
 
     }
 }
