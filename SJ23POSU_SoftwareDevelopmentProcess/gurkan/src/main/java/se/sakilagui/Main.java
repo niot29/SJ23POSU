@@ -60,7 +60,7 @@ public class Main {
         // -- Test City
         //
         Test_City testCity = new Test_City();
-        testCity.listCity();
+        //testCity.listCity();
         //OK testCity.getCityById();
         //OK testCity.createCity();
         //OK testCity.createCity();
@@ -77,6 +77,15 @@ public class Main {
         //OK testCountry.updateCountry();
         //OK testCountry.deleteCountryById();
         //OK testCountry.listCountry();
+
+        //
+        // -- Test FilmActor
+        // TODO -- have not test
+        Test_FilmActor testFilmActor = new Test_FilmActor();
+        //testFilmActor.getFilmActorById();
+        //testFilmActor.getAllFilmActors();
+
+
     }
 
 

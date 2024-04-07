@@ -1,12 +1,9 @@
 package se.sakilagui.Model;
 
 import jakarta.persistence.*;
-import se.sakilagui.jpa.model.Actor;
-import se.sakilagui.jpa.model.Film;
 import se.sakilagui.jpa.model.FilmActorId;
 
 import java.sql.Timestamp;
-import java.time.Instant;
 
 @Entity
 @Table(name = "film_actor")

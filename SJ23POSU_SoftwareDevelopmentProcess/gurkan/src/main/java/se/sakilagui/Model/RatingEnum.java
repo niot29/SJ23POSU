@@ -8,8 +8,12 @@ public enum RatingEnum {
     RATING_R("R"),
     RATING_NC17("NC17");
 
-    String ratingLevel;
-    RatingEnum(String ratingLevel) {
-        this.ratingLevel = ratingLevel;
+    private  String rating;
+    RatingEnum(String rating) {
+        this.rating = rating;
+    }
+
+    public String getRating() {
+        return rating;
     }
 }
