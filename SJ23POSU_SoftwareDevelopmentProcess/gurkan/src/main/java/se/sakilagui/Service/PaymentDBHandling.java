@@ -1,9 +1,6 @@
-package se.sakilagui.Service;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import se.sakilagui.Model.PaymentEntity;
 
 import java.util.List;
 
@@ -18,6 +15,7 @@ public class PaymentDBHandling implements PaymentInterface {
         session.close();
         sessionFactory.close();
     }
+
     @Override
     public PaymentEntity getPaymentById(int id) {
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
@@ -28,6 +26,7 @@ public class PaymentDBHandling implements PaymentInterface {
         session.close();
         return payment;
     }
+
     @Override
     public List<PaymentEntity> getAllPayments() {
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
@@ -38,6 +37,7 @@ public class PaymentDBHandling implements PaymentInterface {
         session.close();
         return payments;
     }
+
     @Override
     public PaymentEntity updatePayment(PaymentEntity payment) {
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
@@ -48,6 +48,7 @@ public class PaymentDBHandling implements PaymentInterface {
         session.close();
         return payment;
     }
+
     @Override
     public void deletePaymentById(int id) {
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
