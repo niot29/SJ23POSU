@@ -1,7 +1,6 @@
 package se.sakilagui.Controller;
 import se.sakilagui.Model.PaymentEntity;
-import se.sakilagui.Service.PaymentDBHandling;
-import se.sakilagui.Service.PaymentInterface;
+import se.sakilagui.Service.*;
 
 import java.util.List;
 
