@@ -3,6 +3,8 @@ package se.sakilagui;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import se.sakilagui.Test.*;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -26,9 +28,9 @@ public class Main {
 
         //
         // -- Test Film
-        // TODO -- have not test
+        //
         Test_Film testFilm = new Test_Film();
-        //Ok testFilm.Test_listAllFilm();
+        // testFilm.Test_listAllFilm();
         //Ok testFilm.Test_listAllByRating();
         //Ok testFilm.Test_listAllByReleaseYear();
         //Ok testFilm.Test_listAllByLanguage();
@@ -36,7 +38,6 @@ public class Main {
         //Ok testFilm.Test_getFilmByTitel();
         //Ok testFilm.Test_createFilm();
         //Ok testFilm.Test_deleteFilmById(1001);
-        testFilm.Test_listAllByCategory();
 
 
         //

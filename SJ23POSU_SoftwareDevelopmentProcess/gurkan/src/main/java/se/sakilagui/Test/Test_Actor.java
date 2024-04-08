@@ -1,4 +1,4 @@
-package se.sakilagui;
+package se.sakilagui.Test;
 
 import se.sakilagui.Controller.ActorController;
 import se.sakilagui.Model.ActorEntity;

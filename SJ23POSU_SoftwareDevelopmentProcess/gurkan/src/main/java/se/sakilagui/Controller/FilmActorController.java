@@ -11,7 +11,7 @@ public class FilmActorController implements FilmActorInterface {
 
 
     @Override
-    public List<FilmActorEntity> getFilmActorById(FilmActorEntity id) {
+    public FilmActorEntity getFilmActorById(int id) {
         FilmActorDBService filmActorDBService = new FilmActorDBService();
         return filmActorDBService.getFilmActorById(id);
     }

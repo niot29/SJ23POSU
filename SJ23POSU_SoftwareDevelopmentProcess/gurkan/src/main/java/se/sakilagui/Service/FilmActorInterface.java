@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface FilmActorInterface {
     void createFilmActor(FilmActorEntity filmActor);
-    List<FilmActorEntity> getFilmActorById(FilmActorEntity id);
+    FilmActorEntity getFilmActorById(int id);
     List<FilmActorEntity> getAllFilmActors();
     FilmActorEntity updateFilmActor(FilmActorEntity filmActor);
     void deleteFilmActorById(FilmActorEntity id);

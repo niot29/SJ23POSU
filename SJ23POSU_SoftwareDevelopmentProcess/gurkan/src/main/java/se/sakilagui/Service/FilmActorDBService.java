@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import se.sakilagui.Model.FilmActorEntity;
+import se.sakilagui.Model.StoreEntity;
 
 import java.util.Collections;
 import java.util.List;
@@ -26,10 +27,10 @@ public class FilmActorDBService implements FilmActorInterface{
         }
     }
     @Override
-    public List<FilmActorEntity> getFilmActorById(FilmActorEntity id) {
-        List<FilmActorEntity> filmActorsList = null;
+    public FilmActorEntity getFilmActorById(int id) {
+        FilmActorEntity filmActorsList = null;
         try (Session session = sessionFactory.openSession()) {
-            filmActorsList = Collections.singletonList(session.get(FilmActorEntity.class, id));
+            filmActorsList = session.get(FilmActorEntity.class, id);
         }
         return filmActorsList;
     }
