@@ -1,6 +1,10 @@
+package se.sakilagui.Service;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import se.sakilagui.Model.PaymentEntity;
+import se.sakilagui.Service.PaymentInterface;
 
 import java.util.List;
 
